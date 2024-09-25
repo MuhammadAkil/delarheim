@@ -6,7 +6,7 @@ import Image from 'next/image';
 export default function Hero() {
   return (
     <>
-    <div className="relative w-full h-[566px] overflow-hidden mb-20 ">
+    <div className="relative w-full h-[566px] overflow-hidden">
       
      <Image
         src={HeroImg}
@@ -17,10 +17,12 @@ export default function Hero() {
       />
               {/* Overlay Text */}
               
-              <div className="absolute bottom-[180px] lg:bottom-[230px] left-0 w-full text-center p-6 from-black to-transparent text-white">
-  <div className="flex justify-center items-center mx-auto">
-    <div className="[&_div]:cursor-pointer flex lg:flex-row flex-col gap-5 justify-center items-center mx-auto">
-      <div className="w-[250px] h-[65px] backdrop-blur-md bg-[#18746c]/80 p-3 rounded-lg border border-white/20 shadow-lg transition-all duration-300 transform hover:bg-[#18746c]/90 hover:shadow-xl hover:scale-105 flex items-center justify-between gap-4">
+              <div className="absolute top-[50px] lg:bottom-[230px] left-0 w-full text-center p-6 from-black to-transparent text-white">
+  <div className="flex flex-col justify-center items-center mx-auto">
+            <div>
+            <h2 className='text-xl font-bold lg:text-4xl mb-32 mt-7 lg:mt-0 '>Find the best Deal for you today!.</h2>
+            </div>    <div className="[&_div]:cursor-pointer flex lg:flex-row flex-col gap-5 justify-center items-center mx-auto">
+    <div className="w-[250px] h-[65px] backdrop-blur-md bg-[#18746c]/80 p-3 rounded-lg border border-white/20 shadow-lg transition-all duration-300 transform hover:bg-[#18746c]/90 hover:shadow-xl hover:scale-105 flex items-center justify-between gap-4">
         <h1 className="text-xl md:text-lg font-semibold text-white flex items-center gap-2">
           Buy a Car
         </h1>
