@@ -49,7 +49,8 @@ const Header = () => {
 
   return (
     <>
-      <div className="hidden  container bg-black mx-auto px-4 py-4 lg:flex flex-col lg:flex-row justify-center items-center space-y-2 lg:space-y-0 lg:space-x-4">
+      <div className='bg-black '>
+        <div className="hidden  container mx-auto px-4 py-4 lg:flex flex-col lg:flex-row justify-center items-center space-y-2 lg:space-y-0 lg:space-x-4">
         <div className="  !text-white text-base px-4 flex items-center rounded-xl">
           <FaMapMarkerAlt className="mr-2" />
           Carworld, Newyork 10012, USA
@@ -62,7 +63,8 @@ const Header = () => {
           <FaClock className="mr-2" />
           Mon-Sat: 09.00am to 18.00pm
         </div>
-      </div>
+      </div></div>
+
       <header className="bg-white mx-auto px-20 h-[72px] p-5 items-center justify-between shadow-md lg:flex lg:items-center hidden lg:justify-between">
         <div className="flex items-start max-w-52">
           <a href="/home">

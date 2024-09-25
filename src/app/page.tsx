@@ -3,19 +3,19 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Rating from "./components/Rating";
+import Slider from "./components/Slider";
 import WhyUs from "./components/Why-Us";
 
 export default function Home() {
   return (
-   <div>
+   <div >
       <Header />
-      <main className="">
-        <Hero/>
-      </main>
-      {/* <Slider/> */}
+      <main >
+      <Hero/>
       <CarList/>
       <Rating />
       <WhyUs />
+      </main>
       <Footer/>
       
       </div>

@@ -6,7 +6,7 @@ const WhyUs = () => {
         <div className="bg-black">
             <section
                 id="features"
-                className="relative block px-6 py-10 md:py-20 md:px-10 border-t border-b border-neutral-900 bg-neutral-900/30"
+                className="mx-auto max-w-[1080px] relative block px-6 py-10 md:py-20 md:px-10 border-t border-b border-neutral-900 bg-neutral-900/30"
             >
                 <div className="relative mx-auto max-w-5xl text-center">
                     <span className="text-white my-3 flex items-center justify-center font-medium uppercase tracking-wider">
@@ -97,13 +97,13 @@ Your Trusted Car Partner
 
 
 
-                <div
+                {/* <div
                     className="absolute bottom-0 left-0 z-0 h-1/3 w-full border-b"
                     style={{
                         backgroundImage: 'linear-gradient(to right top, rgb(38, 120, 113,0.3) 0%, transparent 50%, transparent 100%)',
                         borderColor: 'rgba(92, 79, 240, 0.2)',
                     }}
-                ></div>
+                ></div> */}
                 {/* <div
                     className="absolute bottom-0 right-0 z-0 h-1/3 w-full"
                     style={{

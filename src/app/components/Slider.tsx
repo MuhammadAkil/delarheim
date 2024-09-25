@@ -1,84 +1,185 @@
-"use client"; // <-- This tells Next.js to treat this as a Client Component
 
-import { useState } from "react";
+"use client";
+import React, { useEffect, useState } from 'react';
 
-const CustomerSlider = () => {
-  const customers = [
-    { id: 1, name: "Customer 1", description: "Description 1" },
-    { id: 2, name: "Customer 2", description: "Description 2" },
-    { id: 3, name: "Customer 3", description: "Description 3" },
-    { id: 4, name: "Customer 4", description: "Description 4" },
-    { id: 5, name: "Customer 5", description: "Description 5" },
-    { id: 6, name: "Customer 6", description: "Description 6" },
-    { id: 7, name: "Customer 7", description: "Description 7" },
-  ];
+// Define types for player and item
+interface Player {
+  title: string;
+  desc: string;
+  image: string;
+}
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerPage = 3;
+interface Item {
+  player: Player;
+}
 
-  // Calculate the number of pages
-  const totalPages = Math.ceil(customers.length / itemsPerPage);
+const slideWidth = 30;
 
-  // Go to the next set of items
-  const handleNext = () => {
-    if (currentIndex < customers.length - itemsPerPage) {
-      setCurrentIndex(currentIndex + itemsPerPage);
-    }
+const itemsData: Item[] = [
+  {
+    player: {
+      title: 'Efren Reyes',
+      desc: 'Known as "The Magician", Efren Reyes is well regarded by many professionals as the greatest all around player of all time.',
+      image: 'https://i.postimg.cc/RhYnBf5m/er-slider.jpg',
+    },
+  },
+  {
+    player: {
+      title: "Ronnie O'Sullivan",
+      desc: "Ronald Antonio O'Sullivan is a six-time world champion and is the most successful player in the history of snooker.",
+      image: 'https://i.postimg.cc/qBGQNc37/ro-slider.jpg',
+    },
+  },
+  {
+    player: {
+      title: 'Shane Van Boening',
+      desc: 'The "South Dakota Kid" is hearing-impaired and uses a hearing aid, but it has not limited his ability.',
+      image: 'https://i.postimg.cc/cHdMJQKG/svb-slider.jpg',
+    },
+  },
+  {
+    player: {
+      title: 'Mike Sigel',
+      desc: 'Mike Sigel or "Captain Hook" as many like to call him is an American professional pool player with over 108 tournament wins.',
+      image: 'https://i.postimg.cc/C12h7nZn/ms-1.jpg',
+    },
+  },
+  {
+    player: {
+      title: 'Willie Mosconi',
+      desc: 'Nicknamed "Mr. Pocket Billiards," Willie Mosconi was among the first Billiard Congress of America Hall of Fame inductees.',
+      image: 'https://i.postimg.cc/NfzMDVHP/willie-mosconi-slider.jpg',
+    },
+  },
+];
+
+const length = itemsData.length;
+itemsData.push(...itemsData);
+
+// Helper function to simulate delay
+const sleep = (ms: number = 0) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
+// Create item with styles based on position
+const createItem = (position: number, idx: number) => {
+  const item = {
+    styles: {
+      transform: `translateX(${position * slideWidth}rem)`,
+    } as React.CSSProperties,  // Explicitly typing the styles object
+    player: itemsData[idx].player,
   };
 
-  // Go to the previous set of items
-  const handlePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - itemsPerPage);
-    }
-  };
+  switch (position) {
+    case length - 1:
+    case length + 1:
+      item.styles = { ...item.styles, filter: 'grayscale(1)' };
+      break;
+    case length:
+      break;
+    default:
+      item.styles = { ...item.styles, opacity: 0 };
+      break;
+  }
+
+  return item;
+};
+
+
+// Define types for CarouselSlideItem props
+interface CarouselSlideItemProps {
+  pos: number;
+  idx: number;
+  activeIdx: number;
+}
+
+const CarouselSlideItem: React.FC<CarouselSlideItemProps> = ({ pos, idx }) => {
+  const item = createItem(pos, idx);
 
   return (
-    <div className="container max-w-[1050px] mx-auto px-4">
-      <div className="relative">
-        {/* Slider Cards */}
-        <div className="flex space-x-4">
-          {customers
-            .slice(currentIndex, currentIndex + itemsPerPage)
-            .map((customer) => (
-              <div
-                key={customer.id}
-                className="bg-gray-200 rounded-lg p-6 flex-shrink-0 w-64"
-              >
-                <h3 className="text-lg font-bold mb-2">{customer.name}</h3>
-                <p>{customer.description}</p>
-              </div>
-            ))}
-        </div>
+    <li className="carousel__slide-item" style={item.styles}>
+      <div className="carousel__slide-item-img-link">
+        <img src={item.player.image} alt={item.player.title} />
+      </div>
+      <div className="carousel-slide-item__body">
+        <h4>{item.player.title}</h4>
+        <p>{item.player.desc}</p>
+      </div>
+    </li>
+  );
+};
 
-        {/* Navigation Buttons */}
-        <div className="absolute top-1/2 transform -translate-y-1/2 left-0">
-          <button
-            className={`px-4 py-2 bg-gray-800 text-white rounded-full ${
-              currentIndex === 0 ? "opacity-50 cursor-not-allowed" : ""
-            }`}
-            onClick={handlePrev}
-            disabled={currentIndex === 0}
-          >
-            Previous
-          </button>
+const keys = Array.from(Array(itemsData.length).keys());
+
+const Carousel: React.FC = () => {
+  const [items, setItems] = useState<number[]>(keys);
+  const [isTicking, setIsTicking] = useState<boolean>(false);
+  const [activeIdx, setActiveIdx] = useState<number>(0);
+  const bigLength = items.length;
+
+  const prevClick = (jump: number = 1) => {
+    if (!isTicking) {
+      setIsTicking(true);
+      setItems((prev) => prev.map((_, i) => prev[(i + jump) % bigLength]));
+    }
+  };
+
+  const nextClick = (jump: number = 1) => {
+    if (!isTicking) {
+      setIsTicking(true);
+      setItems((prev) =>
+        prev.map((_, i) => prev[(i - jump + bigLength) % bigLength])
+      );
+    }
+  };
+
+  const handleDotClick = (idx: number) => {
+    if (idx < activeIdx) prevClick(activeIdx - idx);
+    if (idx > activeIdx) nextClick(idx - activeIdx);
+  };
+
+  useEffect(() => {
+    if (isTicking) sleep(300).then(() => setIsTicking(false));
+  }, [isTicking]);
+
+  useEffect(() => {
+    setActiveIdx((length - (items[0] % length)) % length); // prettier-ignore
+  }, [items]);
+
+  return (
+    <div className="carousel__wrap">
+      <div className="carousel__inner">
+        <button
+          className="carousel__btn carousel__btn--prev"
+          onClick={() => prevClick()}
+        >
+          <i className="carousel__btn-arrow carousel__btn-arrow--left" />
+        </button>
+        <div className="carousel__container">
+          <ul className="carousel__slide-list">
+            {items.map((pos, i) => (
+              <CarouselSlideItem key={i} idx={i} pos={pos} activeIdx={activeIdx} />
+            ))}
+          </ul>
         </div>
-        <div className="absolute top-1/2 transform -translate-y-1/2 right-0">
-          <button
-            className={`px-4 py-2 bg-gray-800 text-white rounded-full ${
-              currentIndex >= customers.length - itemsPerPage
-                ? "opacity-50 cursor-not-allowed"
-                : ""
-            }`}
-            onClick={handleNext}
-            disabled={currentIndex >= customers.length - itemsPerPage}
-          >
-            Next
-          </button>
+        <button
+          className="carousel__btn carousel__btn--next"
+          onClick={() => nextClick()}
+        >
+          <i className="carousel__btn-arrow carousel__btn-arrow--right" />
+        </button>
+        <div className="carousel__dots">
+          {items.slice(0, length).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => handleDotClick(i)}
+              className={i === activeIdx ? 'dot active' : 'dot'}
+            />
+          ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default CustomerSlider;
+export default Carousel;

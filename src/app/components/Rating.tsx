@@ -1,5 +1,7 @@
-// components/Reviews.js
-import Image from 'next/image';
+"use client";
+
+import Image from "next/image";
+import { useState, useEffect } from "react";
 
 const reviews = [
   {
@@ -31,13 +33,73 @@ const reviews = [
     body: `There's not much to say about YETI stainless steel tumblers that hasn't been said. I filled mine with ice and water at 8:30am last week and drove to work sipping it.`,
     
   }
+  ,
+  {
+    id: 4,
+    date: "2 March 2024",
+    
+    name: "Carrie Brewer",
+    photo: "https://images.unsplash.com/photo-1508002366005-75a695ee2d17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=512&q=80",
+    rating: 3,
+    body: `There's not much to say about YETI stainless steel tumblers that hasn't been said. I filled mine with ice and water at 8:30am last week and drove to work sipping it.`,
+    
+  },
+  {
+    id: 5,
+    date: "06 Dec 2019",
+    name: "Carrie Brewer",
+    photo: "https://images.unsplash.com/photo-1508002366005-75a695ee2d17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=512&q=80",
+    rating: 4,
+    body: `There's not much to say about YETI stainless steel tumblers that hasn't been said. I filled mine with ice and water at 8:30am last week and drove to work sipping it.`,
+    
+  },
+  {
+    id: 6,
+    date: "06 Dec 2019",
+    name: "Carrie Brewer",
+    photo: "https://images.unsplash.com/photo-1508002366005-75a695ee2d17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=512&q=80",
+    rating: 4,
+    body: `There's not much to say about YETI stainless steel tumblers that hasn't been said. I filled mine with ice and water at 8:30am last week and drove to work sipping it.`,
+    
+  }
   
 ];
 
 export default function Rating() {
+   const [currentSlide, setCurrentSlide] = useState(0);
+  const [itemsPerSlide, setItemsPerSlide] = useState(1);
+
+  useEffect(() => {
+    const updateItemsPerSlide = () => {
+      if (window.innerWidth >= 1024) {
+        setItemsPerSlide(3); 
+      } else if (window.innerWidth >= 768) {
+        setItemsPerSlide(2); 
+      } else {
+        setItemsPerSlide(1); 
+      }
+    };
+
+    window.addEventListener("resize", updateItemsPerSlide);
+    updateItemsPerSlide();
+
+    return () => window.removeEventListener("resize", updateItemsPerSlide);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentSlide((prevSlide) =>
+      prevSlide === Math.ceil(reviews.length / itemsPerSlide) - 1 ? 0 : prevSlide + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prevSlide) =>
+      prevSlide === 0 ? Math.ceil(reviews.length / itemsPerSlide) - 1 : prevSlide - 1
+    );
+  };
     return (
       
-        <div className="antialiased flex flex-col items-center min-h-[550px] pt-8 pb-12">
+        <div className="antialiased flex flex-col min-h-[550px] pt-8 pb-12 mx-auto max-w-[1080px]">
               <div className="flex flex-wrap items-center justify-center w-full mb-20">
           <div className="lg:w-1/2 w-full mb-6 lg:mb-0 flex flex-col mx-auto justify-center">
             <h2 className="block w-full bg-gradient-to-b from-white to-white bg-clip-text text-[#18746c] text-center font-bold text-3xl sm:text-4xl">4.8 stars, 2000+ reviews
@@ -45,12 +107,59 @@ export default function Rating() {
           </div>
        
         </div>
-          
-      <div className="px-4 sm:px-6 lg:px-8 flex gap-3 flex-wrap items-center justify-center mx-auto">
+        <div className="flex mb-3 gap-2 items-center justify-end">
+                   <button
+    onClick={prevSlide}
+    className=" p-3 text-white bg-[#18746c] rounded-full"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="white"
+      className="w-6 h-6 rotate-180"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M9 5l7 7-7 7"
+      />
+    </svg>
+  </button>
+   {/* Next Slide Button */}
+  <button
+    onClick={nextSlide}
+    className=" p-3 text-white bg-[#18746c] rounded-full"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="white"
+      className="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M9 5l7 7-7 7"
+      />
+    </svg>
+  </button>
+ </div>
+ <div className="overflow-hidden w-full">
+    <div
+      className="flex gap-3 transition-transform duration-500 ease-in-out"
+      style={{
+        transform: `translateX(-${(currentSlide * 200) / itemsPerSlide}%)`,
+      }}
+    >
+                {/* <div className="relative mx-auto max-w-7xl z-10 grid grid-cols-1 gap-10 pt-14 sm:grid-cols-2 lg:grid-cols-3"> */}
         {reviews.map((review) => (
           <div
             key={review.id}
-            className="max-w-[22rem] p-8 border rounded-md shadow-lg bg-white"
+            className="min-w-[100%] md:min-w-[50%] lg:min-w-[32.38%]  p-4 border rounded-md shadow-lg bg-white"
           >
             <div className=" flex flex-col items-center justify-center space-y-2">
               <div className="flex flex-shrink-0 rounded-full border border-gray-200">
@@ -103,7 +212,7 @@ export default function Rating() {
             </div>
           </div>
         ))}
-      </div>
+    </div></div>
     </div>
   );
 }

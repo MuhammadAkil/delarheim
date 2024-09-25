@@ -5,7 +5,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --slide-count: 5;
+--slide-width: 30rem;
 }
+
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -25,3 +28,6 @@ body {
     text-wrap: balance;
   }
 }
+
+
+
