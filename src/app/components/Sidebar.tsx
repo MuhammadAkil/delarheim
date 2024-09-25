@@ -29,7 +29,7 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <div className="w-full bg-white text-white fixed z-10">
+    <div className="w-full bg-white text-white fixed z-20">
       {/* Desktop Navbar */}
       <nav className="hidden lg:flex fixed h-16 items-center px-4 py-3 w-full bg-white">
         <div className="flex items-center flex-grow">
