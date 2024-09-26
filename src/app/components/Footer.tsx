@@ -7,7 +7,7 @@ import logo from '../public/logo.svg'
 
 export default function Footer() {
   return (
-    <footer className="bg-black">
+    <footer className="bg-[#2c3e50]">
   <div className="max-w-screen-lg px-4 pt-16 pb-6 mx-auto sm:px-6 lg:px-8 lg:pt-24">
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
       <div>
@@ -29,12 +29,12 @@ export default function Footer() {
               href="/"
               rel="noopener noreferrer"
               target="_blank"
-              className="text-teal-500 transition hover:text-teal-500/75"
+              className="text-white transition hover:text-white/75"
             >
               <span className="sr-only">Facebook</span>
               <svg
                 className="w-6 h-6"
-                fill="currentColor"
+                fill="#e67e22"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
               >
@@ -52,12 +52,12 @@ export default function Footer() {
               href="/"
               rel="noopener noreferrer"
               target="_blank"
-              className="text-teal-500 transition hover:text-teal-500/75"
+              className="text-white transition hover:text-white/75"
             >
               <span className="sr-only">Instagram</span>
               <svg
                 className="w-6 h-6"
-                fill="currentColor"
+                fill="#e67e22"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
               >
@@ -75,12 +75,12 @@ export default function Footer() {
               href="/"
               rel="noopener noreferrer"
               target="_blank"
-              className="text-teal-500 transition hover:text-teal-500/75"
+              className="text-white transition hover:text-white/75"
             >
               <span className="sr-only">Twitter</span>
               <svg
                 className="w-6 h-6"
-                fill="currentColor"
+                fill="#e67e22"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
               >
@@ -96,12 +96,12 @@ export default function Footer() {
               href="/"
               rel="noopener noreferrer"
               target="_blank"
-              className="text-teal-500 transition hover:text-teal-500/75"
+              className="text-white transition hover:text-white/75"
             >
               <span className="sr-only">GitHub</span>
               <svg
                 className="w-6 h-6"
-                fill="currentColor"
+                fill="#e67e22"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
               >
@@ -119,12 +119,12 @@ export default function Footer() {
               href="/"
               rel="noopener noreferrer"
               target="_blank"
-              className="text-teal-500 transition hover:text-teal-500/75"
+              className="text-white transition hover:text-white/75"
             >
               <span className="sr-only">Dribbble</span>
               <svg
                 className="w-6 h-6"
-                fill="currentColor"
+                fill="#e67e22"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
               >
@@ -340,7 +340,7 @@ export default function Footer() {
           <span className="block sm:inline">All rights reserved. </span>
 
           <a
-            className="inline-block text-teal-500 underline transition hover:text-teal-500/75"
+            className="inline-block text-white underline transition hover:text-white/75"
             href="/"
           >
             Terms & Conditions
@@ -349,7 +349,7 @@ export default function Footer() {
           <span> - </span>
 
           <a
-            className="inline-block text-teal-500 underline transition hover:text-teal-500/75"
+            className="inline-block text-white underline transition hover:text-white/75"
             href="/"
           >
             Privacy Policy

@@ -8,16 +8,18 @@ import Image from 'next/image';
 import Sidebar from './Sidebar';
 import { FaMapMarkerAlt, FaPhoneAlt, FaClock, FaChevronDown } from 'react-icons/fa';
 
-type DropdownId = 'cashOnDelivery' | 'digitalPayments' | 'manageUser' | 'settings';
+type DropdownId = 'Inventory'| 'Finance' |'home'| 'SellOrTrade' | 'contactUs' | 'More';
 
 const Header = () => {
   const [openDropdown, setOpenDropdown] = useState<DropdownId | null>(null);
 
   const dropdownRefs: Record<DropdownId, React.RefObject<HTMLDivElement>> = {
-    cashOnDelivery: useRef<HTMLDivElement | null>(null),
-    digitalPayments: useRef<HTMLDivElement | null>(null),
-    manageUser: useRef<HTMLDivElement | null>(null),
-    settings: useRef<HTMLDivElement | null>(null),
+    Inventory: useRef<HTMLDivElement | null>(null),
+    home: useRef<HTMLDivElement | null>(null),
+    SellOrTrade: useRef<HTMLDivElement | null>(null),
+    Finance: useRef<HTMLDivElement | null>(null),
+    contactUs: useRef<HTMLDivElement | null>(null),
+    More: useRef<HTMLDivElement | null>(null),
   };
 
   const toggleDropdown = (dropdownId: DropdownId) => {
@@ -73,21 +75,38 @@ const Header = () => {
         </div>
 
         <nav className="flex flex-grow-1 justify-center space-x-6">
-          <a href="#" className="text-black font-bold text-[16px] text-[#18746c] hover:text-[#18746c]/80">
-            Home
-          </a>
+          {/* <a href="#" className="text-black font-bold text-[16px] text-[#786ff1] hover:text-[#786ff1]/90">
+            home
+          </a> */}
+             <div className="relative group" ref={dropdownRefs.home}>
+            <button
+              onClick={() => toggleDropdown('home')}
+              className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isDropdownOpen('home') ? 'text-[#786ff1]/90' : 'text-black hover:text-[#786ff1]/90'}`}            >
+              Home
+            </button>
+
+          </div>
+        
+                <div className="relative group" ref={dropdownRefs.Finance}>
+            <button
+              onClick={() => toggleDropdown('Finance')}
+              className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isDropdownOpen('Finance') ? 'text-[#786ff1]/90' : 'text-black hover:text-[#786ff1]/90'}`}            >
+              Finance
+            </button>
+
+          </div>
 
           {/* Dropdown 1 */}
-          <div className="relative group" ref={dropdownRefs.cashOnDelivery}>
+          <div className="relative group" ref={dropdownRefs.Inventory}>
             <button
-              onClick={() => toggleDropdown('cashOnDelivery')}
-              className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isDropdownOpen('cashOnDelivery') ? 'text-[#18746c]/90' : 'text-black hover:text-[#18746c]/90'}`}            >
+              onClick={() => toggleDropdown('Inventory')}
+              className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isDropdownOpen('Inventory') ? 'text-[#786ff1]/90' : 'text-black hover:text-[#786ff1]/90'}`}            >
               Inventory
               <FaChevronDown
-                className={`ml-[3px] transition-transform duration-300 ${isDropdownOpen('cashOnDelivery') ? 'rotate-180' : ''
+                className={`ml-[3px] transition-transform duration-300 ${isDropdownOpen('Inventory') ? 'rotate-180' : ''
                   }`}
               />            </button>
-            {isDropdownOpen('cashOnDelivery') && (
+            {isDropdownOpen('Inventory') && (
               <div className="z-10 p-4 absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg transition-all duration-300 ease-in-out">
                 <a
                   href="#"
@@ -95,7 +114,7 @@ const Header = () => {
                 >
                   {/* Heroicon name: outline/shield-check */}
                   <svg
-                    className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#18746c]/90 transition-colors duration-300"
+                    className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#786ff1]/90 transition-colors duration-300"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -110,7 +129,7 @@ const Header = () => {
                     />
                   </svg>
                   <div className="ml-4">
-                    <p className="text-base font-medium text-gray-900 group-hover:text-[#18746c]/90 transition-colors duration-300">
+                    <p className="text-base font-medium text-gray-900 group-hover:text-[#786ff1]/90 transition-colors duration-300">
                       Security
                     </p>
                     {/* <p className="mt-1 text-sm text-gray-500">
@@ -124,7 +143,7 @@ const Header = () => {
                 >
                   {/* Heroicon name: outline/view-grid */}
                   <svg
-                    className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#18746c]/90 transition-colors duration-300"
+                    className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#786ff1]/90 transition-colors duration-300"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -139,7 +158,7 @@ const Header = () => {
                     />
                   </svg>
                   <div className="ml-4">
-                    <p className="text-base font-medium text-gray-900 group-hover:text-[#18746c]/90 transition-colors duration-300">
+                    <p className="text-base font-medium text-gray-900 group-hover:text-[#786ff1]/90 transition-colors duration-300">
                       Integrations
                     </p>
                     {/* <p className="mt-1 text-sm text-gray-500">
@@ -154,7 +173,7 @@ const Header = () => {
                 >
                   {/* Heroicon name: outline/refresh */}
                   <svg
-                    className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#18746c]/90 transition-colors duration-300"
+                    className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#786ff1]/90 transition-colors duration-300"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -169,7 +188,7 @@ const Header = () => {
                     />
                   </svg>
                   <div className="ml-4">
-                    <p className="text-base font-medium text-gray-900 group-hover:text-[#18746c]/90 transition-colors duration-300">
+                    <p className="text-base font-medium text-gray-900 group-hover:text-[#786ff1]/90 transition-colors duration-300">
                       Automations
                     </p>
                     {/* <p className="mt-1 text-sm text-gray-500">
@@ -183,16 +202,16 @@ const Header = () => {
           </div>
 
           {/* Dropdown 2 */}
-          <div className="relative group" ref={dropdownRefs.digitalPayments}>
+          <div className="relative group" ref={dropdownRefs.SellOrTrade}>
             <button
-              onClick={() => toggleDropdown('digitalPayments')}
-              className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isDropdownOpen('digitalPayments') ? 'text-[#18746c]/90' : 'text-black hover:text-[#18746c]/90'}`}            >
+              onClick={() => toggleDropdown('SellOrTrade')}
+              className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isDropdownOpen('SellOrTrade') ? 'text-[#786ff1]/90' : 'text-black hover:text-[#786ff1]/90'}`}            >
               Sell or Trade
               <FaChevronDown
-                className={`ml-[3px] transition-transform duration-300 ${isDropdownOpen('digitalPayments') ? 'rotate-180' : ''
+                className={`ml-[3px] transition-transform duration-300 ${isDropdownOpen('SellOrTrade') ? 'rotate-180' : ''
                   }`}
               />          </button>
-            {isDropdownOpen('digitalPayments') && (
+            {isDropdownOpen('SellOrTrade') && (
               <div className="z-10 p-4 absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg transition-all duration-300 ease-in-out">
                 <a
                   href="#"
@@ -200,7 +219,7 @@ const Header = () => {
                 >
                   {/* Heroicon name: outline/shield-check */}
                   <svg
-                    className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#18746c]/90 transition-colors duration-300"
+                    className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#786ff1]/90 transition-colors duration-300"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -215,7 +234,7 @@ const Header = () => {
                     />
                   </svg>
                   <div className="ml-4">
-                    <p className="text-base font-medium text-gray-900 group-hover:text-[#18746c]/90 transition-colors duration-300">
+                    <p className="text-base font-medium text-gray-900 group-hover:text-[#786ff1]/90 transition-colors duration-300">
                       Security
                     </p>
                     {/* <p className="mt-1 text-sm text-gray-500">
@@ -229,7 +248,7 @@ const Header = () => {
                 >
                   {/* Heroicon name: outline/view-grid */}
                   <svg
-                    className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#18746c]/90 transition-colors duration-300"
+                    className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#786ff1]/90 transition-colors duration-300"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -244,7 +263,7 @@ const Header = () => {
                     />
                   </svg>
                   <div className="ml-4">
-                    <p className="text-base font-medium text-gray-900 group-hover:text-[#18746c]/90 transition-colors duration-300">
+                    <p className="text-base font-medium text-gray-900 group-hover:text-[#786ff1]/90 transition-colors duration-300">
                       Integrations
                     </p>
                     {/* <p className="mt-1 text-sm text-gray-500">
@@ -259,7 +278,7 @@ const Header = () => {
                 >
                   {/* Heroicon name: outline/refresh */}
                   <svg
-                    className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#18746c]/90 transition-colors duration-300"
+                    className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#786ff1]/90 transition-colors duration-300"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -274,7 +293,7 @@ const Header = () => {
                     />
                   </svg>
                   <div className="ml-4">
-                    <p className="text-base font-medium text-gray-900 group-hover:text-[#18746c]/90 transition-colors duration-300">
+                    <p className="text-base font-medium text-gray-900 group-hover:text-[#786ff1]/90 transition-colors duration-300">
                       Automations
                     </p>
                     {/* <p className="mt-1 text-sm text-gray-500">
@@ -288,26 +307,26 @@ const Header = () => {
           </div>
 
           {/* Dropdown 3 */}
-          <div className="relative group" ref={dropdownRefs.manageUser}>
+          <div className="relative group" ref={dropdownRefs.contactUs}>
             <button
-              onClick={() => toggleDropdown('manageUser')}
-              className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isDropdownOpen('manageUser') ? 'text-[#18746c]/90' : 'text-black hover:text-[#18746c]/90'}`}            >
+              onClick={() => toggleDropdown('contactUs')}
+              className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isDropdownOpen('contactUs') ? 'text-[#786ff1]/90' : 'text-black hover:text-[#786ff1]/90'}`}            >
               Contact Us
             </button>
 
           </div>
 
           {/* Dropdown 4 */}
-          <div className="relative group" ref={dropdownRefs.settings}>
+          <div className="relative group" ref={dropdownRefs.More}>
             <button
-              onClick={() => toggleDropdown('settings')}
-              className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isDropdownOpen('settings') ? 'text-[#18746c]/90' : 'text-black hover:text-[#18746c]/90'}`}            >
+              onClick={() => toggleDropdown('More')}
+              className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isDropdownOpen('More') ? 'text-[#786ff1]/90' : 'text-black hover:text-[#786ff1]/90'}`}            >
               More
               <FaChevronDown
-                className={`ml-[3px] transition-transform duration-300 ${isDropdownOpen('settings') ? 'rotate-180' : ''
+                className={`ml-[3px] transition-transform duration-300 ${isDropdownOpen('More') ? 'rotate-180' : ''
                   }`}
               />            </button>
-            {isDropdownOpen('settings') && (
+            {isDropdownOpen('More') && (
               <div className="z-10 p-4 absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg transition-all duration-300 ease-in-out">
                 <a
                   href="#"
@@ -315,7 +334,7 @@ const Header = () => {
                 >
                   {/* Heroicon name: outline/shield-check */}
                   <svg
-                    className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#18746c]/90 transition-colors duration-300" xmlns="http://www.w3.org/2000/svg"
+                    className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#786ff1]/90 transition-colors duration-300" xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -329,7 +348,7 @@ const Header = () => {
                     />
                   </svg>
                   <div className="ml-4">
-                    <p className="text-base font-medium text-gray-900 group-hover:text-[#18746c]/90 transition-colors duration-300">                      Security
+                    <p className="text-base font-medium text-gray-900 group-hover:text-[#786ff1]/90 transition-colors duration-300">                      Security
                     </p>
                     {/* <p className="mt-1 text-sm text-gray-500">
                             Your customers' data will be safe and secure.
@@ -342,7 +361,7 @@ const Header = () => {
                 >
                   {/* Heroicon name: outline/view-grid */}
                   <svg
-                    className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#18746c]/90 transition-colors duration-300"
+                    className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#786ff1]/90 transition-colors duration-300"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -357,7 +376,7 @@ const Header = () => {
                     />
                   </svg>
                   <div className="ml-4">
-                    <p className="text-base font-medium text-gray-900 group-hover:text-[#18746c]/90 transition-colors duration-300">
+                    <p className="text-base font-medium text-gray-900 group-hover:text-[#786ff1]/90 transition-colors duration-300">
                       Integrations
                     </p>
                     {/* <p className="mt-1 text-sm text-gray-500">
@@ -372,7 +391,7 @@ const Header = () => {
                 >
                   {/* Heroicon name: outline/refresh */}
                   <svg
-                    className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#18746c]/90 transition-colors duration-300"
+                    className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#786ff1]/90 transition-colors duration-300"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -387,7 +406,7 @@ const Header = () => {
                     />
                   </svg>
                   <div className="ml-4">
-                    <p className="text-base font-medium text-gray-900 group-hover:text-[#18746c]/90 transition-colors duration-300">
+                    <p className="text-base font-medium text-gray-900 group-hover:text-[#786ff1]/90 transition-colors duration-300">
                       Automations
                     </p>
                     {/* <p className="mt-1 text-sm text-gray-500">

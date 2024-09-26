@@ -188,18 +188,23 @@ const reviews = [
   return (
    <div >
       <Header />
-      <main >
       <Hero/>
+      <main className="!bg-[#fafafa]">
         {/* <CarList /> */}
         
         {/* <Rating /> */}
         <CarListCarousel reviews={cars} options={OPTIONS}/>
         <div className="my-20">
     <div className="flex flex-wrap items-center justify-center w-full mb-10">
-          <div className="lg:w-1/2 w-full mb-6 lg:mb-0 flex flex-col mx-auto justify-center">
-            <h2 className="block w-full bg-gradient-to-b from-white to-white bg-clip-text text-[#18746c] text-center font-bold text-3xl sm:text-4xl">4.8 stars, 2000+ reviews
-</h2>
-          </div>
+      <div className="relative lg:w-1/2 w-full mb-6 lg:mb-0 flex flex-col mx-auto justify-center">
+  <h2 className="block w-full bg-gradient-to-b from-white to-white bg-clip-text text-[#3d3838] text-center font-bold text-3xl sm:text-4xl">
+    4.8 stars, 2000+ reviews
+  </h2>
+  
+  <span className="absolute bottom-[-25px] left-1/2 transform -translate-x-1/2 w-[140px] h-[2px] bg-[#3498db]">
+  </span>
+</div>
+
        
         </div>
         <EmblaCarousel reviews={reviews} options={OPTIONS} />
