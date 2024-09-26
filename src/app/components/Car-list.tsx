@@ -151,7 +151,7 @@ const CarList = () => {
   };
 
   return (
-    <section className="text-gray-600 body-font max-w-[1080px]  mx-auto">
+    <section className="text-gray-600 body-font max-w-screen-lg  mx-auto">
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-wrap items-center justify-center w-full mb-20">
           <div className="lg:w-1/2 w-full mb-6 lg:mb-0 flex flex-col mx-auto justify-center">
@@ -188,9 +188,7 @@ const CarList = () => {
   <div className="overflow-hidden w-full">
     <div
       className="flex transition-transform duration-500 ease-in-out"
-      style={{
-        transform: `translateX(-${(currentSlide * 200) / itemsPerSlide}%)`,
-      }}
+
     >
       {cars.map((car, index) => (
         <div
@@ -207,7 +205,7 @@ const CarList = () => {
                 height={200}
               />
               {car.discountPrice && (
-                <div className="absolute top-0 right-0 flex justify-center items-center text-center text-white">
+                <div className="absolute top-0 right-0 flex justify-center items-center text-center text-white ">
                   <h6 className="bg-black py-1 w-16 text-center cursor-pointer">
                     SALE
                   </h6>
@@ -215,8 +213,8 @@ const CarList = () => {
               )}
 
               {/* Hover Overlay */}
-              <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-30 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease">
-                <span className="bg-[#18746c] p-3 cursor-pointer rounded-lg">
+              <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-30 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease ">
+                <span className="bg-[#18746c] p-3 cursor-pointer rounded-lg ">
                   View Details
                 </span>
               </div>

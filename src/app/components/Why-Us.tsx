@@ -6,7 +6,7 @@ const WhyUs = () => {
         <div className="bg-black">
             <section
                 id="features"
-                className="mx-auto max-w-[1080px] relative block px-6 py-10 md:py-20 md:px-10 border-t border-b border-neutral-900 bg-neutral-900/30"
+                className="mx-auto max-w-screen-lg relative block px-6 py-10 md:py-20 md:px-10 border-t border-b border-neutral-900 bg-neutral-900/30"
             >
                 <div className="relative mx-auto max-w-5xl text-center">
                     <span className="text-white my-3 flex items-center justify-center font-medium uppercase tracking-wider">

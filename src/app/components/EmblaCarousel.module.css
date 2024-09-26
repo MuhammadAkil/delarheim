@@ -1,0 +1,59 @@
+.embla {
+  position: relative;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+.embla__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.embla__container {
+  display: flex;
+  user-select: none;
+}
+
+.embla__slide {
+  position: relative;
+  flex: 0 0 33.33%; /* Show 3 slides per view */
+  margin-right: 20px;
+}
+@media screen and (max-width:1024px) {
+  
+.embla__slide {
+  flex: 0 0 100%; /* Show 3 slides per view */
+}
+}
+@media screen and (max-width:500px) {
+  
+.embla__slide {
+  flex: 0 0 50%; /* Show 3 slides per view */
+}
+}
+.embla__slide__img {
+  width: 100%;
+  height: auto;
+}
+
+.embla__button {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  padding: 3px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.embla__button:first-of-type {
+  left: 10px;
+}
+
+.embla__button:last-of-type {
+  right: 10px;
+}

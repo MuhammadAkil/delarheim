@@ -151,9 +151,7 @@ export default function Rating() {
  <div className="overflow-hidden w-full">
     <div
       className="flex gap-3 transition-transform duration-500 ease-in-out"
-      style={{
-        transform: `translateX(-${(currentSlide * 200) / itemsPerSlide}%)`,
-      }}
+     
     >
                 {/* <div className="relative mx-auto max-w-7xl z-10 grid grid-cols-1 gap-10 pt-14 sm:grid-cols-2 lg:grid-cols-3"> */}
         {reviews.map((review) => (
@@ -184,7 +182,8 @@ export default function Rating() {
                 {review.body}
                     </p>
 
-<a className="group text-[#262626] font-semibold text-[14px] flex hover:text-[#18746c] cursor-pointer gap-2">
+<a className="group text-[#262626] font-semibold text-[14px] flex hover:text-[#18746c] cursor-pointer gap-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#18746c]
+">
   Learn More 
   <svg className='group-hover:text-[#18746c] group-hover:fill-[#18746c]' width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd">
     <path d="M12 0c-6.623 0-12 5.377-12 12s5.377 12 12 12 12-5.377 12-12-5.377-12-12-12zm0 1c-6.071 0-11 4.929-11 11s4.929 11 11 11 11-4.929 11-11-4.929-11-11-11zm4.828 11.5l-4.608 3.763.679.737 6.101-5-6.112-5-.666.753 4.604 3.747h-11.826v1h11.828z"/>
@@ -212,7 +211,8 @@ export default function Rating() {
             </div>
           </div>
         ))}
-    </div></div>
+          </div>
+        </div>
     </div>
   );
 }
