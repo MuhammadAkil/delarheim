@@ -183,7 +183,7 @@ const reviews = [
   },
 ];
 
-  const OPTIONS: EmblaOptionsType = { align: 'start' }
+  const OPTIONS: EmblaOptionsType = { align: 'start', }
   
   return (
    <div >

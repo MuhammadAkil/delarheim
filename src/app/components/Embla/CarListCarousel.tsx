@@ -1,10 +1,12 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { EmblaOptionsType } from "embla-carousel";
 import { DotButton, useDotButton } from "./EmblaCarouselDotButton";
 import { PrevButton, NextButton, usePrevNextButtons } from "./EmblaCarouselArrowButtons";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
+import Autoplay from "embla-carousel-autoplay";
+
 
 type ReviewType = {
   id: number;
@@ -33,8 +35,10 @@ const CarListCarousel: React.FC<PropType> = (props) => {
   };
   const mergedOptions = { ...defaultOptions, ...options };
 
-  const [emblaRef, emblaApi] = useEmblaCarousel(mergedOptions);
-
+const [emblaRef, emblaApi] = useEmblaCarousel(
+    { ...defaultOptions },
+    [Autoplay({ delay: 3000 })]
+  );
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
 
   const {
@@ -43,7 +47,6 @@ const CarListCarousel: React.FC<PropType> = (props) => {
     onPrevButtonClick,
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi);
-
   return (
     <section className="embla !py-16">
       <div className="flex flex-wrap items-center justify-center w-full mb-20">
@@ -60,8 +63,7 @@ const CarListCarousel: React.FC<PropType> = (props) => {
   <div className="embla__container">
     {reviews.map((car) => (
       <div className="embla__slide" key={car.id}>
-        <div className="min-w-full rounded-lg cursor-pointer relative group border shadow-lg md:min-w-[50%] lg:min-w-[33.3333%] flex justify-center">
-          <div className="bg-white rounded-lg w-full">
+<div className="min-w-full rounded-lg cursor-pointer relative group border border-solid shadow-lg md:min-w-[50%] lg:min-w-[33.3333%] flex justify-center transition-all duration-300 ease-in-out transform hover:scale-105">          <div className="bg-white rounded-lg w-full">
 
             {/* Image and Sale Badge */}
             <div className="relative">
