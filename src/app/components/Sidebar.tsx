@@ -80,6 +80,12 @@ const Sidebar = () => {
                       <a href="">Home</a>
                     
                     </button>
+                              <button
+                      className="flex items-center py-2 justify-between w-full text-white focus:outline-none"
+                    >
+                      <a href="">Financing</a>
+                    
+                    </button>
               {['Inventory', 'Buy Or Sell', 'Contact Us','More'].map((item, index) => (
                 <li key={index}>
                   <div className="dropdown">

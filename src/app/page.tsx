@@ -201,7 +201,7 @@ const reviews = [
     4.8 stars, 2000+ reviews
   </h2>
   
-  <span className="absolute bottom-[-25px] left-1/2 transform -translate-x-1/2 w-[140px] h-[2px] bg-[#3498db]">
+  <span className="absolute bottom-[-25px] left-1/2 transform -translate-x-1/2 w-[140px] h-[2px] bg-[#6F68EC]">
   </span>
 </div>
 

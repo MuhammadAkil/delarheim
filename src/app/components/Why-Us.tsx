@@ -49,7 +49,7 @@ const WhyUs = () => {
         <div className="">
             <section
                 id="features"
-                className="mx-auto max-w-screen-lg relative block px-6 py-10 md:py-20 md:px-10"
+                className="mx-auto max-w-screen-lg relative block px-6 py-10 md:pb-20 md:pt-[2rem] md:px-10"
             >
                 <div className="relative lg:w-1/2 w-full mb-6 lg:mb-0 flex flex-col mx-auto justify-center">
                     <span className="text-[#3d3838] my-3 flex items-center justify-center font-medium uppercase tracking-wider">
@@ -61,7 +61,7 @@ const WhyUs = () => {
   </h2>
   
 </div> */}
-  <span className="absolute top-[55px] left-1/2 transform -translate-x-1/2 w-[140px] h-[2px] bg-[#3498db]">
+  <span className="absolute top-[55px] left-1/2 transform -translate-x-1/2 w-[140px] h-[2px] bg-[#6F68EC]">
   </span>
 
                     <h2 className="mt-8 text-center block w-full bg-gradient-to-b from-white to-white bg-clip-text font-bold text-[#0f0f0f] text-3xl sm:text-4xl">

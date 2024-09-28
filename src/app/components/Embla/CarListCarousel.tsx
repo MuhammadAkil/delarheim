@@ -48,13 +48,13 @@ const [emblaRef, emblaApi] = useEmblaCarousel(
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi);
   return (
-    <section className="embla !py-16">
-      <div className="flex flex-wrap items-center justify-center w-full mb-20">
+    <section className="embla !py-[6rem]">
+      <div className="flex flex-wrap items-center justify-center w-full mb-[6rem]">
         <div className="relative lg:w-1/2 w-full mb-6 lg:mb-0 flex flex-col mx-auto justify-center">
           <h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] text-center bg-clip-text font-bold text-3xl sm:text-4xl">
             Popular New Cars
           </h2>
-          <span className="absolute bottom-[-25px] left-1/2 transform -translate-x-1/2 w-[140px] h-[2px] bg-[#3498db]">
+          <span className="absolute bottom-[-25px] left-1/2 transform -translate-x-1/2 w-[140px] h-[2px] bg-[#6F68EC]">
   </span>
         </div>
       </div>
@@ -63,7 +63,8 @@ const [emblaRef, emblaApi] = useEmblaCarousel(
   <div className="embla__container">
     {reviews.map((car) => (
       <div className="embla__slide" key={car.id}>
-<div className="min-w-full rounded-lg cursor-pointer relative group border border-solid shadow-lg md:min-w-[50%] lg:min-w-[33.3333%] flex justify-center transition-all duration-300 ease-in-out transform hover:scale-105">          <div className="bg-white rounded-lg w-full">
+        <div className="min-w-full rounded-lg cursor-pointer relative group border border-solid shadow-lg grid grid-col-3 transition-all duration-300 ease-in-out transform hover:scale-105">
+          <div className="bg-white rounded-lg w-full">
 
             {/* Image and Sale Badge */}
             <div className="relative">
@@ -75,7 +76,7 @@ const [emblaRef, emblaApi] = useEmblaCarousel(
                 height={200}
               />
               {car.discountPrice && (
-                <div className="absolute top-0 right-0 flex justify-center items-center text-center text-white">
+                <div className="absolute p-2 top-1 right-2 flex justify-center items-center text-center text-white">
                   <h6 className="bg-black py-1 w-16 text-center cursor-pointer">
                     SALE
                   </h6>
@@ -172,7 +173,7 @@ const [emblaRef, emblaApi] = useEmblaCarousel(
         </div>
       </div>
         <div className="flex justify-center items-center mt-10">
-  <button className="!text-white bg-[#6b5fff] hover:bg-[#6b5fff]/90 rounded-full px-20 py-4 text-[20px] font-bold tracking-[0.02857em] leading-6 ">
+  <button className="!text-white bg-[#6b5fff] hover:bg-[#6b5fff]/90 rounded-[5px] px-20 py-4 text-[20px] font-bold tracking-[0.02857em] leading-6 ">
     See more cars
   </button>
 </div>
