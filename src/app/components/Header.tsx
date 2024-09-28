@@ -91,7 +91,7 @@ const Header = () => {
             <button
               onClick={() => toggleDropdown('Finance')}
               className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isDropdownOpen('Finance') ? 'text-[#0870d8]' : 'text-black hover:text-[#0870d8]'}`}            >
-              Finance
+              Financing
             </button>
 
           </div>
