@@ -187,12 +187,8 @@ const reviews = [
   
   return (
    <div >
-      <Header />
       <Hero/>
-      <main className="!bg-[#fafafa]">
-        {/* <CarList /> */}
-        
-        {/* <Rating /> */}
+      <main className="bg-[#fafafa]"> 
         <CarListCarousel reviews={cars} options={OPTIONS}/>
         <div className="my-20">
     <div className="flex flex-wrap items-center justify-center w-full mb-10">
@@ -210,10 +206,7 @@ const reviews = [
         <EmblaCarousel reviews={reviews} options={OPTIONS} />
         </div>
         <WhyUs />
-        {/* <EmblaCarousel1 reviews={reviews} /> */}
-
       </main>
-      <Footer/>
       
       </div>
   );
