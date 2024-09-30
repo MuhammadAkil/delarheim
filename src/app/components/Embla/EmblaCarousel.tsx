@@ -75,10 +75,10 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                     {review.body}
                   </p>
 
-                  <a className="group text-[#262626] font-semibold text-[14px] flex hover:text-[#18746c] cursor-pointer gap-2">
+                  <a className="group text-[#262626] font-semibold text-[14px] flex hover:text-[#6b5fff] cursor-pointer gap-2">
                     Learn More
                     <svg
-                      className="group-hover:text-[#18746c] group-hover:fill-[#18746c]"
+                      className="group-hover:text-[#6b5fff] group-hover:fill-[#6b5fff]"
                       width="24"
                       height="24"
                       xmlns="http://www.w3.org/2000/svg"
