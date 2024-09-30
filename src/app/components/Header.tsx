@@ -3,14 +3,19 @@
 import { useState, useEffect, useRef } from 'react';
 import logo from '../public/logo.svg'
 import Image from 'next/image';
+import { usePathname,useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation'; 
 
 
 import Sidebar from './Sidebar';
 import { FaMapMarkerAlt, FaPhoneAlt, FaClock, FaChevronDown } from 'react-icons/fa';
+import Link from 'next/link';
+  import router from 'next/router';
 
 type DropdownId = 'Inventory'| 'Finance' |'home'| 'SellOrTrade' | 'contactUs' | 'More';
 
 const Header = () => {
+  const pathname = usePathname();
   const [openDropdown, setOpenDropdown] = useState<DropdownId | null>(null);
 
   const dropdownRefs: Record<DropdownId, React.RefObject<HTMLDivElement>> = {
@@ -48,9 +53,12 @@ const Header = () => {
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
-
+  const isHomeActive = pathname === '/';
+  const router = useRouter();
   return (
     <>
+      <div className='fixed w-full z-20'>
+
       <div className='bg-black '>
         <div className="hidden  container mx-auto px-4 py-4 lg:flex flex-col lg:flex-row justify-center items-center space-y-2 lg:space-y-0 lg:space-x-4">
         <div className="  !text-white text-base px-4 flex items-center rounded-xl">
@@ -67,25 +75,25 @@ const Header = () => {
         </div>
       </div></div>
 
-      <header className="bg-white mx-auto px-20 h-[72px] p-5 items-center justify-between shadow-md lg:flex lg:items-center hidden lg:justify-between">
+      <header className="fixed w-full bg-white mx-auto px-20 h-[72px] p-5 items-center justify-between shadow-md lg:flex lg:items-center hidden lg:justify-between">
         <div className="flex items-start max-w-52">
-          <a href="/home">
+          <a href="/">
             <Image src={logo} alt="Dealerheim Logo" className=" cursor-pointer" />
           </a>
         </div>
 
-        <nav className="flex flex-grow-1 justify-center space-x-6">
-          {/* <a href="#" className="text-black font-bold text-[16px] text-[#0870d8] hover:text-[#0870d8]">
-            home
-          </a> */}
-             <div className="relative group" ref={dropdownRefs.home}>
-            <button
-              onClick={() => toggleDropdown('home')}
-              className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isDropdownOpen('home') ? 'text-[#0870d8]' : 'text-black hover:text-[#0870d8]'}`}            >
-              Home
-            </button>
-
-          </div>
+             <nav className="flex flex-grow-1 justify-center space-x-6">
+        <div className="relative group" ref={dropdownRefs.home}>
+         <button
+          onClick={() => {
+            router.push('/');
+            setOpenDropdown(null);
+          }}
+          className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isHomeActive ? 'text-[#0870d8]' : 'text-black hover:text-[#0870d8]'}`}
+        >
+          Home
+        </button>
+        </div>
         
                 <div className="relative group" ref={dropdownRefs.Finance}>
             <button
@@ -203,6 +211,8 @@ const Header = () => {
 
           {/* Dropdown 2 */}
           <div className="relative group" ref={dropdownRefs.SellOrTrade}>
+                 <Link href="/sell-car">
+
             <button
               onClick={() => toggleDropdown('SellOrTrade')}
               className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isDropdownOpen('SellOrTrade') ? 'text-[#0870d8]' : 'text-black hover:text-[#0870d8]'}`}            >
@@ -210,7 +220,8 @@ const Header = () => {
               <FaChevronDown
                 className={`ml-[3px] transition-transform duration-300 ${isDropdownOpen('SellOrTrade') ? 'rotate-180' : ''
                   }`}
-              />          </button>
+                />          </button>
+              </Link>
             {isDropdownOpen('SellOrTrade') && (
               <div className="z-10 p-4 absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg transition-all duration-300 ease-in-out">
                 <a
@@ -451,6 +462,7 @@ const Header = () => {
       </header>
       <div className='block lg:hidden'>
         <Sidebar />
+      </div>
       </div>
 
     </>
