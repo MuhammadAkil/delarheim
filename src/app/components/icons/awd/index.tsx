@@ -4,7 +4,7 @@
 
 export default function AWD({ ...props }) {
 	return (
-		<svg {...props} className="di-svg" fill="#000000" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg">
+		<svg {...props} className="di-svg" fill="#000000" height="30" viewBox="0 0 48 48" width="30" xmlns="http://www.w3.org/2000/svg">
 			<g>
 				<path
 					d="M28.788,12.943c0,2.672-2.14,4.839-4.788,4.839c-2.645,0-4.792-2.167-4.792-4.839S21.355,8.105,24,8.105

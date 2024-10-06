@@ -1,6 +1,6 @@
 export default function AirBag({ ...props }) {
 	return (
-		<svg {...props} className="di-svg" fill="#000000" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg">
+		<svg {...props} className="di-svg" fill="#000000" height="30" viewBox="0 0 48 48" width="30" xmlns="http://www.w3.org/2000/svg">
 			<path d="M32.8,16.5c2.6,0,4.7-2.1,4.7-4.7c0-2.6-2.1-4.7-4.7-4.7c-2.6,0-4.7,2.1-4.7,4.7C28.1,14.4,30.2,16.5,32.8,16.5z"></path>
 			<path
 				d="M20,27.7c-1.1-0.4-2.2-0.7-3.2-1.1c-1.1-0.4-2.4,0.2-3,1.2c-2.1,3.4-4.1,6.8-6.2,10.1c-1.8,2.9,2.8,5.6,4.6,2.7

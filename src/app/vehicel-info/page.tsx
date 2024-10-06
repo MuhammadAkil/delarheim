@@ -1,8 +1,13 @@
 "use client"
 import { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSun, faKey } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faMinus, faExpand } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
+import AWD from "../components/icons/awd";
+import Android from "../components/icons/Andriod";
+import Bluetooth from "../components/icons/bluetooth";
+import AirBag from "../components/icons/side-impact-airbag";
+import Logo from "../components/icons";
 
 const images: string[] = ["/images/info-1.jpg", "/images/info-2.jpg", "/images/info-3.jpg", "/images/info-1.jpg", "/images/info-1.jpg", "/images/info-4.png", "/images/info-5.jpg", "/images/info-6.jpg"];
 const vehicleDetails = [
@@ -13,27 +18,56 @@ const vehicleDetails = [
 	{ label: "Engine", value: "1.8L I4" },
 	{ label: "Mileage", value: "120,587 km" },
 ];
-
-interface DummyData {
+interface Accordion {
 	title: string;
-	content: string;
+	content: string[];
 }
 
-const dummyData: DummyData[] = Array.from({ length: 10 }, (_, index) => ({
-	title: `Lorem Ipsum ${index + 1}`,
-	content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-}));
+const AccordionData: Accordion[] = [
+	{
+		title: "Exterior",
+		content: ['Wheels: 17" x 7.0J Alloy', "Tires: P225/60R17 All-Season", "Steel Spare Wheel", "Clearcoat Paint", "Express Open/Close Sliding And Tilting Glass 1st And 2nd Row Sunroof w/Power Sunshade", "Body-Coloured Front Bumper", "Fixed Rear Window w/Fixed Interval Wiper, Heated Wiper Park and Defroster", "Deep Tinted Glass", "Auto On/Off Projector Beam Halogen Daytime Running Headlamps w/Delay-Off"],
+	},
+	{
+		title: "Interior",
+		content: [
+			"3-Stage Heated Front Bucket Seats -inc: 8-way power adjustable driver's seat w/power lumbar support",
+			"Driver Seat",
+			"4-Way Passenger Seat -inc: Manual Recline and Fore/Aft Movement",
+			"Manual Tilt/Telescoping Steering Column",
+			"Heated Leather/Metal-Look Steering Wheel",
+			"Dual Zone Front Automatic Air Conditioning",
+			"Full Floor Console w/Covered Storage",
+			"Day-Night Rearview Mirror",
+			"Leather/Piano Black Gear Shifter Material",
+			"Driver And Passenger Visor Vanity Mirrors w/Illumination",
+		],
+	},
+	{
+		title: "Entertainment",
+		content: ['Radio: AM/FM/HD/SiriusXM Audio System -inc: 8" touchscreen, 6 speakers, and voice recognition', "Apple CarPlay & Android Auto", "Bluetooth Wireless Connectivity", "Integrated Roof Antenna", "Speed Compensated Volume Control"],
+	},
+];
 
+const features = [
+	{ label: "AWD", icon: <AWD name="awd" /> },
+	{ label: "Android Auto", icon: <Android name="android" /> },
+	{ label: "Bluetooth", icon: <Bluetooth name="bluetooth" /> },
+	{ label: "Side-Impact Air Bags", icon: <AirBag name="airbag" /> },
+	{ label: "AWD", icon: <AWD name="awd" /> },
+	{ label: "Android Auto", icon: <Android name="android" /> },
+	{ label: "Bluetooth", icon: <Bluetooth name="bluetooth" /> },
+	{ label: "Side-Impact Air Bags", icon: <AirBag name="airbag" /> },
+];
 export default function VehicleInfo() {
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
-	const [openIndex, setOpenIndex] = useState<number | null>(null); // Track the open accordion index
-	const [isOpen, setIsOpen] = useState<boolean>(false); // State to control slider visibility
+	const [openIndex, setOpenIndex] = useState<number | null>(null);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const thumbnailRefs = useRef<(HTMLImageElement | null)[]>([]);
 
 	const nextImage = () => {
 		setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
 		setTimeout(() => {
-			// Scroll to the previous image in the thumbnail list
 			thumbnailRefs.current[currentIndex]?.scrollIntoView({
 				behavior: "smooth",
 				block: "nearest",
@@ -77,9 +111,12 @@ export default function VehicleInfo() {
 			{/* Carousel and Vehicle Details Row */}
 			<div className="flex flex-col md:flex-row">
 				{/* Carousel Section */}
-				<div className="relative flex flex-col items-center w-full md:w-1/2 md:pr-4">
-					<Image className="w-full rounded-lg transition-opacity duration-500 cursor-pointer" src={images[currentIndex]} alt={`Vehicle Image ${currentIndex + 1}`} width={500} height={300} onClick={openSlider} />
+				<div className="relative flex flex-col items-center w-full md:w-1/2 ">
+					<Image className=" w-full rounded-lg transition-opacity duration-500 cursor-pointer" src={images[currentIndex]} alt={`Vehicle Image ${currentIndex + 1}`} width={500} height={300} onClick={openSlider} />
 
+					{/* <span className="absolute  right-10 mt-[400px]">
+						<FontAwesomeIcon icon={faExpand} className="text-4xl text-white" />
+					</span> */}
 					{/* Thumbnails */}
 					<div className="flex mt-4 space-x-2 overflow-x-auto scrollbar-hide w-full">
 						{images.map((src, index) => (
@@ -89,14 +126,15 @@ export default function VehicleInfo() {
 
 					{/* Next/Previous Buttons */}
 					<div className="flex justify-between w-full -mt-14">
-						<button className="absolute left-0 lg:-left-1 top-1/2 transform -translate-y-1/2 rounded-full shadow-md h-6 w-6 bg-[#6b5fff]" onClick={prevImage}>
+						<button className="absolute left-0 lg:-left-1 top-1/2 transform -translate-y-1/2 rounded-full shadow-md h-10 w-10 bg-[#6b5fff]" onClick={prevImage}>
 							&#10094;
 						</button>
-						<button className="absolute right-0 lg:right-3 top-1/2 transform -translate-y-1/2 rounded-full shadow-md h-6 w-6 bg-[#6b5fff]" onClick={nextImage}>
+						<button className="absolute right-0 lg:-right-1 top-1/2 transform -translate-y-1/2 rounded-full shadow-md h-10 w-10 bg-[#6b5fff]" onClick={nextImage}>
 							&#10095;
 						</button>
 					</div>
 				</div>
+
 				{/* Vehicle Details Section */}
 				<div className="w-full md:w-1/2 flex flex-col lg:ps-3">
 					<h3 className="text-lg font-semibold mb-4 text-black mt-3">Vehicle Info</h3>
@@ -111,43 +149,47 @@ export default function VehicleInfo() {
 					</div>
 
 					{/* Key Features Section */}
-					<div className="mt-6 flex flex-col space-y-4 ">
+					<div className="mt-6 flex flex-col space-y-4 md:1/2 flex-wrap">
 						<h3 className="text-lg font-semibold mb-2 text-black">Key Features</h3>
-						<div className="flex space-x-4">
-							<div className="flex items-center flex-col max-w-[100px] justify-center text-center border border-gray-300 p-4 rounded-md w-full md:w-auto">
-								<FontAwesomeIcon icon={faSun} className="mr-2 text-gray-500" />
-								<span className="text-black">Sunroof</span>
-							</div>
-							<div className="flex items-center flex-col max-w-[100px] justify-center text-center border border-gray-300 p-4 rounded-md w-full md:w-auto">
-								<FontAwesomeIcon icon={faKey} className="mr-2 text-gray-500" />
-								<span className="text-black">Keyless Entry</span>
-							</div>
+						<div className="flex space-4 gap-3 flex-wrap">
+							{features.map((feature, index) => (
+								<div key={index} className="flex items-center space-y-1 flex-col max-w-[140px] justify-center text-center border border-gray-300 p-4 rounded-md w-full">
+									{feature.icon}
+									<span className="text-black w-[12ch]">{feature.label}</span>
+								</div>
+							))}
 						</div>
 					</div>
 				</div>
 			</div>
+			<div className=" -mt-5 grid grid-cols-[auto_auto_auto] gap-4 md:w-1/2 rounded-lg py-8 px-4 bg-[#6b5fff] hover:bg-[#6b5fff]/95 cursor-pointer">
+				<div className="h-9 bg-white rounded-lg flex justify-center items-center p-2">
+					<Logo />
+				</div>
+				<div className=" flex flex-col justify-center items-center text-center">
+					<h2 className="text-sm font-semibold">Qualify for financing in minutes.</h2>
+					<small>Start with our trusted Equifax Loan Application.</small>
+				</div>
+				<div className="h-9 bg-white rounded-lg flex justify-center items-center p-2">
+					<Logo />
+				</div>
+			</div>
 
-			<div className="w-full md:w-1/2 mt-20">
+			<div className="w-full md:w-1/2 mt-10">
 				<h3 className="text-lg text-black font-semibold mb-4">Vehicle Details</h3>
-				<div className="space-y-4">
-					{Array.from({ length: 8 }, (_, index: number) => (
+				<div className="space-y-1">
+					{AccordionData.map((item, index) => (
 						<div key={index}>
-							<button
-								onClick={() => toggleAccordion(index)}
-								className={`flex justify-between items-center w-full p-4 text-left rounded-t-md focus:outline-none ${openIndex === index ? "bg-pink-500 text-white" : "bg-gray-300 text-black"}`} // Active pink, inactive grey
-							>
-								<span>Accordion Item {index + 1}</span>
-								<span className="text-black">{openIndex === index ? "-" : "+"}</span>
+							<button onClick={() => toggleAccordion(index)} className={`flex justify-between items-center w-full p-4 text-left rounded-md focus:outline-none ${openIndex === index ? "bg-[#6b5fff] rounded-b-none text-white" : "bg-gray-300 text-black"}`}>
+								<span>{item.title}</span>
+								<span className="text-black font-medium text-xl">{openIndex === index ? <FontAwesomeIcon icon={faMinus} className="text-white" /> : <FontAwesomeIcon icon={faPlus} />}</span>
 							</button>
 							{openIndex === index && (
 								<div className="bg-gray-200 p-4 rounded-b-md">
-									{/* Grey background for accordion content */}
-									{/* Adding 2 columns in accordion content */}
-									<div className="grid grid-cols-2 gap-4">
-										{dummyData.map((item, itemIndex: number) => (
-											<div key={itemIndex} className="border-b">
-												<div className="font-semibold text-black">{item.title}</div>
-												<div className="text-black">{item.content}</div>
+									<div className="grid grid-cols-2 gap-x-3 rounded-lg">
+										{item.content.map((detail, detailIndex) => (
+											<div key={detailIndex} className="border-b  bg-white p-2">
+												<div className="text-black">{detail}</div>
 											</div>
 										))}
 									</div>
@@ -158,12 +200,10 @@ export default function VehicleInfo() {
 				</div>
 			</div>
 
-			{/* Full Width Slider Modal */}
-			{/* Full Width Slider Modal */}
 			{isOpen && (
 				<div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50" onClick={handleOverlayClick}>
 					<div className="relative w-full max-w-4xl h-[520px]" onClick={(e) => e.stopPropagation()}>
-						<button className="absolute -top-4 right-20 text-white text-4xl bg-[#6b5fff] rounded-full h-10 w-10" onClick={closeSlider}>
+						<button className="absolute -top-5 right-16 text-white text-4xl bg-[#6b5fff] rounded-full h-10 w-10" onClick={closeSlider}>
 							&times;
 						</button>
 
@@ -179,10 +219,10 @@ export default function VehicleInfo() {
 
 						{/* Next and Previous Buttons */}
 						<div className="flex justify-between -mt-80">
-							<button onClick={prevImage} className="text-white h-6 w-6 rounded-full bg-[#6b5fff]">
+							<button onClick={prevImage} className="text-white h-10 w-10 rounded-full bg-[#6b5fff]">
 								&#10094;
 							</button>
-							<button onClick={nextImage} className="text-white h-6 w-6 rounded-full bg-[#6b5fff]">
+							<button onClick={nextImage} className="text-white h-10 w-10 rounded-full bg-[#6b5fff]">
 								&#10095;
 							</button>
 						</div>
