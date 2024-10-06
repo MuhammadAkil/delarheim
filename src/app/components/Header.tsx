@@ -11,51 +11,54 @@ import Sidebar from './Sidebar';
 import { FaMapMarkerAlt, FaPhoneAlt, FaClock, FaChevronDown } from 'react-icons/fa';
 import Link from 'next/link';
 import router from 'next/router';
+import Logo from "./icons/logo";
 
-type DropdownId = 'Inventory' | 'Finance' | 'home' | 'SellOrTrade' | 'contactUs' | 'More';
+type DropdownId = "Inventory" | "Finance" | "home" | "SellOrTrade" | "contactUs" | "More";
 
 const Header = () => {
-  const pathname = usePathname();
-  const [openDropdown, setOpenDropdown] = useState<DropdownId | null>(null);
+	const pathname = usePathname();
+	const [openDropdown, setOpenDropdown] = useState<DropdownId | null>(null);
 
-  const dropdownRefs: Record<DropdownId, React.RefObject<HTMLDivElement>> = {
-    Inventory: useRef<HTMLDivElement | null>(null),
-    home: useRef<HTMLDivElement | null>(null),
-    SellOrTrade: useRef<HTMLDivElement | null>(null),
-    Finance: useRef<HTMLDivElement | null>(null),
-    contactUs: useRef<HTMLDivElement | null>(null),
-    More: useRef<HTMLDivElement | null>(null),
-  };
+	const dropdownRefs: Record<DropdownId, React.RefObject<HTMLDivElement>> = {
+		Inventory: useRef<HTMLDivElement | null>(null),
+		home: useRef<HTMLDivElement | null>(null),
+		SellOrTrade: useRef<HTMLDivElement | null>(null),
+		Finance: useRef<HTMLDivElement | null>(null),
+		contactUs: useRef<HTMLDivElement | null>(null),
+		More: useRef<HTMLDivElement | null>(null),
+	};
 
-  const toggleDropdown = (dropdownId: DropdownId) => {
-    setOpenDropdown(prev => (prev === dropdownId ? null : dropdownId));
-  };
+	const toggleDropdown = (dropdownId: DropdownId) => {
+		setOpenDropdown((prev) => (prev === dropdownId ? null : dropdownId));
+	};
 
-  const isDropdownOpen = (dropdownId: DropdownId) => {
-    return openDropdown === dropdownId;
-  };
+	const isDropdownOpen = (dropdownId: DropdownId) => {
+		return openDropdown === dropdownId;
+	};
 
-  const handleClickOutside = (event: MouseEvent) => {
-    const target = event.target as HTMLElement;
-    const dropdownIds = Object.keys(dropdownRefs) as DropdownId[];
+	const handleClickOutside = (event: MouseEvent) => {
+		const target = event.target as HTMLElement;
+		const dropdownIds = Object.keys(dropdownRefs) as DropdownId[];
 
-    if (dropdownIds.every(id => {
-      const dropdown = dropdownRefs[id].current;
-      return !dropdown || !dropdown.contains(target);
-    })) {
-      setOpenDropdown(null);
-    }
-  };
+		if (
+			dropdownIds.every((id) => {
+				const dropdown = dropdownRefs[id].current;
+				return !dropdown || !dropdown.contains(target);
+			})
+		) {
+			setOpenDropdown(null);
+		}
+	};
 
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
-  const isHomeActive = pathname === '/';
-  const router = useRouter();
-  return (
+	useEffect(() => {
+		document.addEventListener("click", handleClickOutside);
+		return () => {
+			document.removeEventListener("click", handleClickOutside);
+		};
+	}, []);
+	const isHomeActive = pathname === "/";
+	const router = useRouter();
+	return (
 		<>
 			<div className="fixed w-full z-20">
 				<div className="bg-black ">
@@ -78,7 +81,7 @@ const Header = () => {
 				<header className="fixed w-full bg-white mx-auto px-20 h-[72px] p-5 items-center justify-between shadow-md lg:flex lg:items-center hidden lg:justify-between">
 					<div className="flex items-start max-w-52">
 						<a href="/">
-							<Image src={logo} alt="Dealerheim Logo" className=" cursor-pointer" />
+							<Logo width={180} className="cursor-pointer" />
 						</a>
 					</div>
 

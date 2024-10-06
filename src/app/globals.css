@@ -250,4 +250,10 @@ body {
     2px 2px 0px rgba(0, 0, 0, 0.2),
     4px 4px 0px rgba(0, 0, 0, 0.3),
     2px 2px 0px rgba(0, 0, 0, 0.4);
+}.scrollbar-hide::-webkit-scrollbar {
+  display: none ;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none ;  /* Firefox */
 }

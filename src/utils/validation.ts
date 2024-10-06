@@ -1,6 +1,6 @@
 export interface SellCarFormData {
     make: string;
-    vin: string;
+    vinNumber: string;
     model: string;
     body: string;
     year: string;
@@ -34,7 +34,7 @@ export const validateSellCarForm = (formData: SellCarFormData): ValidationErrors
 
     // Vehicle Information Validation
     if (!isNonEmpty(formData.make)) errors.make = 'Make is required';
-    if (!isNonEmpty(formData.vin)) errors.vin = 'VIN number is required';
+    if (!isNonEmpty(formData.vinNumber)) errors.vinNumber = 'vinNumber number is required';
     if (!isNonEmpty(formData.model)) errors.model = 'Model is required';
     if (!isNonEmpty(formData.body)) errors.body = 'Body type is required';
     if (!isNonEmpty(formData.year)) {

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faKey } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 
-const images: string[] = ["/images/Honda-City.jpg", "/images/info-1.jpg", "/images/info-2.jpg", "/images/info-3.jpg", "/images/info-1.jpg", "/images/info-1.jpg", "/images/info-4.png", "/images/info-5.jpg", "/images/info-6.jpg"];
+const images: string[] = ["/images/info-1.jpg", "/images/info-2.jpg", "/images/info-3.jpg", "/images/info-1.jpg", "/images/info-1.jpg", "/images/info-4.png", "/images/info-5.jpg", "/images/info-6.jpg"];
 const vehicleDetails = [
 	{ label: "Vehicle No", value: "ABC-1234" },
 	{ label: "Trim", value: "LS" },
@@ -98,10 +98,10 @@ export default function VehicleInfo() {
 					</div>
 				</div>
 				{/* Vehicle Details Section */}
-				<div className="w-full md:w-1/2 bg-gray-200 p-6 flex flex-col rounded-lg">
-					<h3 className="text-lg font-semibold mb-4 text-black">Vehicle Info</h3>
+				<div className="w-full md:w-1/2 flex flex-col lg:ps-3">
+					<h3 className="text-lg font-semibold mb-4 text-black mt-3">Vehicle Info</h3>
 
-					<div className="grid grid-cols-2 gap-4">
+					<div className="grid grid-cols-2 gap-4 rounded-lg  bg-gray-200 p-6 ">
 						{vehicleDetails.map((detail, index) => (
 							<div key={index} className="flex justify-between border-b border-gray-400 py-2">
 								<span className="font-medium text-black">{detail.label}:</span>
@@ -111,7 +111,7 @@ export default function VehicleInfo() {
 					</div>
 
 					{/* Key Features Section */}
-					<div className="mt-6 flex flex-col space-y-4">
+					<div className="mt-6 flex flex-col space-y-4 ">
 						<h3 className="text-lg font-semibold mb-2 text-black">Key Features</h3>
 						<div className="flex space-x-4">
 							<div className="flex items-center flex-col max-w-[100px] justify-center text-center border border-gray-300 p-4 rounded-md w-full md:w-auto">
@@ -127,7 +127,7 @@ export default function VehicleInfo() {
 				</div>
 			</div>
 
-			<div className="w-full md:w-1/2 mt-6">
+			<div className="w-full md:w-1/2 mt-20">
 				<h3 className="text-lg text-black font-semibold mb-4">Vehicle Details</h3>
 				<div className="space-y-4">
 					{Array.from({ length: 8 }, (_, index: number) => (
