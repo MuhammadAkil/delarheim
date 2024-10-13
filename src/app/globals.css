@@ -91,7 +91,7 @@
 
 
 body {
-  color: var(--foreground);
+  /* color: var(--foreground); */
   /* background: var(--background); */
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -256,4 +256,12 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none ;  /* Firefox */
+}
+
+.clip-path-background{
+  clip-path: polygon(0% 0%, 100% 0%, 58% 82.8%, 0% 67.8%);
+}
+
+input::placeholder {
+  border: none !important;
 }
