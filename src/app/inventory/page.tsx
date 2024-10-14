@@ -181,7 +181,7 @@ const CarListing = () => {
   const [isClearDisabled, setIsClearDisabled] = useState(true);
 
   const [minValue, setMinValue] = useState(0);
-  const [maxValue, setMaxValue] = useState(8500);
+  const [maxValue, setMaxValue] = useState(10000);
 
   const midPoint = 5000;
 
@@ -299,7 +299,7 @@ const CarListing = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row p-20">
+    <div className="flex flex-col md:flex-row lg:p-20 p-4">
 
       <div className="md:w-3/4 mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center mb-4">
@@ -442,57 +442,57 @@ const CarListing = () => {
       </div>
 
       {openFilterModal && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 backdrop-blur-sm">
-          <div
-            className="bg-white rounded-lg p-6 w-full max-w-md mx-auto"
-            style={{ boxShadow: '0 10px 30px rgba(0, 0, 0, 0.8)' }}
-          >
-            <h2 className="text-2xl font-bold mb-4 text-center text-black">Filters</h2>
-            <hr className="my-3" />
-            <div className="grid grid-cols-3 gap-3">
-              <div
-                className={`flex flex-col items-center justify-center p-4 rounded-md cursor-pointer `}
-                onClick={() => handleCardClick('Under 30K')}
-              >
-                <div className="text-blue-500 text-3xl mb-1">💰</div>
-                <span className="text-sm">Under 30K</span>
+          <div className="fixed inset-0 flex items-center justify-center z-50 backdrop-blur-sm">
+            <div
+              className="bg-white rounded-lg p-6 w-full max-w-md mx-auto"
+              style={{ boxShadow: '0 10px 30px rgba(0, 0, 0, 0.8)' }}
+            >
+              <h2 className="text-2xl font-bold mb-4 text-center text-black">Filters</h2>
+              <hr className="my-3" />
+              <div className="grid grid-cols-3 gap-3">
+                <div
+                  className={`flex flex-col items-center justify-center p-4 rounded-md cursor-pointer  bg-gray-200`}
+                  onClick={() => handleCardClick('Under 30K')}
+                >
+                  <div className="text-blue-500 text-3xl mb-1">💰</div>
+                  <span className="text-sm">Under 30K</span>
+                </div>
+
+                {['Year', 'Model', 'Fuel Type', 'Body Style', 'Features', 'Color', 'Trim', 'Transmission'].map((filter) => (
+                  <div
+                    key={filter}
+                    className={`flex flex-col items-center justify-center p-4 rounded-md cursor-pointer  bg-gray-200`}
+                    onClick={() => handleCardClick(filter)}
+                  >
+                    <div className="text-gray-700 text-3xl mb-1">
+                      {filter === 'Year' && <FaClock />}
+                      {filter === 'Model' && <FaCarSide />}
+                      {filter === 'Fuel Type' && <FaGasPump />}
+                      {filter === 'Body Style' && <FaCarSide />}
+                      {filter === 'Features' && <FaCar />}
+                      {filter === 'Color' && <FaTint />}
+                      {filter === 'Trim' && <FaTint />}
+                      {filter === 'Transmission' && <FaTint />}
+                    </div>
+                    <span className="text-sm">{filter}</span>
+                  </div>
+                ))}
               </div>
 
-              {['Year', 'Model', 'Fuel Type', 'Body Style', 'Features', 'Color', 'Trim', 'Transmission'].map((filter) => (
-                <div
-                  key={filter}
-                  className={`flex flex-col items-center justify-center p-4 rounded-md cursor-pointer `}
-                  onClick={() => handleCardClick(filter)}
+              <div className="flex justify-end mt-4">
+                <button
+                  onClick={toggleFilterModal}
+                  className="mt-4 p-2 text-white rounded-md hover:bg-[#6b5fff]/90 bg-[#6b5fff] hover:text-light"
                 >
-                  <div className="text-gray-700 text-3xl mb-1">
-                    {filter === 'Year' && <FaClock />}
-                    {filter === 'Model' && <FaCarSide />}
-                    {filter === 'Fuel Type' && <FaGasPump />}
-                    {filter === 'Body Style' && <FaCarSide />}
-                    {filter === 'Features' && <FaCar />}
-                    {filter === 'Color' && <FaTint />}
-                    {filter === 'Trim' && <FaTint />}
-                    {filter === 'Transmission' && <FaTint />}
-                  </div>
-                  <span className="text-sm">{filter}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex justify-end mt-4">
-              <button
-                onClick={toggleFilterModal}
-                className="mt-4 p-2 text-white rounded-md hover:bg-[#6b5fff]/90 bg-[#6b5fff] hover:text-light"
-              >
-                Close
-              </button>
+                  Close
+                </button>
+              </div>
             </div>
           </div>
-        </div>
       )}
 
       <div className="md:w-1/4 md:flex flex-col gap-3 px-5 mt-4">
-        <div className="flex flex-col mb-4">
+        <div className="hidden md:flex flex-col mb-4">
           <label htmlFor="priceRange" className="mb-2 font-semibold text-lg">
             Price
           </label>
@@ -513,7 +513,7 @@ const CarListing = () => {
               onChange={handleMinChange}
               className="absolute w-full h-2 appearance-none bg-transparent pointer-events-auto"
               style={{
-                zIndex: minValue > 0 ? 3 : 0,
+                zIndex: minValue > 0 ? 0 : 0,
               }}
             />
 
@@ -525,21 +525,21 @@ const CarListing = () => {
               onChange={handleMaxChange}
               className="absolute w-full h-2 appearance-none bg-transparent pointer-events-auto"
               style={{
-                zIndex: maxValue < 10000 ? 3 : 0,
+                zIndex: maxValue < 10000 ? 0 : 0,
               }}
             />
 
             <div className="relative z-5 flex justify-between mt-4">
-              <span className="text-sm">Min: {minValue}</span>
-              <span className="text-sm">Max: {maxValue}</span>
+              <span className="text-sm">{minValue}</span>
+              <span className="text-sm">{maxValue}</span>
             </div>
           </div>
 
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-3">
+        <div className="hidden md:grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-3">
           <div
-            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer`}
+            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer bg-gray-200`}
             onClick={() => handleCardClick('Under30K')}
           >
             <div className="text-blue-500 text-3xl mb-1">💰</div>
@@ -547,7 +547,7 @@ const CarListing = () => {
           </div>
 
           <div
-            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer `}
+            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer  bg-gray-200`}
             onClick={() => handleCardClick('Year')}
           >
             <div className="text-gray-700 text-3xl mb-1"><FaClock /></div>
@@ -555,7 +555,7 @@ const CarListing = () => {
           </div>
 
           <div
-            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer `}
+            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer  bg-gray-200`}
             onClick={() => handleCardClick('Make')}
           >
             <div className="text-gray-700 text-3xl mb-1"><FaCar /></div>
@@ -563,7 +563,7 @@ const CarListing = () => {
           </div>
 
           <div
-            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer `}
+            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer bg-gray-200`}
             onClick={() => handleCardClick('Model')}
           >
             <div className="text-gray-700 text-3xl mb-1"><FaCarSide /></div>
@@ -571,7 +571,7 @@ const CarListing = () => {
           </div>
 
           <div
-            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer `}
+            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer bg-gray-200`}
             onClick={() => handleCardClick('Fuel Type')}
           >
             <div className="text-gray-700 text-3xl mb-1"><FaGasPump /></div>
@@ -579,7 +579,7 @@ const CarListing = () => {
           </div>
 
           <div
-            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer`}
+            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer bg-gray-200`}
             onClick={() => handleCardClick('Body Style')}
           >
             <div className="text-gray-700 text-3xl mb-1"><FaCarSide /></div>
@@ -587,7 +587,7 @@ const CarListing = () => {
           </div>
 
           <div
-            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer `}
+            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer bg-gray-200`}
             onClick={() => handleCardClick('Features')}
           >
             <div className="text-gray-700 text-3xl mb-1"><FaCar /></div>
@@ -595,7 +595,7 @@ const CarListing = () => {
           </div>
 
           <div
-            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer`}
+            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer bg-gray-200`}
             onClick={() => handleCardClick('Color')}
           >
             <div className="text-gray-700 text-3xl mb-1"><FaTint /></div>
@@ -603,7 +603,7 @@ const CarListing = () => {
           </div>
 
           <div
-            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer `}
+            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer  bg-gray-200`}
             onClick={() => handleCardClick('Trim')}
           >
             <div className="text-gray-700 text-3xl mb-1"><FaTint /></div>
@@ -611,7 +611,7 @@ const CarListing = () => {
           </div>
 
           <div
-            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer`}
+            className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer bg-gray-200`}
             onClick={() => handleCardClick('Transmission')}
           >
             <div className="text-gray-700 text-3xl mb-1"><FaTint /></div>
@@ -622,11 +622,11 @@ const CarListing = () => {
         {openModal && (
           <div className="fixed inset-0 flex items-center justify-center z-60 backdrop-blur-sm">
             <div
-              className="bg-white rounded-lg p-6 w-full sm:w-11/12 md:w-3/4 lg:w-1/2 overflow-auto"
-              style={{
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.8)',
-                maxHeight: '90vh',
-              }}
+             className="bg-white rounded-lg p-6 w-full sm:w-11/12 md:w-3/4 lg:w-1/2 overflow-auto md:mt-16"
+             style={{
+               boxShadow: '0 10px 30px rgba(0, 0, 0, 0.8)',
+               maxHeight: '90vh',
+             }}
             >
               <div className="flex justify-between items-center">
                 <h2 className="text-2xl font-bold mb-4 text-center text-black">
@@ -655,15 +655,16 @@ const CarListing = () => {
                       <label className="flex justify-between items-center w-full">
                         <span className="text-gray-800">{option.label}</span>
                         <input
-                          type="radio"
+                          type="checkbox"
                           value={option.value}
                           checked={Under30K.includes(option.value)}
                           onChange={() => {
                             handleMultiSelectChange(option.value, 'Under30K');
                           }}
-                          className="form-checkbox text-pink-500 h-6 w-6"
+                          className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
                         />
                       </label>
+                      <p className="text-sm mt-2">123 Cars Available.</p>
                     </div>
                   ))}
                 </div>
@@ -683,13 +684,13 @@ const CarListing = () => {
                       <label className="flex justify-between items-center w-full">
                         <span className="text-gray-800">{option.label}</span>
                         <input
-                          type="radio"
+                          type="checkbox"
                           value={option.value}
                           checked={selectedYearFilters.includes(option.value)}
                           onChange={() => {
                             handleMultiSelectChange(option.value, 'year');
                           }}
-                          className="form-checkbox text-pink-500 h-6 w-6"
+                          className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
                         />
                       </label>
                     </div>
@@ -769,7 +770,7 @@ const CarListing = () => {
                       <label className="flex justify-between items-center w-full">
                         <span className="text-gray-800">{option.label}</span>
                         <input
-                          type="checkbox" 
+                          type="checkbox"
                           value={option.value}
                           checked={selectedFuelFilters.includes(option.value)}
                           onChange={() => {
@@ -942,6 +943,7 @@ const CarListing = () => {
 
                 <button
                   className="p-2 text-white rounded-md hover:bg-[#6b5fff]/90 bg-[#6b5fff] hover:text-light"
+                  onClick={() => setOpenModal(false)}
                 >
                   View All
                 </button>
