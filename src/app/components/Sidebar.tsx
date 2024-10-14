@@ -1,12 +1,18 @@
+'use client';
+
 import { useState, useRef, useEffect } from 'react';
-import logo from '../public/logo.svg'
-import Image from 'next/image';
-import Logo from "./icons/logo";
+import { usePathname, useRouter } from 'next/navigation';
+import Link from 'next/link';
+import Logo from './icons/logo';
+import router from 'next/router';
+
 
 const Sidebar = () => {
 	const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 	const [sidebarOpen, setSidebarOpen] = useState(false);
 	const sidebarRef = useRef<HTMLDivElement | null>(null);
+	const router = useRouter();
+	const pathname = usePathname();
 
 	const toggleDropdown = (dropdownId: string) => {
 		setOpenDropdown((prev) => (prev === dropdownId ? null : dropdownId));
@@ -23,11 +29,15 @@ const Sidebar = () => {
 	};
 
 	useEffect(() => {
-		document.addEventListener("mousedown", handleClickOutside);
+		document.addEventListener('mousedown', handleClickOutside);
 		return () => {
-			document.removeEventListener("mousedown", handleClickOutside);
+			document.removeEventListener('mousedown', handleClickOutside);
 		};
 	}, []);
+
+	const isHomeActive = pathname === '/';
+	const isFinancingActive = pathname === '/FinancingPlan';
+
 
 	return (
 		<div className="w-full bg-white text-white fixed z-20">
@@ -64,8 +74,6 @@ const Sidebar = () => {
 				<div ref={sidebarRef} className="fixed top-0 right-0 w-[250px] h-full bg-[#1a1a1a] shadow-lg transition-transform duration-300 overflow-auto">
 					<div className="text-white bg-white h-[65px] p-6 font-bold text-xl mb-2">
 						<a href="/home">
-							{/* <Image src={logo} alt="Dealerheim Logo" className=" cursor-pointer" /> */}
-							{/* <Logo width={180} className="cursor-pointer" /> */}
 						</a>
 					</div>
 					<button onClick={toggleSidebar} className="absolute top-4 right-5 text-white  focus:outline-none">
@@ -76,29 +84,83 @@ const Sidebar = () => {
 
 					<div className="p-6">
 						<ul className="space-y-4">
-							<button className="flex items-center py-2 justify-between w-full text-white focus:outline-none">
-								<a href="">Home</a>
+							<Link href="/" passHref>
+								<button
+									onClick={() => toggleDropdown("Home")}
+									className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isHomeActive ? "text-[#0870d8]" : "text-white hover:text-[#0870d8]"}`}
+								>
+									Home
+								</button>
+							</Link>
+
+
+							<button onClick={() => toggleDropdown("Home")}
+								className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isFinancingActive ? "text-[#0870d8]" : "text-white hover:text-[#0870d8]"}`}>
+								<Link href={"/FinancingPlan"} passHref>Financing</Link>
 							</button>
-							<button className="flex items-center py-2 justify-between w-full text-white focus:outline-none">
-								<a href="">Financing</a>
-							</button>
-							{["Inventory", "Buy Or Sell", "Contact Us", "More"].map((item, index) => (
-								<li key={index}>
-									<div className="dropdown">
-										<button className="flex items-center py-2 justify-between w-full text-white focus:outline-none" onClick={() => toggleDropdown(`dropdown${index + 1}`)}>
-											{item}
-											<svg className={`w-5 h-5 transform transition-transform duration-300 ${openDropdown === `dropdown${index + 1}` ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-											</svg>
-										</button>
-										<ul className={`px-4 py-2 bg-[#2c2c2c] rounded-md ${openDropdown === `dropdown${index + 1}` ? "block" : "hidden"}`}>
-											<li>
-												<a className="text-white hover:text-current no-underline mb-1">Option 1</a>
-											</li>
-										</ul>
-									</div>
-								</li>
-							))}
+
+
+							{["Inventory", "Buy Or Sell", "Contact Us", "More"].map((item, index) => {
+								const itemRoute = item === "Inventory" ? "/inventory" :
+									item === "Buy Or Sell" ? "/sell-car" :
+										item === "Contact Us" ? "/ContactUS" :
+											null; // No direct route for "More"
+
+								const isActive = pathname === itemRoute;
+
+								return (
+									<li key={index}>
+										<div className="dropdown">
+											{item !== "More" ? (
+												<Link href={itemRoute || "/"}>
+													<button
+														className={`flex items-center py-2 justify-between w-full focus:outline-none transition-colors duration-300 
+                            ${isActive ? "text-[#0870d8]" : "text-white hover:text-[#0870d8]"}`}
+													>
+														{item}
+													</button>
+												</Link>
+											) : (
+												<>
+													<button
+														className={`flex items-center py-2 justify-between w-full focus:outline-none transition-colors duration-300 
+                            ${openDropdown === "More" ? "text-[#0870d8]" : "text-white hover:text-[#0870d8]"}`}
+														onClick={() => toggleDropdown("More")}
+													>
+														{item}
+														<svg
+															className={`w-5 h-5 transform transition-transform duration-300 ${openDropdown === "More" ? "rotate-180" : ""}`}
+															fill="none"
+															stroke="currentColor"
+															viewBox="0 0 24 24"
+														>
+															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+														</svg>
+													</button>
+													{/* Dropdown for "More" */}
+													{openDropdown === "More" && (
+														<ul className="px-4 py-2 bg-[#2c2c2c] rounded-md">
+															<li>
+																<Link href="/FAQ">
+																	<button
+																		className={`flex items-center py-2 w-full focus:outline-none transition-colors duration-300 
+                                            text-white hover:text-[#0870d8]`}
+																	>
+																		FAQ
+																	</button>
+																</Link>
+															</li>
+														</ul>
+													)}
+												</>
+											)}
+										</div>
+									</li>
+								);
+							})}
+
+
+
 						</ul>
 					</div>
 				</div>
