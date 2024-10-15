@@ -44,7 +44,7 @@ const Sidebar = () => {
 			{/* Desktop Navbar */}
 			<nav className="hidden lg:flex fixed h-16 items-center px-4 py-3 w-full bg-white">
 				<div className="flex items-center flex-grow">
-					<a href="/home" className="mr-auto">
+					<a href="/" className="mr-auto">
 						<Logo width={180} className="cursor-pointer" />
 					</a>
 				</div>
@@ -58,7 +58,7 @@ const Sidebar = () => {
 			{/* Mobile Navbar */}
 			<nav className="flex lg:hidden fixed h-16 items-center px-4 py-3 w-full bg-white border-b shadow-lg">
 				<div className="flex items-center flex-grow z-10">
-					<a href="/home" className="mr-auto">
+					<a href="/" className="mr-auto">
 						<Logo width={180} className="cursor-pointer" />
 					</a>
 				</div>

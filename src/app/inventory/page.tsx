@@ -420,7 +420,7 @@ const CarListing = () => {
 
   return (
 		<div className="flex flex-col md:flex-row lg:p-20 p-2 pt-[5rem]">
-			<div className="md:w-3/4 mx-auto">
+			<div className="md:w-3/4 mx-3 lg:mx-auto">
 				<div className="flex flex-col md:flex-row justify-between items-center mb-4">
 					<p className="text-black font-bold w-full text-2xl md:text-4xl text-center md:text-start">
 						{filteredResults.length} Vehicle{filteredResults.length !== 1 ? "s" : ""} for Sale
@@ -594,7 +594,7 @@ const CarListing = () => {
 						<span className="text-sm">Model</span>
 					</div>
 
-					<div className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer bg-gray-200`} onClick={() => handleCardClick("Fuel Type")}>
+					<div className={`flex flex-col items-center h-30 justify-center p-4 rounded-md cursor-pointer bg-gray-200`} onClick={() => handleCardClick("FuelType")}>
 						<div className="text-gray-700 text-3xl mb-1">
 							<FaGasPump />
 						</div>

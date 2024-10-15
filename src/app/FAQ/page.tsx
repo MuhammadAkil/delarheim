@@ -121,8 +121,8 @@ const FinancingApplication = () => {
 	};
 
 	return (
-		<div className=" min-h-screen flex flex-col md:flex-row items-start justify-center text-white pt-4 pb-4 md:pt-8 md:pb-8">
-			<div className="flex-1 p-6 max-w-5xl bg-gray-800 mt-10 mx-6 md:mt-12 md:mr-8 rounded-lg shadow-lg">
+		<div className=" min-h-screen flex flex-col md:flex-row items-start justify-center text-white py-14  md:py-8">
+			<div className="flex-1 p-6 max-w-5xl bg-gray-800 mt-10 mx-4 lg:mx-6 md:mt-12 md:mr-8 rounded-lg shadow-lg">
 				<h1 className="text-4xl font-bold mb-6">FINANCING APPLICATION</h1>
 				<p className="text-md mb-4">Get approved from home! Please fill out the secure credit application below.</p>
 
@@ -139,7 +139,8 @@ const FinancingApplication = () => {
 								</Dropdown.Trigger>
 								<Dropdown.Menu className="bg-white p-2">
 									{salutationOptions.map((option) => (
-										<Dropdown.Item className="text-black"
+										<Dropdown.Item
+											className="text-black"
 											key={option.value}
 											onClick={() => {
 												setSalutation(option.value);
@@ -165,7 +166,8 @@ const FinancingApplication = () => {
 								</Dropdown.Trigger>
 								<Dropdown.Menu className="bg-white p-2">
 									{genderOptions.map((option) => (
-										<Dropdown.Item className="text-black"
+										<Dropdown.Item
+											className="text-black"
 											key={option.value}
 											onClick={() => {
 												setGender(option.value);
@@ -262,7 +264,8 @@ const FinancingApplication = () => {
 									</Dropdown.Trigger>
 									<Dropdown.Menu className="bg-white p-2">
 										{maritalOptions.map((option) => (
-											<Dropdown.Item className="text-black"
+											<Dropdown.Item
+												className="text-black"
 												key={option.value}
 												onClick={() => {
 													setMaritalStatus(option.value);
@@ -353,7 +356,8 @@ const FinancingApplication = () => {
 									</Dropdown.Trigger>
 									<Dropdown.Menu className="bg-white p-2">
 										{mortageOptions.map((option) => (
-											<Dropdown.Item className="text-black"
+											<Dropdown.Item
+												className="text-black"
 												onClick={() => {
 													setmortageStatus(option.value);
 													setErrorMessages((prev) => ({ ...prev, mortage: "" }));
@@ -504,7 +508,8 @@ const FinancingApplication = () => {
 									</Dropdown.Trigger>
 									<Dropdown.Menu className="bg-white p-2">
 										{EmployeOptions.map((option) => (
-											<Dropdown.Item className="text-black"
+											<Dropdown.Item
+												className="text-black"
 												onClick={() => {
 													setEmploye(option.value);
 													setErrorMessages((prev) => ({ ...prev, Employe: "" }));
@@ -707,7 +712,7 @@ const FinancingApplication = () => {
 						</div>
 					</div>
 
-					<div className="flex-1 p-6 max-w-5xl bg-gray-800 mt-10 mx-6 md:mt-12 md:mr-8 rounded-lg">
+					<div className="flex-1 lg:p-6 max-w-5xl bg-gray-800 mt-10 mx-0 lg:mx-6 md:mt-12 md:mr-8 rounded-lg">
 						<h2 className="text-2xl font-bold mb-4">Choose Your Vehicle</h2>
 						<Input className="w-full bg-white text-black border border-gray-400 rounded-md mb-4 px-2" placeholder="Enter Vehicle Details" />
 						<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -728,7 +733,7 @@ const FinancingApplication = () => {
 				</form>
 			</div>
 
-			<div className="flex-none bg-gray-900 p-8 max-w-sm mt-10 md:mt-12 md:ml-8 rounded-lg shadow-lg md:mr-8">
+			<div className="flex-none bg-gray-900 p-8 max-w-sm mt-6 md:mt-12 md:ml-8 rounded-lg shadow-lg md:mr-8 mx-4 lg:mx-0">
 				<h2 className="text-xl font-bold mb-4">Online Credit Application</h2>
 				<p className="mb-6">Need help filling out your application? We would be happy to help you.</p>
 				<Button className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-md">Contact Us</Button>
