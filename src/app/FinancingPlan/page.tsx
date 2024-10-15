@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Accordion {
 	title: string;
@@ -169,9 +170,9 @@ const FAQ = () => {
 						<h2 className="text-black text-3xl text-center text-xl sm:text-2xl md:text-4xl lg:text-3xl xl:text-4xl font-bold text-center">
 							Get Financing result without <br /> impacting your credit
 						</h2>
-						<button className="text-white rounded-md px-8 py-2 transition duration-300 md:text-2xl text-xl" style={{ background: "#6b5fff" }}>
-							Get Pre-Qualified
-						</button>
+						<Link href={"/FAQ"}>
+							<button className="text-white rounded-md px-8 py-2 transition duration-300 md:text-2xl text-xl bg-[#6b5fff]">Get Pre-Qualified</button>
+						</Link>
 					</div>
 				</div>
 				<div className="absolute top-[10rem] md:top-[12rem] left-1/2 transform -translate-x-1/2 p-4 md:w-auto text-white md:block hidden sm:hidden" style={{ display: "block", visibility: "hidden" }}>

@@ -92,6 +92,7 @@
 
 body {
   /* color: var(--foreground); */
+  /* color: var(--foreground); */
   /* background: var(--background); */
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -256,6 +257,45 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none ;  /* Firefox */
+}
+
+.clip-path-background{
+  clip-path: polygon(0% 0%, 100% 0%, 58% 82.8%, 0% 67.8%);
+}
+
+input::placeholder {
+  border: none !important;
+}
+
+
+
+
+
+/* Global styles for range input */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  background-color: #f1f5f7;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px #ced4da;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  margin-top: -7px; /* Centering the thumb on the track */
+}
+
+input[type="range"]::-moz-range-thumb {
+  background-color: #f1f5f7;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px #ced4da;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
 }
 
 .clip-path-background{

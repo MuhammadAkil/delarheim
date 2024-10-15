@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { FaQuestionCircle } from 'react-icons/fa';
+import '../../globals.css'
 
 
 export interface Car {
@@ -12,17 +13,18 @@ export interface Car {
   year: number;
   make: string;
   bodyStyle: string;
-  fuelType: string;
+  fuel: string;
   odometer: number;
   engine: string;
   trim: string;
   features: string[];
   color: string;
   transmission: string;
+  model: string,
 }
 
 const CarCard: React.FC<{ car: Car }> = ({ car }) => (
-  <div className="bg-white shadow-md rounded-lg overflow-hidden h-full flex flex-col hover:shadow-[0px_10px_20px_rgba(0,0,0,0.7)] transition-shadow duration-200">
+  <div className="bg-white shadow-md rounded-lg overflow-hidden h-full flex flex-col hover:shadow-[0px_10px_20px_rgba(0,0,0,0.2)] transition-shadow duration-200">
     <Image
       className="rounded w-full object-cover object-center mb-6 hover:rounded-lg"
       src={car.image}
@@ -52,8 +54,8 @@ const CarCard: React.FC<{ car: Car }> = ({ car }) => (
 
       <div className="flex justify-center mt-4">
         <a href={'/vehicel-info'} rel="noopener noreferrer" className="w-full" >
-          <button  className="w-full px-4 py-2 text-white text-sm rounded-md transition duration-200" style={{ background: '#6b5fff' }}>
-            
+          <button className="w-full px-4 py-2 text-white text-sm rounded-md transition duration-200" style={{ background: '#6b5fff' }}>
+
             View Details
           </button>
         </a>
