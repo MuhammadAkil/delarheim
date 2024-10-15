@@ -422,7 +422,7 @@ const CarListing = () => {
 		<div className="flex flex-col md:flex-row lg:p-20 p-2 pt-[5rem]">
 			<div className="md:w-3/4 mx-auto">
 				<div className="flex flex-col md:flex-row justify-between items-center mb-4">
-					<p className="text-black font-bold w-full text-2xl md:text-4xl">
+					<p className="text-black font-bold w-full text-2xl md:text-4xl text-center md:text-start">
 						{filteredResults.length} Vehicle{filteredResults.length !== 1 ? "s" : ""} for Sale
 					</p>
 					<div className="flex items-center mt-2 md:mt-0">
@@ -467,7 +467,7 @@ const CarListing = () => {
 					</div>
 				</div>
 
-				<div className="flex flex-wrap items-center mb-4">
+				<div className="flex flex-wrap items-center gap-1 mb-4">
 					{filtersApplied &&
 						selectedFilters.map((filter) => (
 							<div key={filter} className="bg-gray-200 text-gray-700 px-2 py-1 rounded mr-2 flex items-center">
@@ -489,11 +489,11 @@ const CarListing = () => {
 
 			{openFilterModal && (
 				<div className="fixed inset-0 flex items-center justify-center z-50 backdrop-blur-sm">
-					<div className="bg-white rounded-lg p-6 w-full max-w-md mx-auto" style={{ boxShadow: "0 10px 30px rgba(0, 0, 0, 0.8)" }}>
+					<div className="bg-white rounded-lg p-6 w-full max-w-md mx-2 lg:mx-auto" style={{ boxShadow: "0 10px 30px rgba(0, 0, 0, 0.8)" }}>
 						<h2 className="text-2xl font-bold mb-4 text-center text-black">Filters</h2>
 						<hr className="my-3" />
-						<div className="grid grid-cols-3 gap-3">
-							<div className={`flex flex-col items-center justify-center p-4 rounded-md cursor-pointer  bg-gray-200`} onClick={() => handleCardClick("Under 30K")}>
+						<div className="grid md:grid-cols-3 grid-cols-2 gap-3">
+							<div className={`flex flex-col items-center justify-center p-4 rounded-md cursor-pointer  bg-gray-200`} onClick={() => handleCardClick("Under30K")}>
 								<div className="text-blue-500 text-3xl mb-1">💰</div>
 								<span className="text-sm">Under 30K</span>
 							</div>

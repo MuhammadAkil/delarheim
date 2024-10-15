@@ -18,7 +18,7 @@ export default function Hero() {
 					<div className="flex flex-col justify-center items-center mx-auto">
 						<div className="">
 							<h2 className=" p-3 text-xl font-semibold lg:text-4xl mb-3 mt-7 lg:mt-0 text-shadow">
-								Smarter Deals, Faster Sales - Your <br /> Confident Path to Buying or <br />
+								Smarter Deals, Faster Sales - Your <br className="hidden md:block" /> Confident Path to Buying or <br className="hidden md:block" />
 								Selling a Car
 							</h2>
 						</div>

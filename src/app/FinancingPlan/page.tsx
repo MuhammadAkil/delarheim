@@ -149,29 +149,28 @@ const FAQ = () => {
 	return (
 		<>
 			<div className="relative w-full" style={{ minHeight: "10rem", overflow: "hidden" }}>
-				<Image src="/images/bg-image-FAQ.jpg" alt="Image Error" width={600} height={600} className="w-full opacity-25	 h-auto object-cover opacity-75" style={{ maxHeight: "30rem" }} />
-				<div className="absolute top-[4rem] md:top-[6rem] left-1/2 transform -translate-x-1/2 bg-white p-2 md:p-3 rounded-full shadow-md w-[90%] sm:w-[80%] md:w-[70%] lg:w-[auto] mt-4"></div>
-				<div className="absolute top-[4rem] md:top-[6rem] left-1/2 transform -translate-x-1/2 bg-white p-2 md:p-3 rounded-full shadow-md w-[90%] sm:w-[80%] md:w-[70%] lg:w-[auto] mt-4">
-					<div className="flex flex-wrap justify-center space-x-2 md:space-x-4">
+				<Image src="/images/bg-image-FAQ.jpg" alt="Image Error" width={600} height={600} className="w-full opacity-25	 h-[100svh] lg:h-auto object-cover opacity-75" style={{ maxHeight: "30rem" }} />
+				<div className="absolute backdrop-xl top-[5rem] left-1/2 transform -translate-x-1/2 bg-white/50 py-5 px-2 md:p-3 rounded-lg lg:rounded-full shadow-md w-[90%] sm:w-[80%] md:w-[70%] lg:w-[auto] mt-4">
+					<div className="flex flex-wrap justify-center gap-3 md:space-x-4">
 						{["How it Works", "Car Payment Calculator", "Car Max Auto Finance"].map((label, index: number) => (
 							<button
 								key={index}
 								onClick={() => handleButtonClick(index)}
-								className={`text-black px-4 py-2 md:px-6 md:py-3 text-sm md:text-base transition duration-300 
-                ${activeButton === index ? "bg-blue-500 text-white rounded-full" : "hover:bg-gray-100 rounded-full"}`}
+								className={`text-black  w-[270px] lg:w-auto px-4 py-2 md:px-6 md:py-3 text-sm md:text-base transition duration-300 
+                ${activeButton === index ? "bg-[#6b5fff] text-white rounded-full" : "shadow-lg border bg-gray-100 hover:bg-gray-200 rounded-full"}`}
 							>
 								{label}
 							</button>
 						))}
 					</div>
 				</div>
-				<div className="absolute top-[8rem] md:top-[14rem] left-1/2 transform -translate-x-1/2">
+				<div className="absolute top-[20rem] md:top-[13rem] left-1/2 min-w-[300px] transform -translate-x-1/2">
 					<div className="flex justify-center items-center flex-col gap-3">
-						<h2 className="text-black text-3xl text-center text-xl sm:text-2xl md:text-4xl lg:text-3xl xl:text-4xl font-bold text-center">
-							Get Financing result without <br /> impacting your credit
+						<h2 className="text-white text-xl font-semibold lg:text-4xl text-center lg:mt-0 text-shadow">
+							Get Financing result without <br className="hidden md:block" /> impacting your credit
 						</h2>
 						<Link href={"/FAQ"}>
-							<button className="text-white rounded-md px-8 py-2 transition duration-300 md:text-2xl text-xl bg-[#6b5fff]">Get Pre-Qualified</button>
+							<button className="text-white rounded-md px-8 py-2  mt-2 transition duration-300 md:text-2xl text-xl hover:bg-[#6b5fff]/90 bg-[#6b5fff]">Get Pre-Qualified</button>
 						</Link>
 					</div>
 				</div>
@@ -180,9 +179,9 @@ const FAQ = () => {
 					<p className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center">Impacting Your Credit.</p>
 
 					<div className="mt-6 text-center">
-						<button className="text-white rounded-md px-8 py-2 transition duration-300 md:text-2xl text-xl" style={{ background: "#6b5fff" }}>
-							Get Pre-Qualified
-						</button>
+						<Link href={"/FAQ"}>
+							<button className="text-white rounded-md px-8 py-2 transition duration-300 md:text-2xl text-xl hover:bg-[#6b5fff]/90 bg-[#6b5fff]">Get Pre-Qualified</button>
+						</Link>
 					</div>
 				</div>
 			</div>
@@ -295,7 +294,7 @@ const FAQ = () => {
 							<Image src="/images/faq-vector.svg" alt="Image Error" width={600} height={400} className="w-full h-auto max-h-[30rem] object-contain" />
 						</div>
 
-						<div className="space-y-2 px-10">
+						<div className="space-y-2 lg:px-10 px-2">
 							<h2 className="text-3xl font-bold uppercase mb-4" style={{ color: "#053361" }}>
 								Personalized results in minutes
 							</h2>
