@@ -1,542 +1,740 @@
 "use client";
-
 import React, { useState } from "react";
-import Image from "next/image";
+import { Button, Input, Select, Dropdown } from "rizzui";
+import { FiChevronDown } from "react-icons/fi";
 
-
-interface Accordion {
-    title: string;
-    content: string[];
-}
-
-interface FAQ {
-    title: string;
-    content: string[];
-}
-
-const AccordionData: Accordion[] = [
-    {
-        title: "Choose your Starting Point",
-        content: ['Wheels: 17" x 7.0J Alloy', "Tires: P225/60R17 All-Season", "Steel Spare Wheel", "Clearcoat Paint", "Express Open/Close Sliding And Tilting Glass 1st And 2nd Row Sunroof w/Power Sunshade", "Body-Coloured Front Bumper", "Fixed Rear Window w/Fixed Interval Wiper, Heated Wiper Park and Defroster", "Deep Tinted Glass", "Auto On/Off Projector Beam Halogen Daytime Running Headlamps w/Delay-Off"],
-    },
-    {
-        title: "Get Pre-Qualified",
-        content: [
-            "3-Stage Heated Front Bucket Seats -inc: 8-way power adjustable driver's seat w/power lumbar support",
-            "Driver Seat",
-            "4-Way Passenger Seat -inc: Manual Recline and Fore/Aft Movement",
-            "Manual Tilt/Telescoping Steering Column",
-            "Heated Leather/Metal-Look Steering Wheel",
-            "Dual Zone Front Automatic Air Conditioning",
-            "Full Floor Console w/Covered Storage",
-            "Day-Night Rearview Mirror",
-            "Leather/Piano Black Gear Shifter Material",
-            "Driver And Passenger Visor Vanity Mirrors w/Illumination",
-        ],
-    },
-    {
-        title: "Shop with your terms",
-        content: ['Radio: AM/FM/HD/SiriusXM Audio System -inc: 8" touchscreen, 6 speakers, and voice recognition', "Apple CarPlay & Android Auto", "Bluetooth Wireless Connectivity", "Integrated Roof Antenna", "Speed Compensated Volume Control"],
-    },
+const salutationOptions = [
+	{ value: "Mr", label: "Mr." },
+	{ value: "Ms", label: "Ms." },
+	{ value: "Mrs", label: "Mrs." },
+	{ value: "Dr", label: "Dr." },
 ];
 
-const FAQAccordianData: FAQ[] = [
-
-    {
-        title: "Does CarMax offer Financing?",
-        content: [
-            'Radio: AM/FM/HD/SiriusXM Audio System -inc: 8" touchscreen, 6 speakers, and voice recognition',
-            "Apple CarPlay & Android Auto",
-            "Bluetooth Wireless Connectivity",
-            "Integrated Roof Antenna",
-            "Speed Compensated Volume Control"
-        ],
-    },
-    {
-        title: "What does pre-qualification mean?",
-        content: [
-            'Radio: AM/FM/HD/SiriusXM Audio System -inc: 8" touchscreen, 6 speakers, and voice recognition',
-            "Apple CarPlay & Android Auto",
-            "Bluetooth Wireless Connectivity",
-            "Integrated Roof Antenna",
-            "Speed Compensated Volume Control"
-        ],
-    },
-    {
-        title: "How does pre-qualification work?",
-        content: [
-            'Radio: AM/FM/HD/SiriusXM Audio System -inc: 8" touchscreen, 6 speakers, and voice recognition',
-            "Apple CarPlay & Android Auto",
-            "Bluetooth Wireless Connectivity",
-            "Integrated Roof Antenna",
-            "Speed Compensated Volume Control"
-        ],
-    },
-    {
-        title: "Will pre-qualifying impact my credit score?",
-        content: [
-            'Radio: AM/FM/HD/SiriusXM Audio System -inc: 8" touchscreen, 6 speakers, and voice recognition',
-            "Apple CarPlay & Android Auto",
-            "Bluetooth Wireless Connectivity",
-            "Integrated Roof Antenna",
-            "Speed Compensated Volume Control"
-        ],
-    },
-    {
-        title: "What's the benefit of getting pre-qualified?",
-        content: [
-            'Radio: AM/FM/HD/SiriusXM Audio System -inc: 8" touchscreen, 6 speakers, and voice recognition',
-            "Apple CarPlay & Android Auto",
-            "Bluetooth Wireless Connectivity",
-            "Integrated Roof Antenna",
-            "Speed Compensated Volume Control"
-        ],
-    }, {
-        title: "This is my first time buying a car. Can I finance with CarMax?",
-        content: [
-            'Radio: AM/FM/HD/SiriusXM Audio System -inc: 8" touchscreen, 6 speakers, and voice recognition',
-            "Apple CarPlay & Android Auto",
-            "Bluetooth Wireless Connectivity",
-            "Integrated Roof Antenna",
-            "Speed Compensated Volume Control"
-        ],
-    },
-    {
-        title: "I don't have the best credit rating. Can I finance with CarMax?",
-        content: [
-            'Radio: AM/FM/HD/SiriusXM Audio System -inc: 8" touchscreen, 6 speakers, and voice recognition',
-            "Apple CarPlay & Android Auto",
-            "Bluetooth Wireless Connectivity",
-            "Integrated Roof Antenna",
-            "Speed Compensated Volume Control"
-        ],
-    },
-    {
-        title: "Can I use a co-buyer?",
-        content: [
-            'Radio: AM/FM/HD/SiriusXM Audio System -inc: 8" touchscreen, 6 speakers, and voice recognition',
-            "Apple CarPlay & Android Auto",
-            "Bluetooth Wireless Connectivity",
-            "Integrated Roof Antenna",
-            "Speed Compensated Volume Control"
-        ],
-    },
-    {
-        title: "What can I do to ensure I get the best terms I can?",
-        content: [
-            'Radio: AM/FM/HD/SiriusXM Audio System -inc: 8" touchscreen, 6 speakers, and voice recognition',
-            "Apple CarPlay & Android Auto",
-            "Bluetooth Wireless Connectivity",
-            "Integrated Roof Antenna",
-            "Speed Compensated Volume Control"
-        ],
-    },
-    {
-        title: "Why do I have to specify a down payment?",
-        content: [
-            'Radio: AM/FM/HD/SiriusXM Audio System -inc: 8" touchscreen, 6 speakers, and voice recognition',
-            "Apple CarPlay & Android Auto",
-            "Bluetooth Wireless Connectivity",
-            "Integrated Roof Antenna",
-            "Speed Compensated Volume Control"
-        ],
-    },
+const maritalOptions = [
+	{ value: "Married", label: "Married" },
+	{ value: "Single", label: "Single" },
+	{ value: "Divorced", label: "Divorced" },
+	{ value: "Other", label: "Other" },
 ];
 
-interface CustomCardProps {
-    imageSrc: string;
-    description: string;
-    style?: React.CSSProperties;
-}
+const mortageOptions = [
+	{ value: "mortgage", label: "Mortgage" },
+	{ value: "Own with Mortgage", label: "Own with Mortgage" },
+	{ value: "With Parents", label: "With Parents" },
+];
 
+const EmployeOptions = [
+	{ value: "Yes", label: "yes" },
+	{ value: "No", label: "No" },
+];
 
-const CustomCard: React.FC<CustomCardProps> = ({ imageSrc, description, style }) => {
-    return (
-        <div className="w-full max-w-md h-full bg-white rounded-lg shadow-lg overflow-hidden">
-            <img
-                src={imageSrc}
-                className="w-full h-55"
-                alt="Card image"
-            />
+const FinancingApplication = () => {
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [gender, setGender] = useState("");
+	const [salutation, setSalutation] = useState("");
+	const [Marital, setMaritalStatus] = useState("");
+	const [mortage, setmortageStatus] = useState("");
+	const [Employe, setEmploye] = useState("");
+	const [email, setEmail] = useState("");
+	const [DOB, setDOB] = useState("");
+	const [phone, setPhone] = useState("");
+	const [city, setCity] = useState("");
+	const [state, setstate] = useState("");
+	const [zip, setZip] = useState("");
+	const [homeStatus, setHomeStatus] = useState("");
+	const [monthlyPayment, setMonthlyPayment] = useState("");
+	const [PreviousEmployerName, setPreviousEmployerName] = useState("");
+	const [PreviousPosition, setPreviousPosition] = useState("");
+	const [PreviousEmployementYear, setPreviousEmployementYear] = useState("");
+	const [PreviousEmployementMonth, setPreviousEmployementMonth] = useState("");
+	const [ReferenceName, setReferenceName] = useState("");
+	const [ReferencePhone, setReferencePhone] = useState("");
+	const [AdditionalNotes, setAdditionalNotes] = useState("");
+	const [Hearing, setHearing] = useState("");
+	const [employerName, setEmployerName] = useState("");
+	const [DurationAddress, setDurationAddress] = useState("");
+	const [DurationAddressMonth, setDurationAddressMonth] = useState("");
+	const [position, setPosition] = useState("");
+	const [employmentDurationYears, setEmploymentDurationYears] = useState("");
+	const [employmentDurationMonths, setEmploymentDurationMonths] = useState("");
+	const [monthlyIncome, setMonthlyIncome] = useState("");
+	const [supervisorName, setSupervisorName] = useState("");
+	const [supervisorPhone, setSupervisorPhone] = useState("");
+	const [workAddress, setWorkAddress] = useState("");
+	const [workCity, setWorkCity] = useState("");
+	const [workState, setWorkState] = useState("");
+	const [workZip, setWorkZip] = useState("");
 
-            <div className="p-5 bg-gray-100 h-full">
-                <p className="text-2xl" style={{ color: '#053361' }}>{description}</p>
-            </div>
-        </div>
-    );
+	const [errorMessages, setErrorMessages] = useState<{ [key: string]: string }>({});
+
+	const genderOptions = [
+		{ value: "male", label: "Male" },
+		{ value: "female", label: "Female" },
+		{ value: "other", label: "Other" },
+	];
+
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		const errors: { [key: string]: string } = {};
+		if (!firstName) errors.firstName = "First Name is required.";
+		if (!lastName) errors.lastName = "Last Name is required.";
+		if (!salutation) errors.salutation = "Salutation is required.";
+		if (!Marital) errors.marital = "Marital Status is required.";
+		if (!gender) errors.gender = "Gender is required.";
+		if (!phone) errors.phone = "Phone is required.";
+		if (!email) errors.email = "Email is required.";
+		if (!Hearing) errors.Hearing = "This is required.";
+		if (!DurationAddress) errors.DurationAddress = "Duration Address Year is required.";
+		if (!DurationAddressMonth) errors.DurationAddressMonth = "Duration Address Month is required.";
+		if (!PreviousEmployementYear) errors.PreviousEmployementYear = "Employment Duration Years is required.";
+		if (!PreviousEmployementMonth) errors.PreviousEmployementMonth = "Employment Duration Month is required.";
+		if (!PreviousEmployerName) errors.PreviousEmployerName = "Previous Employer Name is required.";
+		if (!PreviousPosition) errors.PreviousPosition = "Previous Position Month is required.";
+		if (!AdditionalNotes) errors.AdditionalNotes = "Additional Notes is required.";
+		if (!city) errors.city = "City is required.";
+		if (!workCity) errors.workCity = "Work City is required.";
+		if (!workAddress) errors.workAddress = "Work Address is required.";
+		if (!mortage) errors.mortage = "Mortage is required.";
+		if (!monthlyPayment) errors.monthlyPayment = "Monthly Payment is required.";
+		if (!supervisorName) errors.supervisorName = "Supervisor Name is required.";
+		if (!supervisorPhone) errors.supervisorPhone = "Supervisor Phone is required.";
+		if (!Employe) errors.Employe = "Employee is required.";
+		if (!state) errors.state = "State is required.";
+		if (!zip) errors.zip = "ZIP/Postal Code is required.";
+		if (!workZip) errors.workZip = "Work Zip Code is required.";
+		if (!workState) errors.workState = "Work State Code is required.";
+		if (!homeStatus) errors.homeStatus = "Home Status is required.";
+		if (!employerName) errors.employerName = "Employer Name is required.";
+		if (!position) errors.position = "Position is required.";
+		if (!monthlyIncome) errors.monthlyIncome = "Monthly Income is required.";
+		if (!ReferenceName) errors.ReferenceName = "Reference Name is required.";
+		if (!ReferencePhone) errors.ReferencePhone = "Reference Phone is required.";
+		if (!DOB) errors.DOB = "DOB is required.";
+
+		if (Object.keys(errors).length > 0) {
+			setErrorMessages(errors);
+		} else {
+			setErrorMessages({});
+			alert("Form submitted successfully!");
+		}
+	};
+
+	return (
+		<div className=" min-h-screen flex flex-col md:flex-row items-start justify-center text-white pt-4 pb-4 md:pt-8 md:pb-8">
+			<div className="flex-1 p-6 max-w-5xl bg-gray-800 mt-10 mx-6 md:mt-12 md:mr-8 rounded-lg shadow-lg">
+				<h1 className="text-4xl font-bold mb-6">FINANCING APPLICATION</h1>
+				<p className="text-md mb-4">Get approved from home! Please fill out the secure credit application below.</p>
+
+				<form className="space-y-6" onSubmit={handleSubmit}>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+						<div>
+							<label className="block text-sm font-medium">Salutation</label>
+							<Dropdown className="w-full">
+								<Dropdown.Trigger className="w-full">
+									<Button as="span" variant="outline" className="w-full bg-white text-black border border-gray-400 rounded-md px-2 text-left flex justify-between items-center">
+										<span>{salutation || "Select Salutation"}</span>
+										<FiChevronDown className="text-gray-600" size={20} />
+									</Button>
+								</Dropdown.Trigger>
+								<Dropdown.Menu className="bg-white p-2">
+									{salutationOptions.map((option) => (
+										<Dropdown.Item className="text-black"
+											key={option.value}
+											onClick={() => {
+												setSalutation(option.value);
+												setErrorMessages((prev) => ({ ...prev, salutation: "" }));
+											}}
+										>
+											{option.label}
+										</Dropdown.Item>
+									))}
+								</Dropdown.Menu>
+							</Dropdown>
+							{errorMessages.salutation && <p className="text-red-500 text-sm mt-1">{errorMessages.salutation}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Gender</label>
+							<Dropdown className="w-full">
+								<Dropdown.Trigger className="w-full">
+									<Button as="span" variant="outline" className="w-full bg-white text-black border border-gray-400 rounded-md px-2 text-left flex justify-between items-center">
+										<span>{gender || "Select Gender"}</span>
+										<FiChevronDown className="text-gray-600" size={20} />
+									</Button>
+								</Dropdown.Trigger>
+								<Dropdown.Menu className="bg-white p-2">
+									{genderOptions.map((option) => (
+										<Dropdown.Item className="text-black"
+											key={option.value}
+											onClick={() => {
+												setGender(option.value);
+												setErrorMessages((prev) => ({ ...prev, gender: "" })); // Clear error message
+											}}
+										>
+											{option.label}
+										</Dropdown.Item>
+									))}
+								</Dropdown.Menu>
+							</Dropdown>
+							{errorMessages.gender && <p className="text-red-500 text-sm mt-1">{errorMessages.gender}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">First Name (required)</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="First Name"
+								value={firstName}
+								onChange={(e) => {
+									setFirstName(e.target.value);
+									setErrorMessages((prev) => ({ ...prev, firstName: "" }));
+								}}
+							/>
+							{errorMessages.firstName && <p className="text-red-500 text-sm mt-1">{errorMessages.firstName}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Last Name (required)</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Last Name"
+								value={lastName}
+								onChange={(e) => {
+									setLastName(e.target.value);
+									setErrorMessages((prev) => ({ ...prev, lastName: "" }));
+								}}
+							/>
+							{errorMessages.lastName && <p className="text-red-500 text-sm mt-1">{errorMessages.lastName}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Phone (required)</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Phone"
+								value={phone}
+								onChange={(e) => {
+									setPhone(e.target.value);
+									setErrorMessages((prev) => ({ ...prev, phone: "" }));
+								}}
+							/>
+							{errorMessages.phone && <p className="text-red-500 text-sm mt-1">{errorMessages.phone}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Email (required)</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Email"
+								value={email}
+								onChange={(e) => {
+									setEmail(e.target.value);
+									setErrorMessages((prev) => ({ ...prev, email: "" }));
+								}}
+							/>
+							{errorMessages.email && <p className="text-red-500 text-sm mt-1">{errorMessages.email}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Date of Birth (required)</label>
+							<Input
+								className="w-full bg-white text-black rounded-md px-2"
+								placeholder="Date of Birth"
+								value={DOB}
+								onChange={(e) => {
+									setDOB(e.target.value);
+									setErrorMessages((prev) => ({ ...prev, DOB: "" }));
+								}}
+							/>
+							{errorMessages.DOB && <p className="text-red-500 text-sm mt-1">{errorMessages.DOB}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Marital Status (required)</label>
+							<div>
+								<Dropdown className="w-full">
+									<Dropdown.Trigger className="w-full">
+										<Button as="span" variant="outline" className="w-full bg-white text-black border border-gray-400 rounded-md px-2 text-left flex justify-between items-center">
+											<span>{Marital || "Select Marital Status"}</span>
+											<FiChevronDown className="text-gray-600" size={20} />
+										</Button>
+									</Dropdown.Trigger>
+									<Dropdown.Menu className="bg-white p-2">
+										{maritalOptions.map((option) => (
+											<Dropdown.Item className="text-black"
+												key={option.value}
+												onClick={() => {
+													setMaritalStatus(option.value);
+													setErrorMessages((prev) => ({ ...prev, marital: "" }));
+												}}
+											>
+												{option.label}
+											</Dropdown.Item>
+										))}
+									</Dropdown.Menu>
+								</Dropdown>
+
+								{errorMessages.marital && <p className="text-red-500 text-sm mt-1">{errorMessages.marital}</p>}
+							</div>
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Province/State (required)</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Province/State"
+								value={state}
+								onChange={(e) => {
+									setstate(e.target.value);
+									setErrorMessages((prev) => ({ ...prev, state: "" }));
+								}}
+							/>
+							{errorMessages.state && <p className="text-red-500 text-sm mt-1">{errorMessages.state}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Postal/ZIP Code (required)</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="ZIP/Postal Code"
+								value={zip}
+								onChange={(e) => {
+									const value = e.target.value;
+									setZip(value);
+									setErrorMessages((prev) => ({ ...prev, zip: "" }));
+								}}
+							/>
+							{errorMessages.zip && <p className="text-red-500 text-sm mt-1">{errorMessages.zip}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Duration at Address (Years)</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Years at Address"
+								value={DurationAddress}
+								onChange={(e) => {
+									const value = e.target.value;
+									setDurationAddress(value);
+									setErrorMessages((prev) => ({ ...prev, DurationAddress: "" }));
+								}}
+							/>
+							{errorMessages.DurationAddress && <p className="text-red-500 text-sm mt-1">{errorMessages.DurationAddress}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Duration at Address (Months)</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Months at Address"
+								value={DurationAddressMonth}
+								onChange={(e) => {
+									const value = e.target.value;
+									setDurationAddressMonth(value);
+									setErrorMessages((prev) => ({ ...prev, DurationAddressMonth: "" }));
+								}}
+							/>
+							{errorMessages.DurationAddressMonth && <p className="text-red-500 text-sm mt-1">{errorMessages.DurationAddressMonth}</p>}
+						</div>
+					</div>
+
+					<h2 className="text-xl font-bold mt-6">Home Rent / Mortgage Information</h2>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+						<div>
+							<label className="block text-sm font-medium">Home Status (required)</label>
+							<div>
+								<Dropdown className="w-full">
+									<Dropdown.Trigger className="w-full">
+										<Button as="span" variant="outline" className="w-full bg-white text-black border border-gray-400 rounded-md px-2 text-left flex justify-between items-center">
+											<span>{mortage || "Select Mortage"}</span>
+											<FiChevronDown className="text-gray-600" size={20} />
+										</Button>
+									</Dropdown.Trigger>
+									<Dropdown.Menu className="bg-white p-2">
+										{mortageOptions.map((option) => (
+											<Dropdown.Item className="text-black"
+												onClick={() => {
+													setmortageStatus(option.value);
+													setErrorMessages((prev) => ({ ...prev, mortage: "" }));
+												}}
+											>
+												{option.label}
+											</Dropdown.Item>
+										))}
+									</Dropdown.Menu>
+								</Dropdown>
+
+								{errorMessages.mortage && <p className="text-red-500 text-sm mt-1">{errorMessages.mortage}</p>}
+							</div>
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Monthly Payment (required)</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Enter monthly payment"
+								value={monthlyPayment}
+								onChange={(e) => {
+									const value = e.target.value;
+									setMonthlyPayment(value);
+									setErrorMessages((prev) => ({ ...prev, monthlyPayment: "" }));
+								}}
+							/>
+							{errorMessages.monthlyPayment && <p className="text-red-500 text-sm mt-1">{errorMessages.monthlyPayment}</p>}
+						</div>
+					</div>
+
+					<h2 className="text-xl font-bold mt-6">Current Employment</h2>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+						<div>
+							<label className="block text-sm font-medium">Employer Name (required)</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Employer Name"
+								value={employerName}
+								onChange={(e) => {
+									const value = e.target.value;
+									setEmployerName(value);
+									setErrorMessages((prev) => ({ ...prev, employerName: "" }));
+								}}
+							/>
+							{errorMessages.employerName && <p className="text-red-500 text-sm mt-1">{errorMessages.employerName}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Position (required)</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Position"
+								value={position}
+								onChange={(e) => {
+									const value = e.target.value;
+									setPosition(value);
+									setErrorMessages((prev) => ({ ...prev, position: "" }));
+								}}
+							/>
+							{errorMessages.position && <p className="text-red-500 text-sm mt-1">{errorMessages.position}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Duration at Employment (Years)</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Years"
+								value={employmentDurationYears}
+								onChange={(e) => {
+									const value = e.target.value;
+									setEmploymentDurationYears(value);
+									setErrorMessages((prev) => ({ ...prev, employmentDurationYears: "" }));
+								}}
+							/>
+							{errorMessages.employmentDurationYears && <p className="text-red-500 text-sm mt-1">{errorMessages.employmentDurationYears}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Duration at Employment (Months)</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Months"
+								value={employmentDurationMonths}
+								onChange={(e) => {
+									const value = e.target.value;
+									setEmploymentDurationMonths(value);
+									setErrorMessages((prev) => ({ ...prev, employmentDurationMonths: "" }));
+								}}
+							/>
+							{errorMessages.employmentDurationMonths && <p className="text-red-500 text-sm mt-1">{errorMessages.employmentDurationMonths}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Monthly Income (required)</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Monthly Income"
+								value={monthlyIncome}
+								onChange={(e) => {
+									const value = e.target.value;
+									setMonthlyIncome(value);
+									setErrorMessages((prev) => ({ ...prev, monthlyIncome: "" }));
+								}}
+							/>
+							{errorMessages.monthlyIncome && <p className="text-red-500 text-sm mt-1">{errorMessages.monthlyIncome}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Supervisor Name</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Supervisor Name"
+								value={supervisorName}
+								onChange={(e) => {
+									const value = e.target.value;
+									setSupervisorName(value);
+									setErrorMessages((prev) => ({ ...prev, supervisorName: "" }));
+								}}
+							/>
+							{errorMessages.supervisorName && <p className="text-red-500 text-sm mt-1">{errorMessages.supervisorName}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Supervisor Phone</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Supervisor Phone"
+								value={supervisorPhone}
+								onChange={(e) => {
+									const value = e.target.value;
+									setSupervisorPhone(value);
+									setErrorMessages((prev) => ({ ...prev, supervisorPhone: "" }));
+								}}
+							/>
+							{errorMessages.supervisorPhone && <p className="text-red-500 text-sm mt-1">{errorMessages.supervisorPhone}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Currently Employed?</label>
+							<div>
+								<Dropdown className="w-full">
+									<Dropdown.Trigger className="w-full">
+										<Button as="span" variant="outline" className="w-full bg-white text-black border border-gray-400 rounded-md px-2 text-left flex justify-between items-center">
+											<span>{Employe || "Select Employement"}</span>
+											<FiChevronDown className="text-gray-600" size={20} />
+										</Button>
+									</Dropdown.Trigger>
+									<Dropdown.Menu className="bg-white p-2">
+										{EmployeOptions.map((option) => (
+											<Dropdown.Item className="text-black"
+												onClick={() => {
+													setEmploye(option.value);
+													setErrorMessages((prev) => ({ ...prev, Employe: "" }));
+												}}
+											>
+												{option.label}
+											</Dropdown.Item>
+										))}
+									</Dropdown.Menu>
+								</Dropdown>
+
+								{errorMessages.Employe && <p className="text-red-500 text-sm mt-1">{errorMessages.Employe}</p>}
+							</div>
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Work Address</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Work Address"
+								value={workAddress}
+								onChange={(e) => {
+									const value = e.target.value;
+									setWorkAddress(value);
+									setErrorMessages((prev) => ({ ...prev, workAddress: "" }));
+								}}
+							/>
+							{errorMessages.workAddress && <p className="text-red-500 text-sm mt-1">{errorMessages.workAddress}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Work City</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Work City"
+								value={workCity}
+								onChange={(e) => {
+									const value = e.target.value;
+									setWorkCity(value);
+									setErrorMessages((prev) => ({ ...prev, workCity: "" }));
+								}}
+							/>
+							{errorMessages.workCity && <p className="text-red-500 text-sm mt-1">{errorMessages.workCity}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Work State</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Work State"
+								value={workState}
+								onChange={(e) => {
+									const value = e.target.value;
+									setWorkState(value);
+									setErrorMessages((prev) => ({ ...prev, workState: "" }));
+								}}
+							/>
+							{errorMessages.workState && <p className="text-red-500 text-sm mt-1">{errorMessages.workState}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Work ZIP</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Work ZIP"
+								value={workZip}
+								onChange={(e) => {
+									const value = e.target.value;
+									setWorkZip(value);
+									setErrorMessages((prev) => ({ ...prev, workZip: "" }));
+								}}
+							/>
+							{errorMessages.workZip && <p className="text-red-500 text-sm mt-1">{errorMessages.workZip}</p>}
+						</div>
+					</div>
+
+					<h2 className="text-xl font-bold mt-6">Previous Employment</h2>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+						<div>
+							<label className="block text-sm font-medium">Previous Employer Name</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Previous Employer Name"
+								value={PreviousEmployerName}
+								onChange={(e) => {
+									const value = e.target.value;
+									setPreviousEmployerName(value);
+									setErrorMessages((prev) => ({ ...prev, PreviousEmployerName: "" }));
+								}}
+							/>
+							{errorMessages.PreviousEmployerName && <p className="text-red-500 text-sm mt-1">{errorMessages.PreviousEmployerName}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Previous Position</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Previous Position"
+								value={PreviousPosition}
+								onChange={(e) => {
+									const value = e.target.value;
+									setPreviousPosition(value);
+									setErrorMessages((prev) => ({ ...prev, PreviousPosition: "" }));
+								}}
+							/>
+							{errorMessages.PreviousPosition && <p className="text-red-500 text-sm mt-1">{errorMessages.PreviousPosition}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Duration at Previous Employment (Years)</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Previous Employement Year"
+								value={PreviousEmployementYear}
+								onChange={(e) => {
+									const value = e.target.value;
+									setPreviousEmployementYear(value);
+									setErrorMessages((prev) => ({ ...prev, PreviousEmployementYear: "" }));
+								}}
+							/>
+							{errorMessages.PreviousEmployementYear && <p className="text-red-500 text-sm mt-1">{errorMessages.PreviousEmployementYear}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Duration at Previous Employment (Months)</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Previous Employement Month"
+								value={PreviousEmployementMonth}
+								onChange={(e) => {
+									const value = e.target.value;
+									setPreviousEmployementMonth(value);
+									setErrorMessages((prev) => ({ ...prev, PreviousEmployementMonth: "" }));
+								}}
+							/>
+							{errorMessages.PreviousEmployementMonth && <p className="text-red-500 text-sm mt-1">{errorMessages.PreviousEmployementMonth}</p>}
+						</div>
+					</div>
+
+					<h2 className="text-xl font-bold mt-6">Other Information</h2>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+						<div>
+							<label className="block text-sm font-medium">Reference Name</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Reference Name"
+								value={ReferenceName}
+								onChange={(e) => {
+									const value = e.target.value;
+									setReferenceName(value);
+									setErrorMessages((prev) => ({ ...prev, ReferenceName: "" }));
+								}}
+							/>
+							{errorMessages.ReferenceName && <p className="text-red-500 text-sm mt-1">{errorMessages.ReferenceName}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Reference Phone</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Reference Phone"
+								value={ReferencePhone}
+								onChange={(e) => {
+									const value = e.target.value;
+									setReferencePhone(value);
+									setErrorMessages((prev) => ({ ...prev, ReferencePhone: "" }));
+								}}
+							/>
+							{errorMessages.ReferencePhone && <p className="text-red-500 text-sm mt-1">{errorMessages.ReferencePhone}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">Additional Notes</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Reference Phone"
+								value={AdditionalNotes}
+								onChange={(e) => {
+									const value = e.target.value;
+									setAdditionalNotes(value);
+									setErrorMessages((prev) => ({ ...prev, AdditionalNotes: "" }));
+								}}
+							/>
+							{errorMessages.AdditionalNotes && <p className="text-red-500 text-sm mt-1">{errorMessages.AdditionalNotes}</p>}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium">How Did You Hear About Us?</label>
+							<Input
+								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								placeholder="Reference Phone"
+								value={Hearing}
+								onChange={(e) => {
+									const value = e.target.value;
+									setHearing(value);
+									setErrorMessages((prev) => ({ ...prev, Hearing: "" }));
+								}}
+							/>
+							{errorMessages.Hearing && <p className="text-red-500 text-sm mt-1">{errorMessages.Hearing}</p>}
+						</div>
+					</div>
+
+					<div className="flex-1 p-6 max-w-5xl bg-gray-800 mt-10 mx-6 md:mt-12 md:mr-8 rounded-lg">
+						<h2 className="text-2xl font-bold mb-4">Choose Your Vehicle</h2>
+						<Input className="w-full bg-white text-black border border-gray-400 rounded-md mb-4 px-2" placeholder="Enter Vehicle Details" />
+						<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+							<Button className="bg-red-600 hover:bg-red-700 text-white py-2 rounded-md px-2">Advance Search</Button>
+							<Button className="bg-red-600 hover:bg-red-700 text-white py-2 rounded-md">Appraise my trade</Button>
+							<Button className="bg-red-600 hover:bg-red-700 text-white py-2 rounded-md">Car Finder</Button>
+						</div>
+						<p className="w-full mt-10">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad illum non vero inventore, dicta quasi eos amet officia explicabo laborum aliquid cum temporibus.</p>
+
+						<p className="w-full mt-10">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+					</div>
+
+					<div className="text-left mt-6">
+						<Button type="submit" className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-md">
+							Submit Application
+						</Button>
+					</div>
+				</form>
+			</div>
+
+			<div className="flex-none bg-gray-900 p-8 max-w-sm mt-10 md:mt-12 md:ml-8 rounded-lg shadow-lg md:mr-8">
+				<h2 className="text-xl font-bold mb-4">Online Credit Application</h2>
+				<p className="mb-6">Need help filling out your application? We would be happy to help you.</p>
+				<Button className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-md">Contact Us</Button>
+			</div>
+		</div>
+	);
 };
 
-
-const FAQ = () => {
-
-    const [activeButton, setActiveButton] = useState<number | null>(0);
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
-    const [currentHeading, setCurrentHeading] = useState<string>("How it Works");
-    const [showCalculator, setShowCalculator] = useState<boolean>(false);
-    const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
-
-    const [vehiclePrice, setVehiclePrice] = useState<number>(0);
-    const [downPayment, setDownPayment] = useState<number>(0);
-    const [state, setState] = useState<string>('Kansas');
-    const [creditScore, setCreditScore] = useState<string>('Good (670-739 FICO® Score)');
-    const [apr, setApr] = useState<number>(12.95);
-    const [termLength, setTermLength] = useState<number>(72);
-    const [estimatedMonthlyPayment, setEstimatedMonthlyPayment] = useState<number | null>(null);
-    const [activeSection, setActiveSection] = useState<string>('calculator');
-
-
-    const handleButtonClick = (buttonIndex: number) => {
-        setActiveButton(buttonIndex);
-        if (buttonIndex === 1) {
-            setCurrentHeading("Calculator");
-            setShowCalculator(true);
-        }
-        else {
-            setCurrentHeading(["How it Works", "Car Payment Calculator", "Car Max Auto Finance"][buttonIndex]);
-            setShowCalculator(false);
-        }
-    };
-
-    const toggleAccordion = (index: number) => {
-        setOpenIndex(openIndex === index ? null : index);
-    };
-
-    const toggleFAQAccordion = (index: number) => {
-        setOpenFAQIndex(openFAQIndex === index ? null : index);
-    };
-
-    const calculateMonthlyPayment = (e: React.FormEvent) => {
-        e.preventDefault();
-        const totalLoanAmount = vehiclePrice - downPayment + 2900;
-        const monthlyPayment = (totalLoanAmount * (apr / 100) / 12) / (1 - Math.pow((1 + (apr / 100) / 12), -termLength));
-        setEstimatedMonthlyPayment(monthlyPayment);
-        setActiveSection('payment');
-    };
-
-
-    return (
-
-        <>
-            <div className="relative w-full" style={{ minHeight: '10rem', overflow: 'hidden' }}>
-                <Image
-                    src="/images/bg-image-FAQ.jpg"
-                    alt="Image Error"
-                    width={600}
-                    height={600}
-                    className="w-full h-auto object-cover opacity-75"
-                    style={{ maxHeight: '30rem' }}
-                />
-                <div className="absolute top-[4rem] md:top-[6rem] left-1/2 transform -translate-x-1/2 bg-white p-2 md:p-3 rounded-full shadow-md w-[90%] sm:w-[80%] md:w-[70%] lg:w-[auto] mt-4">
-                    <div className="flex flex-wrap justify-center space-x-2 md:space-x-4">
-                        {['How it Works', 'Car Payment Calculator', 'Car Max Auto Finance'].map((label, index: number) => (
-                            <button
-                                key={index}
-                                onClick={() => handleButtonClick(index)}
-                                className={`text-black px-4 py-2 md:px-6 md:py-3 text-sm md:text-base transition duration-300 
-                ${activeButton === index ? 'bg-blue-500 text-white rounded-full' : 'hover:bg-gray-100 rounded-full'}`}
-                            >
-                                {label}
-                            </button>
-                        ))}
-                    </div>
-
-                </div>
-
-                <div className="absolute top-[10rem] md:top-[12rem] left-1/2 transform -translate-x-1/2 p-4 md:w-auto text-white md:block hidden sm:hidden">
-                    <p className="text-xl sm:text-2xl md:text-4xl lg:text-3xl xl:text-5xl font-bold text-center">{currentHeading}</p>
-                    <p className="text-xl sm:text-2xl md:text-4xl lg:text-3xl xl:text-5xl font-bold text-center">Impacting Your Credit.</p>
-
-                    <div className="mt-6 text-center">
-                        <button className="text-white rounded-md px-8 py-2 transition duration-300 md:text-1xl text-xl" style={{ background: '#6b5fff' }}>
-                            Get Pre-Qualified
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
-            <div className="container mx-auto p-6">
-                {showCalculator ? (
-                    <div className="py-10 px-6">
-                        <form className="mt-4 max-w-md mx-auto p-4 bg-white rounded-lg shadow-lg" onSubmit={calculateMonthlyPayment}>
-                            <h2 className="text-2xl font-bold text-dark text-center cursor-pointer" onClick={() => setActiveSection('calculator')}>
-                                Car Payment Calculator
-                            </h2>
-
-                            <div className="flex justify-between mt-4 mb-4">
-                                <h2
-                                    className={`text-sm font-bold text-dark cursor-pointer border-b-2 transition-colors duration-300 ${activeSection === 'calculator' ? 'border-blue-600' : 'border-transparent'}`}
-                                    onClick={() => setActiveSection('calculator')}
-                                >
-                                    Monthly Payment
-                                </h2>
-
-                                <h2
-                                    className={`text-sm font-bold text-dark cursor-pointer border-b-2 transition-colors duration-300 ${activeSection === 'payment' ? 'border-blue-600' : 'border-transparent'}`}
-                                    onClick={() => setActiveSection('payment')}
-                                >
-                                    Vehicle Price
-                                </h2>
-                            </div>
-
-                            {activeSection === 'calculator' && (
-                                <>
-                                    <div className="mb-4">
-                                        <label className="block">Vehicle price</label>
-                                        <input
-                                            type="number"
-                                            value={vehiclePrice}
-                                            onChange={(e) => setVehiclePrice(Number(e.target.value))}
-                                            placeholder="$25,000"
-                                            className="border-b-2 border-blue-600 p-2 rounded-none w-full focus:outline-none focus:ring-0"
-                                            required
-                                            step="0.01"
-                                        />
-                                    </div>
-
-                                    <div className="mb-4">
-                                        <label className="block">Down payment</label>
-                                        <input
-                                            type="number"
-                                            value={downPayment}
-                                            onChange={(e) => setDownPayment(Number(e.target.value))}
-                                            placeholder="$2,500"
-                                            className="border-b-2 border-blue-600 p-2 rounded-none w-full focus:outline-none focus:ring-0"
-                                            required
-                                            step="0.01"
-                                        />
-                                    </div>
-
-                                    <div className="mb-4">
-                                        <label className="block">State</label>
-                                        <select
-                                            value={state}
-                                            onChange={(e) => setState(e.target.value)}
-                                            className="border-b-2 border-blue-600 p-2 rounded-none w-full focus:outline-none focus:ring-0"
-                                        >
-                                            <option value="Kansas">Kansas</option>
-                                            <option value="Missouri">Missouri</option>
-                                            <option value="Texas">Texas</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="mb-4">
-                                        <label className="block">Credit score</label>
-                                        <select
-                                            value={creditScore}
-                                            onChange={(e) => setCreditScore(e.target.value)}
-                                            className="border-b-2 border-blue-600 p-2 rounded-none w-full focus:outline-none focus:ring-0"
-                                        >
-                                            <option value="Good (670-739 FICO® Score)">Good (670-739 FICO® Score)</option>
-                                            <option value="Fair (580-669 FICO® Score)">Fair (580-669 FICO® Score)</option>
-                                            <option value="Poor (579 or lower FICO® Score)">Poor (579 or lower FICO® Score)</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="mb-4">
-                                        <label className="block">APR</label>
-                                        <input
-                                            type="number"
-                                            value={apr}
-                                            onChange={(e) => setApr(Number(e.target.value))}
-                                            placeholder="12.95%"
-                                            className="border-b-2 border-blue-600 p-2 rounded-none w-full focus:outline-none focus:ring-0"
-                                            required
-                                        />
-                                    </div>
-
-                                    <div className="mb-4">
-                                        <label className="block">Term length (months)</label>
-                                        <input
-                                            type="number"
-                                            value={termLength}
-                                            onChange={(e) => setTermLength(Number(e.target.value))}
-                                            placeholder="72"
-                                            className="border-b-2 border-blue-600 p-2 rounded-none w-full focus:outline-none focus:ring-0"
-                                            required
-                                        />
-                                    </div>
-
-                                    <button type="submit" className="text-white px-4 py-2 rounded-md w-full transition duration-200" style={{ background: '#6b5fff' }}>
-                                        Calculate
-                                    </button>
-                                </>
-                            )}
-
-                            {activeSection === 'payment' && estimatedMonthlyPayment !== null && (
-                                <div className="mt-6 bg-blue-500 p-4 rounded-md md:p-6 lg:p-8">
-                                    <h3 className="text-md font-bold text-white text-left">Summary</h3>
-
-                                    <div className="flex justify-between text-white text-sm md:text-base">
-                                        <p>Estimated monthly payment:</p>
-                                        <span>${estimatedMonthlyPayment.toFixed(2)}</span>
-                                    </div>
-                                    <div className="flex justify-between text-white text-sm md:text-base">
-                                        <p>Vehicle price:</p>
-                                        <span>${vehiclePrice}</span>
-                                    </div>
-                                    <div className="flex justify-between text-white text-sm md:text-base">
-                                        <p>Down payment:</p>
-                                        <span>-${downPayment}</span>
-                                    </div>
-                                    <div className="flex justify-between text-white text-sm md:text-base">
-                                        <p>Est. tax, title & fees (KTS):</p>
-                                        <span>+$2,900</span>
-                                    </div>
-                                    <div className="flex justify-between text-white text-sm md:text-base">
-                                        <p>Total:</p>
-                                        <span>${vehiclePrice - downPayment + 2900}</span>
-                                    </div>
-
-                                    <hr className="my-4 border-white" />
-
-                                    <h3 className="text-lg font-bold text-white text-center mt-4 md:mt-6">
-                                        Estimated Monthly Payment
-                                    </h3>
-
-                                    <p className="text-xl font-bold text-white text-center">
-                                        ${estimatedMonthlyPayment.toFixed(2)}
-                                    </p>
-
-                                    <button className="w-full px-4 py-2 text-white text-sm md:text-base rounded-md transition duration-200 mt-4" style={{ background: '#6b5fff' }}>
-                                        View Details
-                                    </button>
-                                </div>
-                            )}
-                        </form>
-
-
-                    </div>
-                ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 py-10 items-start">
-                        <div className="flex justify-center items-center relative w-full mx-4 sm:mx-6 md:mx-8 lg:mx-10">
-                            <Image
-                                src="/images/faq-vector.svg"
-                                alt="Image Error"
-                                width={600}
-                                height={400}
-                                className="w-full h-auto max-h-[30rem] object-contain"
-                            />
-                        </div>
-
-                        <div className="space-y-2 px-10">
-                            <h2 className="text-3xl font-bold uppercase mb-4"
-                                style={{ color: '#053361' }}
-                            >Personalized results in minutes</h2>
-                            <p className="mb-6 text-1xl"
-                                style={{ color: '#053361' }}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
-                            </p>
-
-                            {AccordionData.map((item, index) => (
-                                <div key={index} className="border rounded-md shadow-sm mt-4">
-                                    <button
-                                        onClick={() => toggleAccordion(index)}
-                                        className={`flex justify-between w-full p-4 text-left focus:outline-none`}
-                                    >
-                                        <span>{item.title}</span>
-                                        <span>{openIndex === index ? '-' : '+'}</span>
-                                    </button>
-                                    {openIndex === index && (
-                                        <div className="bg-gray-200 p-4">
-                                            <ul>
-                                                {item.content.map((contentItem, contentIndex) => (
-                                                    <li key={contentIndex} className="py-1">{contentItem}</li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    )}
-                                </div>
-
-                            ))}
-
-                            <div className="mt-6 text-center">
-                                <div className="mt-12"> {/* Add margin to the parent div */}
-                                    <button
-                                        className="text-white rounded-md px-8 py-2 transition duration-300 md:text-2xl text-xl"
-                                        style={{ background: '#6b5fff' }}
-                                    >
-                                        Get Pre-Qualified
-                                    </button>
-                                    <p className="mt-4">It won't impact your credit score.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                )}
-
-                <div className="w-full px-4 sm:px-6 md:px-8 my-20">
-                    <h2 className="text-4xl font-bold mb-8 text-left" style={{ color: '#053361' }}>
-                        Car Financing Tips & Tools
-                    </h2>
-
-                    <div className="flex flex-wrap -mx-4">
-                        <div className="w-full md:w-1/3 px-4 mb-6">
-                            <CustomCard
-                                imageSrc="images/Image-1.png"
-                                description="Getting Pre-Qualified: Shop with Personalized Financing Terms"
-                            />
-                        </div>
-                        <div className="w-full md:w-1/3 px-4 mb-6">
-                            <CustomCard
-                                imageSrc="images/Image-2.jpg"
-                                description="How to Finance a Car: Everything You Need to Know"
-                            />
-                        </div>
-                        <div className="w-full md:w-1/3 px-4 mb-6">
-                            <CustomCard
-                                imageSrc="images/Image-3.jpg"
-                                description="How Much Car Can I Afford?"
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 py-10 items-start">
-                    <div className="flex justify-center items-center relative w-full mx-4 sm:mx-6 md:mx-8 lg:mx-10">
-                        <Image
-                            src="/images/faq-vector.svg"
-                            alt="Image Error"
-                            width={600}
-                            height={400}
-                            className="w-full h-auto max-h-[30rem] object-contain"
-                        />
-                    </div>
-
-                    <div className="mx-4 sm:mx-6 md:mx-8 lg:mx-10">
-                        {FAQAccordianData.map((item, index) => (
-                            <div key={index} className="border rounded-md shadow-sm mt-4">
-                                <button
-                                    onClick={() => toggleFAQAccordion(index)}
-                                    className="flex justify-between w-full p-4 text-left focus:outline-none"
-                                >
-                                    <span>{item.title}</span>
-                                    <span>{openFAQIndex === index ? '-' : '+'}</span>
-                                </button>
-                                {openFAQIndex === index && (
-                                    <div className="bg-gray-200 p-4">
-                                        <ul>
-                                            {item.content.map((contentItem, contentIndex) => (
-                                                <li key={contentIndex} className="py-1">{contentItem}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-            </div>
-        </>
-
-
-
-    )
-};
-
-
-
-export default FAQ;
+export default FinancingApplication;

@@ -13,7 +13,7 @@ export interface Car {
   year: number;
   make: string;
   bodyStyle: string;
-  fuelType: string;
+  fuel: string;
   odometer: number;
   engine: string;
   trim: string;

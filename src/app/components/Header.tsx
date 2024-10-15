@@ -1,16 +1,15 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import logo from '../public/logo.svg'
-import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
-// import { useRouter } from 'next/navigation'; 
+import { useState, useEffect, useRef } from "react";
+import logo from "../public/logo.svg";
+import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
+// import { useRouter } from 'next/navigation';
 
-
-import Sidebar from './Sidebar';
-import { FaMapMarkerAlt, FaPhoneAlt, FaClock, FaChevronDown } from 'react-icons/fa';
-import Link from 'next/link';
-import router from 'next/router';
+import Sidebar from "./Sidebar";
+import { FaMapMarkerAlt, FaPhoneAlt, FaClock, FaChevronDown } from "react-icons/fa";
+import Link from "next/link";
+import router from "next/router";
 import Logo from "./icons/logo";
 
 type DropdownId = "Inventory" | "Finance" | "home" | "SellOrTrade" | "contactUs" | "More";
@@ -103,24 +102,19 @@ const Header = () => {
 
 						<div className="relative group" ref={dropdownRefs.Finance}>
 							<Link href={"/FinancingPlan"}>
-								<button onClick={() => toggleDropdown("Finance")} className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isFinancingActive ? "text-[#0870d8]" : "text-black hover:text-[#0870d8]"}`}
-								>
+								<button onClick={() => toggleDropdown("Finance")} className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isFinancingActive ? "text-[#0870d8]" : "text-black hover:text-[#0870d8]"}`}>
 									Financing
 								</button>
 							</Link>
-
 						</div>
 
 						<div className="relative group">
 							<Link href="/inventory">
-								<button
-									onClick={() => toggleDropdown("Inventory")}
-									className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isInventoryActive ? "text-[#0870d8]" : "text-black hover:text-[#0870d8]"}`}
-								>
+								<button onClick={() => toggleDropdown("Inventory")} className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isInventoryActive ? "text-[#0870d8]" : "text-black hover:text-[#0870d8]"}`}>
 									Inventory
-									<FaChevronDown
+									{/* <FaChevronDown
 										className={`ml-[3px] transition-transform duration-300 ${isDropdownOpen("Inventory") ? "rotate-180" : ""}`}
-									/>
+									/> */}
 								</button>
 							</Link>
 
@@ -128,75 +122,33 @@ const Header = () => {
 								<div className="z-10 p-4 absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg transition-all duration-300 ease-in-out">
 									<Link href="/security">
 										<div className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50 group cursor-pointer">
-											<svg
-												className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#0870d8] transition-colors duration-300"
-												xmlns="http://www.w3.org/2000/svg"
-												fill="none"
-												viewBox="0 0 24 24"
-												stroke="currentColor"
-												aria-hidden="true"
-											>
-												<path
-													strokeLinecap="round"
-													strokeLinejoin="round"
-													strokeWidth={2}
-													d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-												/>
+											<svg className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#0870d8] transition-colors duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
 											</svg>
 											<div className="ml-4">
-												<p className="text-base font-medium text-gray-900 group-hover:text-[#0870d8] transition-colors duration-300">
-													Security
-												</p>
+												<p className="text-base font-medium text-gray-900 group-hover:text-[#0870d8] transition-colors duration-300">Security</p>
 											</div>
 										</div>
 									</Link>
 
 									<Link href="/integrations">
 										<div className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50 group cursor-pointer">
-											<svg
-												className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#0870d8] transition-colors duration-300"
-												xmlns="http://www.w3.org/2000/svg"
-												fill="none"
-												viewBox="0 0 24 24"
-												stroke="currentColor"
-												aria-hidden="true"
-											>
-												<path
-													strokeLinecap="round"
-													strokeLinejoin="round"
-													strokeWidth={2}
-													d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-												/>
+											<svg className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#0870d8] transition-colors duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
 											</svg>
 											<div className="ml-4">
-												<p className="text-base font-medium text-gray-900 group-hover:text-[#0870d8] transition-colors duration-300">
-													Integrations
-												</p>
+												<p className="text-base font-medium text-gray-900 group-hover:text-[#0870d8] transition-colors duration-300">Integrations</p>
 											</div>
 										</div>
 									</Link>
 
 									<Link href="/automations">
 										<div className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50 group cursor-pointer">
-											<svg
-												className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#0870d8] transition-colors duration-300"
-												xmlns="http://www.w3.org/2000/svg"
-												fill="none"
-												viewBox="0 0 24 24"
-												stroke="currentColor"
-												aria-hidden="true"
-											>
-												<path
-													strokeLinecap="round"
-													strokeLinejoin="round"
-													strokeWidth={2}
-													d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-												/>
+											<svg className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#0870d8] transition-colors duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
 											</svg>
 											<div className="ml-4">
-												<p className="text-base font-medium text-gray-900 group-hover:text-[#0870d8] transition-colors duration-300">
-													Automations
-												</p>
+												<p className="text-base font-medium text-gray-900 group-hover:text-[#0870d8] transition-colors duration-300">Automations</p>
 											</div>
 										</div>
 									</Link>
@@ -228,7 +180,7 @@ const Header = () => {
 							</button>
 							{isDropdownOpen("More") && (
 								<div className="z-10 p-4 absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg transition-all duration-300 ease-in-out">
-									<Link href={'/FAQ'} className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50 group">
+									<Link href={"/FAQ"} className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50 group">
 										<svg className="flex-shrink-0 h-6 w-6 text-indigo-600 group-hover:text-[#0870d8] transition-colors duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
 											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
 										</svg>
@@ -243,7 +195,6 @@ const Header = () => {
 										</svg>
 										<div className="ml-4">
 											<p className="text-base font-medium text-gray-900 group-hover:text-[#0870d8] transition-colors duration-300">Integrations</p>
-
 										</div>
 									</a>
 									<a href="#" className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50 group">
@@ -252,7 +203,6 @@ const Header = () => {
 										</svg>
 										<div className="ml-4">
 											<p className="text-base font-medium text-gray-900 group-hover:text-[#0870d8] transition-colors duration-300">Automations</p>
-
 										</div>
 									</a>
 								</div>
