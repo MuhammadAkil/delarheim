@@ -107,9 +107,9 @@ export default function VehicleInfo() {
 		}
 	};
 	return (
-		<div className="max-w-screen-xl mx-auto p-6">
+		<div className="max-w-screen-xl mx-auto lg:pt-10 pb-10 px-6">
 			{/* Carousel and Vehicle Details Row */}
-			<div className="flex flex-col md:flex-row">
+			<div className="flex flex-col gap-9 md:flex-row">
 				{/* Carousel Section */}
 				<div className="relative flex flex-col items-center w-full md:w-1/2 ">
 					<Image className=" w-full rounded-lg transition-opacity duration-500 cursor-pointer" src={images[currentIndex]} alt={`Vehicle Image ${currentIndex + 1}`} width={500} height={300} onClick={openSlider} />
@@ -126,10 +126,10 @@ export default function VehicleInfo() {
 
 					{/* Next/Previous Buttons */}
 					<div className="flex justify-between w-full -mt-14">
-						<button className="absolute left-0 lg:-left-1 top-1/2 transform -translate-y-1/2 rounded-full shadow-md h-10 w-10 bg-[#6b5fff]" onClick={prevImage}>
+						<button className="absolute left-0 lg:-left-1 top-1/2 transform text-white -translate-y-1/2 rounded-full shadow-md h-10 w-10 bg-[#6b5fff]" onClick={prevImage}>
 							&#10094;
 						</button>
-						<button className="absolute right-0 lg:-right-1 top-1/2 transform -translate-y-1/2 rounded-full shadow-md h-10 w-10 bg-[#6b5fff]" onClick={nextImage}>
+						<button className="absolute right-0 lg:-right-1 top-1/2 transform text-white -translate-y-1/2 rounded-full shadow-md h-10 w-10 bg-[#6b5fff]" onClick={nextImage}>
 							&#10095;
 						</button>
 					</div>
@@ -151,9 +151,9 @@ export default function VehicleInfo() {
 					{/* Key Features Section */}
 					<div className="mt-6 flex flex-col space-y-4 md:1/2 flex-wrap">
 						<h3 className="text-lg font-semibold mb-2 text-black">Key Features</h3>
-						<div className="flex space-4 gap-3 flex-wrap">
+						<div className="grid grid-cols-2 lg:grid-cols-4 space-4 gap-3 size-full lg:size-auto">
 							{features.map((feature, index) => (
-								<div key={index} className="flex items-center space-y-1 flex-col max-w-[140px] justify-center text-center border border-gray-300 p-4 rounded-md w-full">
+								<div key={index} className="flex items-center space-y-1 flex-col  lg:max-w-[140px] justify-center text-center border border-gray-300 p-4 rounded-md w-full">
 									{feature.icon}
 									<span className="text-black w-[12ch]">{feature.label}</span>
 								</div>
@@ -162,7 +162,7 @@ export default function VehicleInfo() {
 					</div>
 				</div>
 			</div>
-			<div className=" -mt-5 grid grid-cols-[auto_auto_auto] gap-4 md:w-1/2 rounded-lg py-8 px-4 bg-[#6b5fff] hover:bg-[#6b5fff]/95 cursor-pointer">
+			<div className=" mt-5 lg:-mt-5 grid grid-cols-[auto_auto_auto] gap-4 md:w-1/2 rounded-lg py-8 px-4 bg-[#6b5fff] hover:bg-[#6b5fff]/95 cursor-pointer">
 				<div className="h-9 bg-white rounded-lg flex justify-center items-center p-2">
 					<Logo />
 				</div>

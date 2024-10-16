@@ -6,7 +6,7 @@ import CarCard, { Car } from "../components/inventory/CarCard";
 import { FaCar, FaCheckCircle, FaGasPump, FaTint, FaCarSide, FaClock, FaCheck, FaMoneyBillWave } from 'react-icons/fa';
 import { Dropdown, Button } from 'rizzui';
 import { RiCloseFill } from 'react-icons/ri';
-import { Slider } from "@nextui-org/react";
+// import { Slider } from "@nextui-org/react";
 
 const carsData: Car[] = [
   {
@@ -693,23 +693,17 @@ const CarListing = () => {
               value={maxValue}
               onChange={handleMaxChange}
               className="absolute w-full h-2 appearance-none bg-transparent pointer-events-auto slider-thumb"
-              style={{
-                background: `linear-gradient(
-        to right, 
-        grey 0%, 
-        grey ${(minValue / (isUnder30KActive.length > 0 ? 30000 : 1000000)) * 100}%, 
-        #6b5fff ${(minValue / (isUnder30KActive.length > 0 ? 30000 : 1000000)) * 100}%, 
-        #6b5fff ${(maxValue / (isUnder30KActive.length > 0 ? 30000 : 1000000)) * 100}%, 
-        grey ${(maxValue / (isUnder30KActive.length > 0 ? 30000 : 1000000)) * 100}%, 
-        grey 100%)`,
+						  style={{
+				  borderRadius:"20px",
+                background: ``,
                 zIndex: maxValue > 0 ? 0 : 0,
               }}
             />
 
             {/* Displaying pointers on top of sliders */}
             <div className="relative z-5 flex justify-between mt-4">
-              <span className="text-sm">{minValue}</span>
-              <span className="text-sm">{maxValue}</span>
+              <span className="text-sm">${minValue}</span>
+              <span className="text-sm">${maxValue}</span>
             </div>
 
                         <style jsx>{`
