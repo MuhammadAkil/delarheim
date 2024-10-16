@@ -561,8 +561,8 @@ const CarListing = () => {
 							}}
 						/>
 						<div className="relative z-5 flex justify-between mt-4">
-							<span className="text-sm">{minValue}</span>
-							<span className="text-sm">{maxValue}</span>
+							<span className="text-sm">${minValue}</span>
+							<span className="text-sm">${maxValue}</span>
 						</div>
 					</div>
 				</div>
