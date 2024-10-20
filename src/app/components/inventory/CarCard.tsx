@@ -36,7 +36,7 @@ const CarCard: React.FC<{ car: Car }> = ({ car }) => (
       <h2 className="text-sm text-gray-900">{car.year}</h2>
       <h2 className="text-sm font-semibold text-gray-900">{car.name}</h2>
 
-      <a href={'/vehicel-info'}>
+      <a href={'/vehicel-details'}>
         <h3 className="text-sm font-semibold mt-4 flex items-center" style={{ color: '#6b5fff' }}>
           Details
           <FaQuestionCircle className="ml-2" />
@@ -53,7 +53,7 @@ const CarCard: React.FC<{ car: Car }> = ({ car }) => (
       </p>
 
       <div className="flex justify-center mt-4">
-        <a href={'/vehicel-info'} rel="noopener noreferrer" className="w-full" >
+        <a href={'/vehicel-details'} rel="noopener noreferrer" className="w-full" >
           <button className="w-full px-4 py-2 text-white text-sm rounded-md transition duration-200" style={{ background: '#6b5fff' }}>
 
             View Details

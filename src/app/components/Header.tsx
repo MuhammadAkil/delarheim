@@ -101,7 +101,7 @@ const Header = () => {
 						</div>
 
 						<div className="relative group" ref={dropdownRefs.Finance}>
-							<Link href={"/FinancingPlan"}>
+							<Link href={"/financing"}>
 								<button onClick={() => toggleDropdown("Finance")} className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isFinancingActive ? "text-[#0870d8]" : "text-black hover:text-[#0870d8]"}`}>
 									Financing
 								</button>
@@ -166,7 +166,7 @@ const Header = () => {
 
 						{/* Dropdown 3 */}
 						<div className="relative group" ref={dropdownRefs.contactUs}>
-							<Link href={"/ContactUS"}>
+							<Link href={"/contact-us"}>
 								<button onClick={() => toggleDropdown("contactUs")} className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isDropdownOpen("contactUs") ? "text-[#0870d8]" : "text-black hover:text-[#0870d8]"}`}>
 									Contact Us
 								</button>

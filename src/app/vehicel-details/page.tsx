@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus, faExpand } from "@fortawesome/free-solid-svg-icons";
@@ -137,7 +137,7 @@ export default function VehicleInfo() {
 
 				{/* Vehicle Details Section */}
 				<div className="w-full md:w-1/2 flex flex-col lg:ps-3">
-					<h3 className="text-lg font-semibold mb-4 text-black mt-3">Vehicle Info</h3>
+					<h3 className="text-lg font-semibold mb-4 block w-full text-[#3d3838] bg-clip-text font-bold text-lg sm:text-xl">Vehicle Info</h3>
 
 					<div className="grid grid-cols-2 gap-4 rounded-lg  bg-gray-200 p-6 ">
 						{vehicleDetails.map((detail, index) => (
@@ -150,7 +150,7 @@ export default function VehicleInfo() {
 
 					{/* Key Features Section */}
 					<div className="mt-6 flex flex-col space-y-4 md:1/2 flex-wrap">
-						<h3 className="text-lg font-semibold mb-2 text-black">Key Features</h3>
+						<h3 className="font-semibold mb-2 block w-full text-[#3d3838] bg-clip-text font-bold text-lg sm:text-xl">Key Features</h3>
 						<div className="grid grid-cols-2 lg:grid-cols-4 space-4 gap-3 size-full lg:size-auto">
 							{features.map((feature, index) => (
 								<div key={index} className="flex items-center space-y-1 flex-col  lg:max-w-[140px] justify-center text-center border border-gray-300 p-4 rounded-md w-full">
@@ -176,11 +176,11 @@ export default function VehicleInfo() {
 			</div>
 
 			<div className="w-full md:w-1/2 mt-10">
-				<h3 className="text-lg text-black font-semibold mb-4">Vehicle Details</h3>
+				<h3 className="  mb-4 block w-full text-[#3d3838] bg-clip-text font-bold text-lg sm:text-xl">Vehicle Details</h3>
 				<div className="space-y-1">
 					{AccordionData.map((item, index) => (
 						<div key={index}>
-							<button onClick={() => toggleAccordion(index)} className={`flex justify-between items-center w-full p-4 text-left rounded-md focus:outline-none ${openIndex === index ? "bg-[#6b5fff] rounded-b-none text-white" : "bg-gray-300 text-black"}`}>
+							<button onClick={() => toggleAccordion(index)} className={`flex justify-between items-center w-full p-4 text-left rounded-md focus:outline-none ${openIndex === index ? "bg-[#6b5fff] rounded-b-none text-white" : "border bg-[rgb(242, 242, 242)] text-black"}`}>
 								<span>{item.title}</span>
 								<span className="text-black font-medium text-xl">{openIndex === index ? <FontAwesomeIcon icon={faMinus} className="text-white" /> : <FontAwesomeIcon icon={faPlus} />}</span>
 							</button>
