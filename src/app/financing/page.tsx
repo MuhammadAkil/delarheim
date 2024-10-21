@@ -163,7 +163,7 @@ const form = () => {
 				<div className="absolute backdrop-xl top-[11rem] left-1/2 transform -translate-x-1/2 bg-white/50 py-5 px-2 md:p-3 rounded-lg lg:rounded-[5px] shadow-md w-[90%] sm:w-[80%] md:w-[70%] lg:w-[auto] mt-4">
 					<div className="flex flex-wrap justify-center gap-3 md:space-x-4">
 						{["How it Works", "Car Payment Calculator", "Car Max Auto Finance"].map((label, index) => (
-							<button key={index} onClick={() => handleButtonClick(index)} className={`text-black w-[270px] lg:w-auto px-4 py-2 md:px-6 md:py-3 text-sm md:text-base transition duration-300 ${activeButton === index ? "bg-[#6b5fff] text-white rounded-[5px]" : "shadow-lg border bg-gray-100 hover:bg-gray-200 rounded-[5px]"}`}>
+							<button key={index} onClick={() => handleButtonClick(index)} className={`text-black w-[270px] lg:w-auto px-4 py-2 md:px-6 md:py-3 text-sm md:text-base transition duration-300 ${activeButton === index ? "bg-[#5950d0] text-white rounded-[5px]" : "shadow-lg border bg-gray-100 hover:bg-gray-200 rounded-[5px]"}`}>
 								{label}
 							</button>
 						))}
@@ -174,7 +174,7 @@ const form = () => {
 				<div className="absolute top-[40rem] md:top-[19rem] left-1/2 min-w-[300px] transform -translate-x-1/2">
 					<div className="flex justify-center items-center flex-col gap-3">
 						<Link href={"/form"}>
-							<button className="text-white rounded-md px-8 py-2 mt-2 transition duration-300 md:text-2xl text-xl hover:bg-[#6b5fff]/90 bg-[#6b5fff]">Get Pre-Qualified</button>
+							<button className="text-white rounded-md px-8 py-2 mt-2 transition duration-300 md:text-2xl text-xl hover:bg-[#5950d0]/90 bg-[#5950d0]">Get Pre-Qualified</button>
 						</Link>
 					</div>
 				</div>
@@ -185,7 +185,7 @@ const form = () => {
 
 					<div className="mt-6 text-center">
 						<Link href={"/form"}>
-							<button className="text-white rounded-md px-8 py-2 transition duration-300 md:text-2xl text-xl hover:bg-[#6b5fff]/90 bg-[#6b5fff]">Get Pre-Qualified</button>
+							<button className="text-white rounded-md px-8 py-2 transition duration-300 md:text-2xl text-xl hover:bg-[#5950d0]/90 bg-[#5950d0]">Get Pre-Qualified</button>
 						</Link>
 					</div>
 				</div>
@@ -249,7 +249,7 @@ const form = () => {
 										<input type="number" value={termLength} onChange={(e) => setTermLength(Number(e.target.value))} placeholder="72" className="text-black  border-b-2 border-blue-600 p-2 rounded-none w-full focus:outline-none focus:ring-0" required />
 									</div>
 
-									<button type="submit" className="text-white px-4 py-2 rounded-md w-full transition duration-200" style={{ background: "#6b5fff" }}>
+									<button type="submit" className="text-white px-4 py-2 rounded-md w-full transition duration-200" style={{ background: "#5950d0" }}>
 										Calculate
 									</button>
 								</>
@@ -286,7 +286,7 @@ const form = () => {
 
 									<p className="text-xl font-bold text-white text-center">${estimatedMonthlyPayment.toFixed(2)}</p>
 
-									<button className="w-full px-4 py-2 text-white text-sm md:text-base rounded-md transition duration-200 mt-4" style={{ background: "#6b5fff" }}>
+									<button className="w-full px-4 py-2 text-white text-sm md:text-base rounded-md transition duration-200 mt-4" style={{ background: "#5950d0" }}>
 										View Details
 									</button>
 								</div>
@@ -300,7 +300,14 @@ const form = () => {
 						</div>
 
 						<div className="space-y-2 lg:px-10 px-2">
-							<h2 className=" uppercase mb-4 block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-2xl sm:text-3xl">Personalized results in minutes</h2>
+							<div className="relative inline-block text-center mb-7">
+								<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">
+									Personalized results in minutes
+								</h2>
+								<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-[65%] w-[140px] h-[2px] bg-[#6F68EC]"></span>
+							</div>
+
+
 							<p className="mb-6 text-1xl" style={{ color: "#053361" }}>
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
 							</p>
@@ -329,7 +336,7 @@ const form = () => {
 								<div className="mt-12">
 									{" "}
 									{/* Add margin to the parent div */}
-									<button className="text-white rounded-md px-8 py-2 transition duration-300 md:text-2xl text-xl" style={{ background: "#6b5fff" }}>
+									<button className="text-white rounded-md px-8 py-2 transition duration-300 md:text-2xl text-xl" style={{ background: "#5950d0" }}>
 										Get Pre-Qualified
 									</button>
 									<p className="mt-4">It won't impact your credit score.</p>
@@ -340,7 +347,14 @@ const form = () => {
 				)}
 
 				<div className="w-full px-4 sm:px-6 md:px-8 my-20">
-					<h2 className=" uppercase mb-4 block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-2xl sm:text-3xl">Car Financing Tips & Tools</h2>
+
+					<div className="relative inline-block text-center mb-7">
+						<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">
+							Car Financing Tips & Tools
+						</h2>
+						<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-[50%] w-[140px] h-[2px] bg-[#6F68EC]"></span>
+					</div>
+
 
 					<div className="flex flex-wrap -mx-4">
 						<div className="w-full md:w-1/3 px-4 mb-6">
@@ -356,7 +370,14 @@ const form = () => {
 				</div>
 
 				<div className="flex justify-center mp-5 ">
-					<h2 className="text-center uppercase mb-4 block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-2xl sm:text-3xl">Financing form's</h2>
+
+					<div className="relative inline-block text-center mb-7">
+						<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">
+							Financing form's
+						</h2>
+						<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-[65%] w-[140px] h-[2px] bg-[#6F68EC]"></span>
+					</div>
+
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 py-10 items-start">
 					<div className="flex justify-center items-center relative w-full mx-4 sm:mx-6 md:mx-8 lg:mx-10">

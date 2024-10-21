@@ -34,7 +34,14 @@ const ContactUs = () => {
 			</div>
 
 			<div className="py-16">
-				<h1 className="my-6 text-center block w-full bg-gradient-to-b from-white to-white text-[#3d3838] text-center bg-clip-text font-bold text-3xl sm:text-4xl">Ask a Question</h1>
+				<div className="relative inline-block text-center w-full">
+					<h1 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">
+						Ask a Question
+					</h1>
+					<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-1/2 w-[140px] h-[2px] bg-[#6F68EC]"></span>
+				</div>
+
+
 				<div className="p-6 rounded-lg">
 					{" "}
 					{/* max-w-lg mx-auto   (agr to ap form chota krna chah rhy hain) */}
@@ -78,7 +85,13 @@ const ContactUs = () => {
 			</div>
 
 			{/* Additional Contact Heading */}
-			<h2 className="font-semibold my-6 text-center mb-6 block w-full bg-gradient-to-b from-white to-white text-[#3d3838] text-center bg-clip-text text-2xl sm:text-3xl">You can also contact us via:</h2>
+
+			<div className="relative inline-block text-center w-full mb-7">
+					<h1 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">
+					You can also contact us via:
+					</h1>
+					<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-1/2 w-[140px] h-[2px] bg-[#6F68EC]"></span>
+				</div>
 
 			{/* Icons for WhatsApp, Facebook, Instagram */}
 			<div className="flex justify-center space-x-16 mb-10">

@@ -89,15 +89,15 @@ const Header = () => {
 
 					<nav className="flex flex-grow-1 justify-center space-x-6">
 						<div className="relative group" ref={dropdownRefs.home}>
-							<button
+							<a
 								onClick={() => {
 									router.push("/");
 									setOpenDropdown(null);
 								}}
-								className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isHomeActive ? "text-[#0870d8]" : "text-black hover:text-[#0870d8]"}`}
+								className={`flex items-center font-semibold text-[16px] transition-colors duration-300 cursor-pointer ${isHomeActive ? "text-[#0870d8]" : "text-black hover:text-[#0870d8]"}`}
 							>
 								Home
-							</button>
+							</a>
 						</div>
 
 						<div className="relative group" ref={dropdownRefs.Finance}>
@@ -112,9 +112,7 @@ const Header = () => {
 							<Link href="/inventory">
 								<button onClick={() => toggleDropdown("Inventory")} className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isInventoryActive ? "text-[#0870d8]" : "text-black hover:text-[#0870d8]"}`}>
 									Inventory
-									{/* <FaChevronDown
-										className={`ml-[3px] transition-transform duration-300 ${isDropdownOpen("Inventory") ? "rotate-180" : ""}`}
-									/> */}
+									
 								</button>
 							</Link>
 

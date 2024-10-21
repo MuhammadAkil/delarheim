@@ -9,422 +9,426 @@ import { RiCloseFill } from 'react-icons/ri';
 // import { Slider } from "@nextui-org/react";
 
 const carsData: Car[] = [
-  {
-    name: "Tesla Model Y Standard",
-    price: 200000,
-    kilometers: "16,043 km",
-    image: "https://fastly.clutch.ca/8a929f37-b465-4687-886f-453bbb941266.jpg?class=extra_small",
-    year: 2021,
-    make: "Tesla",
-    model: "Model Y",
-    bodyStyle: "SUV",
-    fuel: "Electric",
-    odometer: 16043,
-    engine: "N/A",
-    trim: "Standard",
-    features: ["Bluetooth", "Navigation"],
-    color: "Red",
-    transmission: "Automatic",
-  },
-  {
-    name: "Toyota Corolla LE",
-    price: 18790,
-    kilometers: "86,527 km",
-    image: "https://fastly.clutch.ca/8a929f37-b465-4687-886f-453bbb941266.jpg?class=extra_small",
-    year: 2018,
-    make: "Toyota",
-    model: "Corolla",
-    bodyStyle: "Sedan",
-    fuel: "Gasoline",
-    odometer: 86527,
-    engine: "1.8L 4-cylinder",
-    trim: "LE",
-    features: ["Backup Camera", "Bluetooth"],
-    color: "Blue",
-    transmission: "Manual",
-  },
-  {
-    name: "Acura TLX A-SPEC SH-AWD",
-    price: 32590,
-    kilometers: "96,762 km",
-    image: "https://fastly.clutch.ca/80f1d49e-2a2e-4a6d-8fe6-56b1a68e6dcf.jpg?class=extra_small",
-    year: 2021,
-    make: "Acura",
-    model: "TLX A-SPEC",
-    bodyStyle: "Sedan",
-    fuel: "Gasoline",
-    odometer: 96762,
-    engine: "2.0L Turbo",
-    trim: "A-SPEC",
-    features: ["Sunroof", "Remote Start"],
-    color: "Black",
-    transmission: "Automatic",
-  },
-  {
-    name: "Toyota RAV4 LE AWD",
-    price: 31991,
-    kilometers: "10,000 km",
-    image: "https://fastly.clutch.ca/8e5ff679-2441-4bd4-9c2e-2431fadaf48a.jpg?class=extra_small",
-    year: 2023,
-    make: "Toyota",
-    model: "RAV4",
-    bodyStyle: "SUV",
-    fuel: "Hybrid",
-    odometer: 10000,
-    engine: "2.5L 4-cylinder",
-    trim: "LE",
-    features: ["Lane Assist", "Blind Spot Monitoring"],
-    color: "White",
-    transmission: "CVT",
-  },
+	{
+		name: "Tesla Model Y Standard",
+		price: 200000,
+		kilometers: "16,043 km",
+		image: "https://fastly.clutch.ca/8a929f37-b465-4687-886f-453bbb941266.jpg?class=extra_small",
+		year: 2021,
+		make: "Tesla",
+		model: "Model Y",
+		bodyStyle: "SUV",
+		fuel: "Electric",
+		odometer: 16043,
+		engine: "N/A",
+		trim: "Standard",
+		features: ["Bluetooth", "Navigation"],
+		color: "Red",
+		transmission: "Automatic",
+	},
+	{
+		name: "Toyota Corolla LE",
+		price: 18790,
+		kilometers: "86,527 km",
+		image: "https://fastly.clutch.ca/8a929f37-b465-4687-886f-453bbb941266.jpg?class=extra_small",
+		year: 2018,
+		make: "Toyota",
+		model: "Corolla",
+		bodyStyle: "Sedan",
+		fuel: "Gasoline",
+		odometer: 86527,
+		engine: "1.8L 4-cylinder",
+		trim: "LE",
+		features: ["Backup Camera", "Bluetooth"],
+		color: "Blue",
+		transmission: "Manual",
+	},
+	{
+		name: "Acura TLX A-SPEC SH-AWD",
+		price: 32590,
+		kilometers: "96,762 km",
+		image: "https://fastly.clutch.ca/80f1d49e-2a2e-4a6d-8fe6-56b1a68e6dcf.jpg?class=extra_small",
+		year: 2021,
+		make: "Acura",
+		model: "TLX A-SPEC",
+		bodyStyle: "Sedan",
+		fuel: "Gasoline",
+		odometer: 96762,
+		engine: "2.0L Turbo",
+		trim: "A-SPEC",
+		features: ["Sunroof", "Remote Start"],
+		color: "Black",
+		transmission: "Automatic",
+	},
+	{
+		name: "Toyota RAV4 LE AWD",
+		price: 31991,
+		kilometers: "10,000 km",
+		image: "https://fastly.clutch.ca/8e5ff679-2441-4bd4-9c2e-2431fadaf48a.jpg?class=extra_small",
+		year: 2023,
+		make: "Toyota",
+		model: "RAV4",
+		bodyStyle: "SUV",
+		fuel: "Hybrid",
+		odometer: 10000,
+		engine: "2.5L 4-cylinder",
+		trim: "LE",
+		features: ["Lane Assist", "Blind Spot Monitoring"],
+		color: "White",
+		transmission: "CVT",
+	},
 ];
 
 interface Option {
-  label: string;
-  value: string;
+	label: string;
+	value: string;
 }
 
 interface Filters {
-  make: string[];
-  year: string[];
-  model: string[];
-  fuel: string[];
-  bodystyle: string[];
-  feature: string[];
-  color: string[];
-  trim: string[];
-  under30K: string[];
-  minValue: number;
-  maxValue: number;
+	make: string[];
+	year: string[];
+	model: string[];
+	fuel: string[];
+	bodystyle: string[];
+	feature: string[];
+	color: string[];
+	trim: string[];
+	under30K: string[];
+	minValue: number;
+	maxValue: number;
 }
 
 const Under30KOptions = [
-  { label: "Under30K", value: "Under30K" },
+	{ label: "Under30K", value: "Under30K" },
 ];
 
 const yearOptions = [
-  { label: "2023", value: "2023" },
-  { label: "2022", value: "2022" },
-  { label: "2021", value: "2021" },
-  { label: "2020", value: "2020" },
-  { label: "2019", value: "2019" },
-  { label: "2018", value: "2018" },
-  { label: "2017", value: "2017" },
+	{ label: "2023", value: "2023" },
+	{ label: "2022", value: "2022" },
+	{ label: "2021", value: "2021" },
+	{ label: "2020", value: "2020" },
+	{ label: "2019", value: "2019" },
+	{ label: "2018", value: "2018" },
+	{ label: "2017", value: "2017" },
 ];
 
 const makeOptions = [
-  { label: 'Tesla', value: 'tesla' },
-  { label: 'Toyota', value: 'toyota' },
-  { label: 'Ford', value: 'ford' },
-  { label: 'Honda', value: 'honda' },
-  { label: 'BMW', value: 'bmw' },
+	{ label: 'Tesla', value: 'tesla' },
+	{ label: 'Toyota', value: 'toyota' },
+	{ label: 'Ford', value: 'ford' },
+	{ label: 'Honda', value: 'honda' },
+	{ label: 'BMW', value: 'bmw' },
 ];
 
 const modelOptions = [
-  { label: 'Model Y', value: 'Model Y' },
-  { label: 'Corolla', value: 'Corolla' },
-  { label: 'TLX A-SPEC', value: 'TLX A-SPEC' },
-  { label: 'RAV4', value: 'RAV4' },
+	{ label: 'Model Y', value: 'Model Y' },
+	{ label: 'Corolla', value: 'Corolla' },
+	{ label: 'TLX A-SPEC', value: 'TLX A-SPEC' },
+	{ label: 'RAV4', value: 'RAV4' },
 ];
 
 const fuelOptions = [
-  { label: 'Gasoline', value: 'gasoline' },
-  { label: 'Diesel', value: 'diesel' },
-  { label: 'Electric', value: 'electric' },
-  { label: 'Hybrid', value: 'hybrid' },
+	{ label: 'Gasoline', value: 'gasoline' },
+	{ label: 'Diesel', value: 'diesel' },
+	{ label: 'Electric', value: 'electric' },
+	{ label: 'Hybrid', value: 'hybrid' },
 ];
 
 const bodyStyleOptions = [
-  { label: 'Sedan', value: 'Sedan' },
-  { label: 'SUV', value: 'SUV' },
-  // { label: 'Truck', value: 'truck' },
-  // { label: 'Coupe', value: 'coupe' },
-  // { label: 'Convertible', value: 'convertible' },
+	{ label: 'Sedan', value: 'Sedan' },
+	{ label: 'SUV', value: 'SUV' },
+	// { label: 'Truck', value: 'truck' },
+	// { label: 'Coupe', value: 'coupe' },
+	// { label: 'Convertible', value: 'convertible' },
 ];
 
 const featuresOptions = [
-  { label: 'Bluetooth', value: 'bluetooth' },
-  { label: 'Backup Camera', value: 'backup_camera' },
-  { label: 'Navigation System', value: 'navigation' },
-  { label: 'Heated Seats', value: 'heated_seats' },
-  { label: 'Sunroof', value: 'sunroof' },
+	{ label: 'Bluetooth', value: 'bluetooth' },
+	{ label: 'Backup Camera', value: 'backup_camera' },
+	{ label: 'Navigation System', value: 'navigation' },
+	{ label: 'Heated Seats', value: 'heated_seats' },
+	{ label: 'Sunroof', value: 'sunroof' },
 ];
 
 const colorOptions = [
-  { label: 'Red', value: 'red' },
-  { label: 'Blue', value: 'blue' },
-  { label: 'Black', value: 'black' },
-  { label: 'White', value: 'white' },
-  { label: 'Silver', value: 'silver' },
+	{ label: 'Red', value: 'red' },
+	{ label: 'Blue', value: 'blue' },
+	{ label: 'Black', value: 'black' },
+	{ label: 'White', value: 'white' },
+	{ label: 'Silver', value: 'silver' },
 ];
 
 const trimOptions = [
-  { label: 'Base', value: 'base' },
-  { label: 'Sport', value: 'sport' },
-  { label: 'Luxury', value: 'luxury' },
-  { label: 'Performance', value: 'performance' },
+	{ label: 'Base', value: 'base' },
+	{ label: 'Sport', value: 'sport' },
+	{ label: 'Luxury', value: 'luxury' },
+	{ label: 'Performance', value: 'performance' },
 ];
 
 const transmissionOptions = [
-  { label: 'Automatic', value: 'automatic' },
-  { label: 'Manual', value: 'manual' },
-  { label: 'CVT', value: 'cvt' },
+	{ label: 'Automatic', value: 'automatic' },
+	{ label: 'Manual', value: 'manual' },
+	{ label: 'CVT', value: 'cvt' },
 ];
 
 const CarListing = () => {
-  const [filteredCars, setFilteredCars] = useState<Car[]>(carsData);
-  const [openModal, setOpenModal] = useState<boolean>(false);
-  const [selectedFilter, setSelectedFilter] = useState<string>("");
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
-  const [sortOrder, setSortOrder] = useState<string>("");
-  const [openFilterModal, setOpenFilterModal] = useState<boolean>(false);
-  // const [isUnder30KSelected, setIsUnder30KSelected] = useState(false);
+	const [filteredCars, setFilteredCars] = useState<Car[]>(carsData);
+	const [openModal, setOpenModal] = useState<boolean>(false);
+	const [selectedFilter, setSelectedFilter] = useState<string>("");
+	const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+	const [sortOrder, setSortOrder] = useState<string>("");
+	const [openFilterModal, setOpenFilterModal] = useState<boolean>(false);
+	// const [isUnder30KSelected, setIsUnder30KSelected] = useState(false);
 
 
-  const [selectedYearFilters, setSelectedYearFilters] = useState<string[]>([]);
-  const [Under30K, setUnder30K] = useState<string[]>([]);
-  const [selectedMakeFilters, setSelectedMakeFilters] = useState<string[]>([]);
-  const [selectedModelFilters, setselectedModelFilters] = useState<string[]>([]);
-  const [selectedFuelFilters, setselectedFuelFilters] = useState<string[]>([]);
-  const [selectedBodyFilters, setselectedBodyFilters] = useState<string[]>([]);
-  const [selectedFeatureFilters, setselectedFeatureFilters] = useState<string[]>([]);
-  const [selectedColorFilters, setselectedColorFilters] = useState<string[]>([]);
-  const [selectedTrimFilters, setselectedTrimFilters] = useState<string[]>([]);
-  const [selectedTransmissionFilters, setselectedTransmissionFilters] = useState<string[]>([]);
-  const [isClearDisabled, setIsClearDisabled] = useState(true);
-  const [filteredResults, setFilteredResults] = useState<Car[]>(carsData);
-  const [filtersApplied, setFiltersApplied] = useState(false);
-  const [isUnder30KActive, setIsUnder30KActive] = useState<string[]>([]);
+	const [selectedYearFilters, setSelectedYearFilters] = useState<string[]>([]);
+	const [Under30K, setUnder30K] = useState<string[]>([]);
+	const [selectedMakeFilters, setSelectedMakeFilters] = useState<string[]>([]);
+	const [selectedModelFilters, setselectedModelFilters] = useState<string[]>([]);
+	const [selectedFuelFilters, setselectedFuelFilters] = useState<string[]>([]);
+	const [selectedBodyFilters, setselectedBodyFilters] = useState<string[]>([]);
+	const [selectedFeatureFilters, setselectedFeatureFilters] = useState<string[]>([]);
+	const [selectedColorFilters, setselectedColorFilters] = useState<string[]>([]);
+	const [selectedTrimFilters, setselectedTrimFilters] = useState<string[]>([]);
+	const [selectedTransmissionFilters, setselectedTransmissionFilters] = useState<string[]>([]);
+	const [isClearDisabled, setIsClearDisabled] = useState(true);
+	const [filteredResults, setFilteredResults] = useState<Car[]>(carsData);
+	const [filtersApplied, setFiltersApplied] = useState(false);
+	const [isUnder30KActive, setIsUnder30KActive] = useState<string[]>([]);
 
-  const [minValue, setMinValue] = useState(0);
-  const [maxValue, setMaxValue] = useState(1000000);
+	const [minValue, setMinValue] = useState(0);
+	const [maxValue, setMaxValue] = useState(1000000);
 
-  const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Math.min(Number(e.target.value), isUnder30KActive.length > 0 ? 30000 : maxValue);
-    if (value < maxValue) {
-      setMinValue(value);
-      handleSearch();
-    }
-    else {
-      setMinValue(maxValue - 1);
-      handleSearch();
-    }
-  };
+	const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = Math.min(Number(e.target.value), isUnder30KActive.length > 0 ? 30000 : maxValue);
+		if (value < maxValue) {
+			setMinValue(value);
+			handleSearch();
+		}
+		else {
+			setMinValue(maxValue - 1);
+			handleSearch();
+		}
+	};
 
-  const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Math.min(Number(e.target.value), isUnder30KActive.length > 0 ? 30000 : 1000000);
-    if (value > minValue) {
-      setMaxValue(value);
-      handleSearch();
-    }
-    else {
-      setMaxValue(minValue + 1);
-      handleSearch();
-    }
-  };
+	const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = Math.min(Number(e.target.value), isUnder30KActive.length > 0 ? 30000 : 1000000);
+		if (value > minValue) {
+			setMaxValue(value);
+			handleSearch();
+		}
+		else {
+			setMaxValue(minValue + 1);
+			handleSearch();
+		}
+	};
 
-  const toggleFilterModal = () => {
-    setOpenFilterModal(!openFilterModal);
-  };
+	const toggleFilterModal = () => {
+		setOpenFilterModal(!openFilterModal);
+	};
 
-  const clearFilter = (filter: string) => {
-    const updatedFilters = selectedFilters.filter((f) => f !== filter);
-    setSelectedFilters(updatedFilters);
+	const clearFilter = (filter: string) => {
+		const updatedFilters = selectedFilters.filter((f) => f !== filter);
+		setSelectedFilters(updatedFilters);
 
-    if (filter === 'Under 30K') {
-      setUnder30K([]);
-    } else if (selectedMakeFilters.includes(filter)) {
-      setSelectedMakeFilters(selectedMakeFilters.filter(f => f !== filter));
-    } else if (selectedYearFilters.includes(filter)) {
-      setSelectedYearFilters(selectedYearFilters.filter(f => f !== filter));
-    } else if (selectedModelFilters.includes(filter)) {
-      setselectedModelFilters(selectedModelFilters.filter(f => f !== filter));
-    } else if (selectedBodyFilters.includes(filter)) {
-      setselectedBodyFilters(selectedBodyFilters.filter(f => f !== filter));
-    } else if (selectedFeatureFilters.includes(filter)) {
-      setselectedFeatureFilters(selectedFeatureFilters.filter(f => f !== filter));
-    } else if (selectedColorFilters.includes(filter)) {
-      setselectedColorFilters(selectedColorFilters.filter(f => f !== filter));
-    } else if (selectedFuelFilters.includes(filter)) {
-      setselectedFuelFilters(selectedFuelFilters.filter(f => f !== filter));
-    } else if (selectedTrimFilters.includes(filter)) {
-      setselectedTrimFilters(selectedTrimFilters.filter(f => f !== filter));
-    }
+		if (filter === 'Under 30K') {
+			setUnder30K([]);
+		} else if (selectedMakeFilters.includes(filter)) {
+			setSelectedMakeFilters(selectedMakeFilters.filter(f => f !== filter));
+		} else if (selectedYearFilters.includes(filter)) {
+			setSelectedYearFilters(selectedYearFilters.filter(f => f !== filter));
+		} else if (selectedModelFilters.includes(filter)) {
+			setselectedModelFilters(selectedModelFilters.filter(f => f !== filter));
+		} else if (selectedBodyFilters.includes(filter)) {
+			setselectedBodyFilters(selectedBodyFilters.filter(f => f !== filter));
+		} else if (selectedFeatureFilters.includes(filter)) {
+			setselectedFeatureFilters(selectedFeatureFilters.filter(f => f !== filter));
+		} else if (selectedColorFilters.includes(filter)) {
+			setselectedColorFilters(selectedColorFilters.filter(f => f !== filter));
+		} else if (selectedFuelFilters.includes(filter)) {
+			setselectedFuelFilters(selectedFuelFilters.filter(f => f !== filter));
+		} else if (selectedTrimFilters.includes(filter)) {
+			setselectedTrimFilters(selectedTrimFilters.filter(f => f !== filter));
+		}
 
-    const filters: Filters = {
-      make: selectedMakeFilters,
-      year: selectedYearFilters,
-      model: selectedModelFilters,
-      fuel: selectedFuelFilters,
-      bodystyle: selectedBodyFilters,
-      feature: selectedFeatureFilters,
-      color: selectedColorFilters,
-      trim: selectedTrimFilters,
-      under30K: Under30K,
-      minValue: minValue,
-      maxValue: maxValue,
-    };
+		const filters: Filters = {
+			make: selectedMakeFilters,
+			year: selectedYearFilters,
+			model: selectedModelFilters,
+			fuel: selectedFuelFilters,
+			bodystyle: selectedBodyFilters,
+			feature: selectedFeatureFilters,
+			color: selectedColorFilters,
+			trim: selectedTrimFilters,
+			under30K: Under30K,
+			minValue: minValue,
+			maxValue: maxValue,
+		};
 
-    const hasActiveFilters = updatedFilters.length > 0;
-    const results = hasActiveFilters ? performFiltering(filters) : carsData;
-    setFilteredResults(results);
-  };
+		const hasActiveFilters = updatedFilters.length > 0;
+		const results = hasActiveFilters ? performFiltering(filters) : carsData;
+		setFilteredResults(results);
+	};
 
-  const handleCardClick = (filter: string) => {
-    if (!selectedFilters.includes(filter)) {
-      setSelectedFilters([...selectedFilters, filter]);
-    }
+	const handleCardClick = (filter: string) => {
+		if (!selectedFilters.includes(filter)) {
+			setSelectedFilters([...selectedFilters, filter]);
+		}
 
-    setSelectedFilter(filter);
-    setOpenFilterModal(false);
-    setOpenModal(true);
-  };
+		setSelectedFilter(filter);
+		setOpenFilterModal(false);
+		setOpenModal(true);
+	};
 
-  const handleSortChange = (order: "highest" | "lowest" | "newest" | "oldest") => {
-    const sortedCars = [...filteredCars];
+	const handleSortChange = (order: "highest" | "lowest" | "newest" | "oldest") => {
+		const sortedCars = [...filteredCars];
 
-    if (order === "highest") {
-      sortedCars.sort((a, b) => b.price - a.price);
-    }
-    else if (order === "lowest") {
-      sortedCars.sort((a, b) => a.price - b.price);
-    }
-    else if (order === "newest") {
-      sortedCars.sort((a, b) => b.year - a.year);
-    }
-    else if (order === "oldest") {
-      sortedCars.sort((a, b) => a.year - b.year);
-    }
+		if (order === "highest") {
+			sortedCars.sort((a, b) => b.price - a.price);
+		}
+		else if (order === "lowest") {
+			sortedCars.sort((a, b) => a.price - b.price);
+		}
+		else if (order === "newest") {
+			sortedCars.sort((a, b) => b.year - a.year);
+		}
+		else if (order === "oldest") {
+			sortedCars.sort((a, b) => a.year - b.year);
+		}
 
-    setFilteredCars(sortedCars);
-    setSortOrder(order);
-  };
+		setFilteredCars(sortedCars);
+		setSortOrder(order);
+	};
 
-  const handleMultiSelectChange = (
-    value: string,
-    filterType: 'make' | 'year' | 'model' | 'fuel' | 'bodystyle' | 'feature' | 'color' | 'transmission' | 'trim' | 'Under30K'
-  ) => {
-    const filterMapping: { [key: string]: [string[], React.Dispatch<React.SetStateAction<string[]>>] } = {
-      make: [selectedMakeFilters, setSelectedMakeFilters],
-      year: [selectedYearFilters, setSelectedYearFilters],
-      model: [selectedModelFilters, setselectedModelFilters],
-      fuel: [selectedFuelFilters, setselectedFuelFilters],
-      bodystyle: [selectedBodyFilters, setselectedBodyFilters],
-      feature: [selectedFeatureFilters, setselectedFeatureFilters],
-      color: [selectedColorFilters, setselectedColorFilters],
-      trim: [selectedTrimFilters, setselectedTrimFilters],
-      transmission: [selectedTransmissionFilters, setselectedTransmissionFilters],
-      Under30K: [Under30K, setUnder30K],
+	const handleMultiSelectChange = (
+		value: string,
+		filterType: 'make' | 'year' | 'model' | 'fuel' | 'bodystyle' | 'feature' | 'color' | 'transmission' | 'trim' | 'Under30K'
+	) => {
+		const filterMapping: { [key: string]: [string[], React.Dispatch<React.SetStateAction<string[]>>] } = {
+			make: [selectedMakeFilters, setSelectedMakeFilters],
+			year: [selectedYearFilters, setSelectedYearFilters],
+			model: [selectedModelFilters, setselectedModelFilters],
+			fuel: [selectedFuelFilters, setselectedFuelFilters],
+			bodystyle: [selectedBodyFilters, setselectedBodyFilters],
+			feature: [selectedFeatureFilters, setselectedFeatureFilters],
+			color: [selectedColorFilters, setselectedColorFilters],
+			trim: [selectedTrimFilters, setselectedTrimFilters],
+			transmission: [selectedTransmissionFilters, setselectedTransmissionFilters],
+			Under30K: [Under30K, setUnder30K],
 
-    };
+		};
 
-    const [currentFilters, setFilters] = filterMapping[filterType] || [[], () => { }];
+		const [currentFilters, setFilters] = filterMapping[filterType] || [[], () => { }];
 
-    const updatedFilters = currentFilters.includes(value)
-      ? currentFilters.filter(item => item !== value)
-      : [...currentFilters, value];
+		const updatedFilters = currentFilters.includes(value)
+			? currentFilters.filter(item => item !== value)
+			: [...currentFilters, value];
 
-    setFilters(updatedFilters);
-    setIsClearDisabled(updatedFilters.length === 0);
+		setFilters(updatedFilters);
+		setIsClearDisabled(updatedFilters.length === 0);
 
-    if (filterType === 'Under30K') {
-      const isCurrentlyUnder30KActive = updatedFilters.length > 0;
+		if (filterType === 'Under30K') {
+			const isCurrentlyUnder30KActive = updatedFilters.length > 0;
 
-      if (isCurrentlyUnder30KActive) {
-        setMinValue(0);
-        setMaxValue(30000);
-        setIsUnder30KActive([...updatedFilters]);
-      }
+			if (isCurrentlyUnder30KActive) {
+				setMinValue(0);
+				setMaxValue(30000);
+				setIsUnder30KActive([...updatedFilters]);
+			}
 
-      else {
-        setMinValue(0);
-        setMaxValue(1000000);
-        setIsUnder30KActive([]);
-      }
-    }
-  };
+			else {
+				setMinValue(0);
+				setMaxValue(1000000);
+				setIsUnder30KActive([]);
+			}
+		}
+	};
 
-  const handleClearSelection = () => {
-    setSelectedFilters([]);
-    setSelectedYearFilters([]);
-    setSelectedMakeFilters([]);
-    setselectedModelFilters([]);
-    setselectedBodyFilters([]);
-    setselectedFeatureFilters([]);
-    setselectedColorFilters([]);
-    setselectedFuelFilters([]);
-    setselectedTrimFilters([]);
-    setselectedTransmissionFilters([]);
-    setMinValue(0);
-    setMaxValue(1000000);
-    setIsUnder30KActive([]);
-    setUnder30K([]);
+	const handleClearSelection = () => {
+		setSelectedFilters([]);
+		setSelectedYearFilters([]);
+		setSelectedMakeFilters([]);
+		setselectedModelFilters([]);
+		setselectedBodyFilters([]);
+		setselectedFeatureFilters([]);
+		setselectedColorFilters([]);
+		setselectedFuelFilters([]);
+		setselectedTrimFilters([]);
+		setselectedTransmissionFilters([]);
+		setMinValue(0);
+		setMaxValue(1000000);
+		setIsUnder30KActive([]);
+		setUnder30K([]);
 
-    setFilteredResults(carsData);
-    setIsClearDisabled(true);
-  };
+		setFilteredResults(carsData);
+		setIsClearDisabled(true);
+	};
 
-  const handleSearch = () => {
+	const handleSearch = () => {
 
-    const filters: Filters = {
-      make: selectedMakeFilters,
-      year: selectedYearFilters,
-      model: selectedModelFilters,
-      fuel: selectedFuelFilters,
-      bodystyle: selectedBodyFilters,
-      feature: selectedFeatureFilters,
-      color: selectedColorFilters,
-      trim: selectedTrimFilters,
-      under30K: Under30K,
-      minValue: minValue,
-      maxValue: maxValue,
-    };
-    const results = performFiltering(filters);
-    setFilteredResults(results);
-    setFiltersApplied(true);
-    setOpenModal(false);
-  };
+		const filters: Filters = {
+			make: selectedMakeFilters,
+			year: selectedYearFilters,
+			model: selectedModelFilters,
+			fuel: selectedFuelFilters,
+			bodystyle: selectedBodyFilters,
+			feature: selectedFeatureFilters,
+			color: selectedColorFilters,
+			trim: selectedTrimFilters,
+			under30K: Under30K,
+			minValue: minValue,
+			maxValue: maxValue,
+		};
+		const results = performFiltering(filters);
+		setFilteredResults(results);
+		setFiltersApplied(true);
+		setOpenModal(false);
+	};
 
-  const performFiltering = (filters: Filters): Car[] => {
-    return carsData.filter((car: Car) => {
-      const makeMatch = filters.make.length === 0 || filters.make.includes(car.make.toLowerCase());
-      const yearMatch = filters.year.length === 0 || filters.year.includes(car.year.toString());
-      const modelMatch = filters.model.length === 0 || filters.model.includes(car.model);
-      const fuelMatch = filters.fuel.length === 0 || filters.fuel.includes(car.fuel);
-      const bodystyleMatch = filters.bodystyle.length === 0 || filters.bodystyle.includes(car.bodyStyle);
-      const featureMatch = filters.feature.length === 0 || filters.feature.some(feature => car.features.includes(feature));
-      const colorMatch = filters.color.length === 0 || filters.color.includes(car.color);
-      const trimMatch = filters.trim.length === 0 || filters.trim.includes(car.trim);
-      const priceMatch = car.price >= filters.minValue && car.price <= filters.maxValue;
+	const performFiltering = (filters: Filters): Car[] => {
+		return carsData.filter((car: Car) => {
+			const makeMatch = filters.make.length === 0 || filters.make.includes(car.make.toLowerCase());
+			const yearMatch = filters.year.length === 0 || filters.year.includes(car.year.toString());
+			const modelMatch = filters.model.length === 0 || filters.model.includes(car.model);
+			const fuelMatch = filters.fuel.length === 0 || filters.fuel.includes(car.fuel);
+			const bodystyleMatch = filters.bodystyle.length === 0 || filters.bodystyle.includes(car.bodyStyle);
+			const featureMatch = filters.feature.length === 0 || filters.feature.some(feature => car.features.includes(feature));
+			const colorMatch = filters.color.length === 0 || filters.color.includes(car.color);
+			const trimMatch = filters.trim.length === 0 || filters.trim.includes(car.trim);
+			const priceMatch = car.price >= filters.minValue && car.price <= filters.maxValue;
 
-      const carPrice = car.price;
-      const isUnder30K = carPrice < 30000;
+			const carPrice = car.price;
+			const isUnder30K = carPrice < 30000;
 
-      const under30KMatch = filters.under30K.length === 0 ||
-        (filters.under30K.includes("Under30K") && isUnder30K);
+			const under30KMatch = filters.under30K.length === 0 ||
+				(filters.under30K.includes("Under30K") && isUnder30K);
 
-      return (
-        makeMatch &&
-        yearMatch &&
-        modelMatch &&
-        fuelMatch &&
-        bodystyleMatch &&
-        featureMatch &&
-        colorMatch &&
-        trimMatch &&
-        under30KMatch &&
-        priceMatch
-      );
-    });
-  };
+			return (
+				makeMatch &&
+				yearMatch &&
+				modelMatch &&
+				fuelMatch &&
+				bodystyleMatch &&
+				featureMatch &&
+				colorMatch &&
+				trimMatch &&
+				under30KMatch &&
+				priceMatch
+			);
+		});
+	};
 
-  return (
+	return (
 		<div className="flex flex-col md:flex-row lg:p-20 p-4">
 			<div className="md:w-3/4 mx-auto">
 				<div className="flex flex-col md:flex-row justify-between items-center mb-4">
-					<p className="text-black font-bold w-full text-2xl md:text-4xl">
-						{filteredResults.length} Vehicle{filteredResults.length !== 1 ? "s" : ""} for Sale
-					</p>
+					<div className="relative inline-block text-center">
+						<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">
+							{filteredResults.length} Vehicle{filteredResults.length !== 1 ? "s" : ""} for Sale
+						</h2>
+						<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-[65%] w-[140px] h-[2px] bg-[#6F68EC]"></span>
+					</div>
+
 					<div className="flex items-center mt-2 md:mt-0">
 						<label htmlFor="sortOptions" className="font-semibold text-sm text-right" style={{ width: "5em" }}>
 							Sort by:
@@ -437,22 +441,22 @@ const CarListing = () => {
 								</Button>
 							</Dropdown.Trigger>
 							<Dropdown.Menu className="bg-white py-3 text-sm" style={{ width: "113px" }}>
-								<Dropdown.Item onClick={() => handleSortChange("highest")} className={`my-2 text-black flex items-center ${sortOrder === "highest" ? "text-[#6b5fff]" : ""}`} style={{ fontSize: "10px" }}>
-									{sortOrder === "highest" && <FaCheck className="text-[#6b5fff] inline mr-1" style={{ fontSize: "10px" }} />}
+								<Dropdown.Item onClick={() => handleSortChange("highest")} className={`my-2 text-black flex items-center ${sortOrder === "highest" ? "text-[#5950d0]" : ""}`} style={{ fontSize: "10px" }}>
+									{sortOrder === "highest" && <FaCheck className="text-[#5950d0] inline mr-1" style={{ fontSize: "10px" }} />}
 									Highest Price
 								</Dropdown.Item>
 
-								<Dropdown.Item onClick={() => handleSortChange("lowest")} className={`my-2 text-black flex items-center ${sortOrder === "lowest" ? "text-[#6b5fff]" : ""}`} style={{ fontSize: "10px" }}>
-									{sortOrder === "lowest" && <FaCheck className="text-[#6b5fff] inline mr-1" style={{ fontSize: "10px" }} />}
+								<Dropdown.Item onClick={() => handleSortChange("lowest")} className={`my-2 text-black flex items-center ${sortOrder === "lowest" ? "text-[#5950d0]" : ""}`} style={{ fontSize: "10px" }}>
+									{sortOrder === "lowest" && <FaCheck className="text-[#5950d0] inline mr-1" style={{ fontSize: "10px" }} />}
 									Lowest Price
 								</Dropdown.Item>
 
-								<Dropdown.Item onClick={() => handleSortChange("oldest")} className={`my-2 text-black flex items-center ${sortOrder === "oldest" ? "text-[#6b5fff]" : ""}`} style={{ fontSize: "10px" }}>
+								<Dropdown.Item onClick={() => handleSortChange("oldest")} className={`my-2 text-black flex items-center ${sortOrder === "oldest" ? "text-[#5950d0]" : ""}`} style={{ fontSize: "10px" }}>
 									{sortOrder === "oldest" && <FaCheck className="text-[#6b5fff] inline mr-1" style={{ fontSize: "10px" }} />}
 									Oldest Year
 								</Dropdown.Item>
 
-								<Dropdown.Item onClick={() => handleSortChange("newest")} className={`text-black flex items-center ${sortOrder === "newest" ? "text-[#6b5fff]" : ""}`} style={{ fontSize: "10px" }}>
+								<Dropdown.Item onClick={() => handleSortChange("newest")} className={`text-black flex items-center ${sortOrder === "newest" ? "text-[#5950d0]" : ""}`} style={{ fontSize: "10px" }}>
 									{sortOrder === "newest" && <FaCheck className="text-[#6b5fff] inline mr-1" style={{ fontSize: "10px" }} />}
 									Newest Year
 								</Dropdown.Item>
@@ -461,7 +465,7 @@ const CarListing = () => {
 					</div>
 
 					<div className="md:hidden mb-4 text-center">
-						<button className="bg-[#6b5fff] text-white px-4 py-2 rounded hover:bg-[#6b5fff]/90" onClick={toggleFilterModal}>
+						<button className="bg-[#5950d0] text-white px-4 py-2 rounded hover:bg-[#5950d0]/90" onClick={toggleFilterModal}>
 							Filters
 						</button>
 					</div>
@@ -478,7 +482,7 @@ const CarListing = () => {
 							</div>
 						))}
 					{filtersApplied && selectedFilters.length > 0 && (
-						<button onClick={handleClearSelection} className="text-white px-2 py-1 rounded bg-[#6b5fff] hover:bg-[#6b5fff]/90" aria-label="Clear all filters">
+						<button onClick={handleClearSelection} className="text-white px-2 py-1 rounded bg-[#5950d0] hover:bg-[#5950d0]/90" aria-label="Clear all filters">
 							Clear All
 						</button>
 					)}
@@ -575,7 +579,7 @@ const CarListing = () => {
 						<div
 							className="absolute h-1 rounded-lg"
 							style={{
-								backgroundColor: "#6b5fff",
+								backgroundColor: "#5950d0",
 								left: `${(minValue / (isUnder30KActive.length > 0 ? 30000 : maxValue)) * 100}%`,
 								right: `${100 - (maxValue / (isUnder30KActive.length > 0 ? 30000 : 1000000)) * 100}%`,
 							}}
@@ -626,7 +630,7 @@ const CarListing = () => {
 								width: 16px;
 								height: 16px;
 								border-radius: 50%;
-								background: #6b5fff;
+								background: #5950d0;
 								cursor: pointer;
 								position: relative;
 							}
@@ -637,7 +641,7 @@ const CarListing = () => {
 								top: -30px;
 								left: 50%;
 								transform: translateX(-50%);
-								background-color: #6b5fff;
+								background-color: #5950d0;
 								color: white;
 								padding: 2px 5px;
 								border-radius: 5px;
@@ -649,7 +653,7 @@ const CarListing = () => {
 								width: 16px;
 								height: 16px;
 								border-radius: 50%;
-								background: #6b5fff;
+								background: #5950d0;
 								cursor: pointer;
 								position: relative;
 							}
@@ -660,7 +664,7 @@ const CarListing = () => {
 								top: -30px;
 								left: 50%;
 								transform: translateX(-50%);
-								background-color: #6b5fff;
+								background-color: #5950d0;
 								color: white;
 								padding: 2px 5px;
 								border-radius: 5px;

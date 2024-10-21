@@ -137,7 +137,12 @@ export default function VehicleInfo() {
 
 				{/* Vehicle Details Section */}
 				<div className="w-full md:w-1/2 flex flex-col lg:ps-3">
-					<h3 className="text-lg font-semibold mb-4 block w-full text-[#3d3838] bg-clip-text font-bold text-lg sm:text-xl">Vehicle Info</h3>
+				<div className="relative inline-block mb-7">
+					<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">
+						Vehicle Info
+					</h2>
+					<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-[190%] w-[140px] h-[2px] bg-[#6F68EC]"></span>
+				</div>
 
 					<div className="grid grid-cols-2 gap-4 rounded-lg  bg-gray-200 p-6 ">
 						{vehicleDetails.map((detail, index) => (
@@ -150,7 +155,13 @@ export default function VehicleInfo() {
 
 					{/* Key Features Section */}
 					<div className="mt-6 flex flex-col space-y-4 md:1/2 flex-wrap">
-						<h3 className="font-semibold mb-2 block w-full text-[#3d3838] bg-clip-text font-bold text-lg sm:text-xl">Key Features</h3>
+					<div className="relative inline-block mb-7">
+					<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">
+						Key Features
+					</h2>
+					<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-[185%] w-[140px] h-[2px] bg-[#6F68EC]"></span>
+				</div>
+
 						<div className="grid grid-cols-2 lg:grid-cols-4 space-4 gap-3 size-full lg:size-auto">
 							{features.map((feature, index) => (
 								<div key={index} className="flex items-center space-y-1 flex-col  lg:max-w-[140px] justify-center text-center border border-gray-300 p-4 rounded-md w-full">
@@ -176,7 +187,12 @@ export default function VehicleInfo() {
 			</div>
 
 			<div className="w-full md:w-1/2 mt-10">
-				<h3 className="  mb-4 block w-full text-[#3d3838] bg-clip-text font-bold text-lg sm:text-xl">Vehicle Details</h3>
+				<div className="relative inline-block text-center mb-7">
+					<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">
+						Vehicle Details
+					</h2>
+					<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-[55%] w-[140px] h-[2px] bg-[#6F68EC]"></span>
+				</div>
 				<div className="space-y-1">
 					{AccordionData.map((item, index) => (
 						<div key={index}>
@@ -185,7 +201,7 @@ export default function VehicleInfo() {
 								<span className="text-black font-medium text-xl">{openIndex === index ? <FontAwesomeIcon icon={faMinus} className="text-white" /> : <FontAwesomeIcon icon={faPlus} />}</span>
 							</button>
 							{openIndex === index && (
-								<div className="bg-gray-200 p-4 rounded-b-md">
+								<div className="bg-[#f2f2f2] p-4 rounded-b-md">
 									<div className="grid grid-cols-2 gap-x-3 rounded-lg">
 										{item.content.map((detail, detailIndex) => (
 											<div key={detailIndex} className="border-b  bg-white p-2">
