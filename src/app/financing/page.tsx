@@ -363,7 +363,7 @@ const form = () => {
 
 				<div className="flex justify-center mp-5 ">
 					<div className="relative inline-block text-center mb-7">
-						<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">Financing form's</h2>
+						<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">Financing Form's</h2>
 						<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-[65%] w-[140px] h-[2px] bg-[#6F68EC]"></span>
 					</div>
 				</div>
