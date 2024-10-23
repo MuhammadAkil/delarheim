@@ -150,7 +150,7 @@ const form = () => {
 		<>
 			<div className="relative w-full flex flex-col justify-between items-center">
 				{/* Background Image */}
-				<Image src="/images/bg-image-faq.jpg" alt="Image Error" width={600} height={650} className="w-full opacity-25 h-[100svh] lg:h-auto object-cover opacity-75" style={{ maxHeight: "30rem" }} />
+				<Image src="/images/hero-finance.jpg" alt="Image Error" width={600} height={650} className="w-full opacity-25 h-[100svh] lg:h-auto object-cover opacity-75" style={{ maxHeight: "30rem" }} />
 
 				{/* Content Wrapper */}
 				<div className="absolute flex flex-col gap-9 md:gap-4 xl:gap-9 items-center w-[90%]">
