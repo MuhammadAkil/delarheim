@@ -94,8 +94,8 @@ const CustomCard: React.FC<CustomCardProps> = ({ imageSrc, description, style })
 		<div className="w-full max-w-md h-full bg-white rounded-lg shadow-lg overflow-hidden">
 			<img src={imageSrc} className="w-full h-55 mt-10" alt="Card image" />
 
-			<div className="p-5 bg-gray-100 h-full">
-				<Link className="text-2xl font-bold hover:underline" style={{ color: "#053361" }} href={"#"}>
+			<div className="p-3 bg-gray-100 h-full">
+				<Link className="text-2xl font-bold hover:underline text-[#0870d8]" href={"#"}>
 					{description}
 				</Link>
 			</div>
@@ -193,12 +193,10 @@ const form = () => {
 			<div className="container mx-auto p-6">
 				{showCalculator ? (
 					<div className="py-10 px-6">
-						<form className="mt-4 max-w-md mx-auto p-4 bg-white rounded-lg shadow-lg" onSubmit={calculateMonthlyPayment}>
-							<h2 className="text-2xl font-bold text-black text-center cursor-pointer" onClick={() => setActiveSection("calculator")}>
-								Car Payment Calculator
-							</h2>
+						<form className="mt-4 max-w-md mx-auto p-4 bg-white rounded-lg shadow-lg border" onSubmit={calculateMonthlyPayment}>
+							<h2 className="text-2xl font-bold text-black text-center">Car Payment Calculator</h2>
 
-							<div className="flex justify-between mt-4 mb-4">
+							<div className="flex justify-between mt-12 mb-4">
 								<h2 className={`text-sm font-bold text-black cursor-pointer border-b-2 transition-colors duration-300 ${activeSection === "calculator" ? "border-blue-600" : "border-transparent"}`} onClick={() => setActiveSection("calculator")}>
 									Monthly Payment
 								</h2>
@@ -300,7 +298,7 @@ const form = () => {
 
 						<div className="space-y-2 lg:px-10 px-2">
 							<div className="relative inline-block text-center mb-7">
-								<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">Personalized results in minutes</h2>
+								<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-2xl sm:text-3xl">Personalized results in minutes</h2>
 								<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-[65%] w-[140px] h-[2px] bg-[#6F68EC]"></span>
 							</div>
 
@@ -344,7 +342,7 @@ const form = () => {
 
 				<div className="w-full px-4 sm:px-6 md:px-8 my-20">
 					<div className="relative inline-block text-center mb-7">
-						<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">Car Financing Tips & Tools</h2>
+						<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-2xl sm:text-3xl">Car Financing Tips & Tools</h2>
 						<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-[50%] w-[140px] h-[2px] bg-[#6F68EC]"></span>
 					</div>
 
@@ -363,7 +361,7 @@ const form = () => {
 
 				<div className="flex justify-center mp-5 ">
 					<div className="relative inline-block text-center mb-7">
-						<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">Financing Form's</h2>
+						<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-2xl sm:text-3xl">Financing Form's</h2>
 						<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-[65%] w-[140px] h-[2px] bg-[#6F68EC]"></span>
 					</div>
 				</div>

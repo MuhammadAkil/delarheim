@@ -12,7 +12,7 @@ import Link from "next/link";
 import router from "next/router";
 import Logo from "./icons/logo";
 
-type DropdownId = "Inventory" | "Finance" | "home" | "SellOrTrade" | "contactUs" | "More";
+type DropdownId = "Inventory" | "financing" | "home" | "SellOrTrade" | "contactUs" | "More";
 
 const Header = () => {
 	const pathname = usePathname();
@@ -22,7 +22,7 @@ const Header = () => {
 		Inventory: useRef<HTMLDivElement | null>(null),
 		home: useRef<HTMLDivElement | null>(null),
 		SellOrTrade: useRef<HTMLDivElement | null>(null),
-		Finance: useRef<HTMLDivElement | null>(null),
+		financing: useRef<HTMLDivElement | null>(null),
 		contactUs: useRef<HTMLDivElement | null>(null),
 		More: useRef<HTMLDivElement | null>(null),
 	};
@@ -57,7 +57,7 @@ const Header = () => {
 	}, []);
 	const isHomeActive = pathname === "/";
 	const isInventoryActive = pathname === "/inventory";
-	const isFinancingActive = pathname === "/FinancingPlan";
+	const isFinancingActive = pathname === "/financing";
 	const isSellActive = pathname === "/sell-car";
 	const router = useRouter();
 	return (
@@ -100,9 +100,9 @@ const Header = () => {
 							</a>
 						</div>
 
-						<div className="relative group" ref={dropdownRefs.Finance}>
+						<div className="relative group" ref={dropdownRefs.financing}>
 							<Link href={"/financing"}>
-								<button onClick={() => toggleDropdown("Finance")} className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isFinancingActive ? "text-[#0870d8]" : "text-black hover:text-[#0870d8]"}`}>
+								<button onClick={() => toggleDropdown("financing")} className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isFinancingActive ? "text-[#0870d8]" : "text-black hover:text-[#0870d8]"}`}>
 									Financing
 								</button>
 							</Link>
@@ -112,7 +112,6 @@ const Header = () => {
 							<Link href="/inventory">
 								<button onClick={() => toggleDropdown("Inventory")} className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isInventoryActive ? "text-[#0870d8]" : "text-black hover:text-[#0870d8]"}`}>
 									Inventory
-									
 								</button>
 							</Link>
 
