@@ -14,7 +14,7 @@ const vehicleDetails = [
 	{ label: "Vehicle No", value: "ABC-1234" },
 	{ label: "Trim", value: "LS" },
 	{ label: "Drivetrain", value: "FWD" },
-	{ label: "Transmission", value: "6-Speed Manual" },
+	{ label: "Transmission", value: "Manual" },
 	{ label: "Engine", value: "1.8L I4" },
 	{ label: "Mileage", value: "120,587 km" },
 ];
@@ -107,7 +107,7 @@ export default function VehicleInfo() {
 		}
 	};
 	return (
-		<div className="max-w-screen-xl mx-auto lg:pt-10 pb-10 px-6">
+		<div className="max-w-screen-xl mx-auto pt-10 pb-10 px-6">
 			{/* Carousel and Vehicle Details Row */}
 			<div className="flex flex-col gap-9 md:flex-row">
 				{/* Carousel Section */}
@@ -136,13 +136,10 @@ export default function VehicleInfo() {
 				</div>
 
 				{/* Vehicle Details Section */}
-				<div className="w-full md:w-1/2 flex flex-col lg:ps-3">
-				<div className="relative inline-block mb-7">
-					<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">
-						Vehicle Info
-					</h2>
-					<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-[190%] w-[140px] h-[2px] bg-[#6F68EC]"></span>
-				</div>
+				<div className="w-full md:w-1/2 flex flex-col lg:ps-3 mt-11 lg:mt-0">
+					<div className="relative inline-block mb-2">
+						<h2 className="block w-ful text-[#3d3838] bg-clip-text font-semibold text-lg sm:text-2xl">Vehicle Info</h2>
+					</div>
 
 					<div className="grid grid-cols-2 gap-4 rounded-lg  bg-gray-200 p-6 ">
 						{vehicleDetails.map((detail, index) => (
@@ -155,12 +152,9 @@ export default function VehicleInfo() {
 
 					{/* Key Features Section */}
 					<div className="mt-6 flex flex-col space-y-4 md:1/2 flex-wrap">
-					<div className="relative inline-block mb-7">
-					<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">
-						Key Features
-					</h2>
-					<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-[185%] w-[140px] h-[2px] bg-[#6F68EC]"></span>
-				</div>
+						<div className="relative inline-block ">
+							<h2 className="block w-ful text-[#3d3838] bg-clip-text font-semibold text-lg sm:text-2xl">Key Features</h2>
+						</div>
 
 						<div className="grid grid-cols-2 lg:grid-cols-4 space-4 gap-3 size-full lg:size-auto">
 							{features.map((feature, index) => (
@@ -187,11 +181,8 @@ export default function VehicleInfo() {
 			</div>
 
 			<div className="w-full md:w-1/2 mt-10">
-				<div className="relative inline-block text-center mb-7">
-					<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">
-						Vehicle Details
-					</h2>
-					<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-[55%] w-[140px] h-[2px] bg-[#6F68EC]"></span>
+				<div className="relative inline-block text-center mb-2">
+					<h2 className="block w-ful text-[#3d3838] bg-clip-text font-semibold text-lg sm:text-2xl">Vehicle Details</h2>
 				</div>
 				<div className="space-y-1">
 					{AccordionData.map((item, index) => (
