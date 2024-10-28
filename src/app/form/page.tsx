@@ -132,7 +132,7 @@ const FinancingApplication = () => {
 							<label className="block text-sm font-medium">Salutation</label>
 							<Dropdown className="w-full">
 								<Dropdown.Trigger className="w-full">
-									<Button as="span" variant="outline" className="w-full bg-white text-black border border-gray-400 rounded-md px-2 text-left flex justify-between items-center">
+									<Button as="span" variant="outline" className="w-full bg-white text-black !border-0 rounded-md text-left flex justify-between items-center">
 										<span>{salutation || "Select Salutation"}</span>
 										<FiChevronDown className="text-gray-600" size={20} />
 									</Button>
@@ -159,7 +159,7 @@ const FinancingApplication = () => {
 							<label className="block text-sm font-medium">Gender</label>
 							<Dropdown className="w-full">
 								<Dropdown.Trigger className="w-full">
-									<Button as="span" variant="outline" className="w-full bg-white text-black border border-gray-400 rounded-md px-2 text-left flex justify-between items-center">
+									<Button as="span" variant="outline" className="w-full bg-white text-black !border-0 rounded-md text-left flex justify-between items-center">
 										<span>{gender || "Select Gender"}</span>
 										<FiChevronDown className="text-gray-600" size={20} />
 									</Button>
@@ -185,7 +185,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">First Name (required)</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="First Name"
 								value={firstName}
 								onChange={(e) => {
@@ -199,7 +199,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Last Name (required)</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Last Name"
 								value={lastName}
 								onChange={(e) => {
@@ -213,7 +213,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Phone (required)</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Phone"
 								value={phone}
 								onChange={(e) => {
@@ -227,7 +227,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Email (required)</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Email"
 								value={email}
 								onChange={(e) => {
@@ -257,7 +257,7 @@ const FinancingApplication = () => {
 							<div>
 								<Dropdown className="w-full">
 									<Dropdown.Trigger className="w-full">
-										<Button as="span" variant="outline" className="w-full bg-white text-black border border-gray-400 rounded-md px-2 text-left flex justify-between items-center">
+										<Button as="span" variant="outline" className="w-full bg-white text-black !border-0 rounded-md text-left flex justify-between items-center">
 											<span>{Marital || "Select Marital Status"}</span>
 											<FiChevronDown className="text-gray-600" size={20} />
 										</Button>
@@ -285,7 +285,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Province/State (required)</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Province/State"
 								value={state}
 								onChange={(e) => {
@@ -299,7 +299,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Postal/ZIP Code (required)</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="ZIP/Postal Code"
 								value={zip}
 								onChange={(e) => {
@@ -314,7 +314,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Duration at Address (Years)</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Years at Address"
 								value={DurationAddress}
 								onChange={(e) => {
@@ -329,7 +329,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Duration at Address (Months)</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Months at Address"
 								value={DurationAddressMonth}
 								onChange={(e) => {
@@ -349,7 +349,7 @@ const FinancingApplication = () => {
 							<div>
 								<Dropdown className="w-full">
 									<Dropdown.Trigger className="w-full">
-										<Button as="span" variant="outline" className="w-full bg-white text-black border border-gray-400 rounded-md px-2 text-left flex justify-between items-center">
+										<Button as="span" variant="outline" className="w-full bg-white text-black !border-0 rounded-md text-left flex justify-between items-center">
 											<span>{mortage || "Select Mortage"}</span>
 											<FiChevronDown className="text-gray-600" size={20} />
 										</Button>
@@ -376,7 +376,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Monthly Payment (required)</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Enter monthly payment"
 								value={monthlyPayment}
 								onChange={(e) => {
@@ -394,7 +394,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Employer Name (required)</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Employer Name"
 								value={employerName}
 								onChange={(e) => {
@@ -409,7 +409,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Position (required)</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Position"
 								value={position}
 								onChange={(e) => {
@@ -424,7 +424,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Duration at Employment (Years)</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Years"
 								value={employmentDurationYears}
 								onChange={(e) => {
@@ -439,7 +439,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Duration at Employment (Months)</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Months"
 								value={employmentDurationMonths}
 								onChange={(e) => {
@@ -454,7 +454,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Monthly Income (required)</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Monthly Income"
 								value={monthlyIncome}
 								onChange={(e) => {
@@ -469,7 +469,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Supervisor Name</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Supervisor Name"
 								value={supervisorName}
 								onChange={(e) => {
@@ -484,7 +484,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Supervisor Phone</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Supervisor Phone"
 								value={supervisorPhone}
 								onChange={(e) => {
@@ -501,7 +501,7 @@ const FinancingApplication = () => {
 							<div>
 								<Dropdown className="w-full">
 									<Dropdown.Trigger className="w-full">
-										<Button as="span" variant="outline" className="w-full bg-white text-black border border-gray-400 rounded-md px-2 text-left flex justify-between items-center">
+										<Button as="span" variant="outline" className="w-full bg-white text-black !border-0 rounded-md text-left flex justify-between items-center">
 											<span>{Employe || "Select Employement"}</span>
 											<FiChevronDown className="text-gray-600" size={20} />
 										</Button>
@@ -528,7 +528,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Work Address</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Work Address"
 								value={workAddress}
 								onChange={(e) => {
@@ -543,7 +543,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Work City</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Work City"
 								value={workCity}
 								onChange={(e) => {
@@ -558,7 +558,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Work State</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Work State"
 								value={workState}
 								onChange={(e) => {
@@ -573,7 +573,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Work ZIP</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Work ZIP"
 								value={workZip}
 								onChange={(e) => {
@@ -591,7 +591,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Previous Employer Name</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Previous Employer Name"
 								value={PreviousEmployerName}
 								onChange={(e) => {
@@ -606,7 +606,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Previous Position</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Previous Position"
 								value={PreviousPosition}
 								onChange={(e) => {
@@ -621,7 +621,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Duration at Previous Employment (Years)</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Previous Employement Year"
 								value={PreviousEmployementYear}
 								onChange={(e) => {
@@ -636,7 +636,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Duration at Previous Employment (Months)</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Previous Employement Month"
 								value={PreviousEmployementMonth}
 								onChange={(e) => {
@@ -654,7 +654,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Reference Name</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Reference Name"
 								value={ReferenceName}
 								onChange={(e) => {
@@ -669,7 +669,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Reference Phone</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Reference Phone"
 								value={ReferencePhone}
 								onChange={(e) => {
@@ -684,7 +684,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">Additional Notes</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Reference Phone"
 								value={AdditionalNotes}
 								onChange={(e) => {
@@ -699,7 +699,7 @@ const FinancingApplication = () => {
 						<div>
 							<label className="block text-sm font-medium">How Did You Hear About Us?</label>
 							<Input
-								className="w-full bg-white text-black border border-gray-400 rounded-md px-2"
+								className="w-full bg-white text-black !border-0 rounded-md"
 								placeholder="Reference Phone"
 								value={Hearing}
 								onChange={(e) => {
@@ -714,11 +714,11 @@ const FinancingApplication = () => {
 
 					<div className="flex-1 lg:p-6 max-w-5xl bg-gray-800 mt-10 mx-0 lg:mx-6 md:mt-12 md:mr-8 rounded-lg">
 						<h2 className="text-2xl font-bold mb-4">Choose Your Vehicle</h2>
-						<Input className="w-full bg-white text-black border border-gray-400 rounded-md mb-4 px-2" placeholder="Enter Vehicle Details" />
+						<Input className="w-full bg-white text-black !border-0 rounded-md mb-4" placeholder="Enter Vehicle Details" />
 						<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-							<Button className="bg-red-600 hover:bg-red-700 text-white py-2 rounded-md px-2">Advance Search</Button>
-							<Button className="bg-red-600 hover:bg-red-700 text-white py-2 rounded-md">Appraise my trade</Button>
-							<Button className="bg-red-600 hover:bg-red-700 text-white py-2 rounded-md">Car Finder</Button>
+							<Button className="bg-[#5950d0] hover:bg-[#5950d0]/90 text-white py-2 rounded-md px-2">Advance Search</Button>
+							<Button className="bg-[#5950d0] hover:bg-[#5950d0]/90 text-white py-2 rounded-md">Appraise My Trade</Button>
+							<Button className="bg-[#5950d0] hover:bg-[#5950d0]/90 text-white py-2 rounded-md">Car Finder</Button>
 						</div>
 						<p className="w-full mt-10">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad illum non vero inventore, dicta quasi eos amet officia explicabo laborum aliquid cum temporibus.</p>
 
@@ -726,7 +726,7 @@ const FinancingApplication = () => {
 					</div>
 
 					<div className="text-left mt-6">
-						<Button type="submit" className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-md">
+						<Button type="submit" className="bg-[#5950d0] hover:bg-[#5950d0]/90 text-white py-2 px-4 rounded-md">
 							Submit Application
 						</Button>
 					</div>
@@ -736,7 +736,7 @@ const FinancingApplication = () => {
 			<div className="flex-none bg-gray-900 p-8 max-w-sm mt-6 md:mt-12 md:ml-8 rounded-lg shadow-lg md:mr-8 mx-4 lg:mx-0">
 				<h2 className="text-xl font-bold mb-4">Online Credit Application</h2>
 				<p className="mb-6">Need help filling out your application? We would be happy to help you.</p>
-				<Button className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-md">Contact Us</Button>
+				<Button className="bg-[#5950d0] hover:bg-[#5950d0]/90 text-white py-2 px-4 rounded-md">Contact Us</Button>
 			</div>
 		</div>
 	);

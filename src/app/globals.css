@@ -156,6 +156,14 @@ body {
     padding-left: var(--slide-spacing-lg);
   }
 }
+::placeholder {
+ padding: 0 10px;
+
+}
+
+::-ms-input-placeholder { /* Edge 12 -18 */
+padding: 0 10px;
+}
 
 .embla__controls {
   display: flex;
