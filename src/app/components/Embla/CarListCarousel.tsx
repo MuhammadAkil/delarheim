@@ -91,7 +91,7 @@ const CarListCarousel: React.FC<PropType> = (props) => {
 
 									{/* Hover Overlay */}
 									<div className="absolute z-50 inset-0 h-[54%] rounded-2  flex justify-center items-center bg-black bg-opacity-30 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease ">
-										<Link href="/vehicel-details">
+										<Link href="/vehicel-info">
 											<button className="bg-[#6b5fff] p-3 cursor-pointer rounded-lg">View Details</button>
 										</Link>
 									</div>
