@@ -8,6 +8,7 @@ import { Dropdown, Button } from 'rizzui';
 import { RiCloseFill } from 'react-icons/ri';
 // import { Slider } from "@nextui-org/react";
 
+
 const carsData: Car[] = [
 	{
 		name: "Tesla Model Y Standard",
@@ -764,17 +765,17 @@ const CarListing = () => {
 							<hr className="my-3" />
 
 							{selectedFilter === "Under30K" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-									<h3 className="font-semibold text-lg col-span-full">Under 30K</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
+									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Under 30K</h3>
 									{Under30KOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
                         p-4 rounded-lg shadow-md 
                         ${Under30K.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                         hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full">
+											<label className="flex justify-between items-center w-full cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -783,7 +784,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "Under30K");
 													}}
-													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
 												/>
 											</label>
 											<p className="text-sm mt-2">123 Cars Available.</p>
@@ -793,17 +794,17 @@ const CarListing = () => {
 							)}
 
 							{selectedFilter === "Year" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-									<h3 className="font-semibold text-lg col-span-full">Year</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
+									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Year</h3>
 									{yearOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
                         p-4 rounded-lg shadow-md 
                         ${selectedYearFilters.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                         hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full">
+											<label className="flex justify-between items-center w-full cursor-pointer cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -812,7 +813,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "year");
 													}}
-													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
 												/>
 											</label>
 										</div>
@@ -821,17 +822,17 @@ const CarListing = () => {
 							)}
 
 							{selectedFilter === "Make" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-									<h3 className="font-semibold text-lg col-span-full">Make</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
+									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Make</h3>
 									{makeOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
                         p-4 rounded-lg shadow-md 
                         ${selectedMakeFilters.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                         hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full">
+											<label className="flex justify-between items-center w-full cursor-pointer cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -840,7 +841,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "make");
 													}}
-													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
 												/>
 											</label>
 											<p className="text-sm mt-2">123 Cars Available.</p>
@@ -850,17 +851,17 @@ const CarListing = () => {
 							)}
 
 							{selectedFilter === "Model" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-									<h3 className="font-semibold text-lg col-span-full">Model</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
+									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Model</h3>
 									{modelOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
                         p-4 rounded-lg shadow-md 
                         ${selectedModelFilters.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                         hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full">
+											<label className="flex justify-between items-center w-full cursor-pointer cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -869,7 +870,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "model");
 													}}
-													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
 												/>
 											</label>
 											<p className="text-sm mt-2">13 Cars Available.</p>
@@ -879,17 +880,17 @@ const CarListing = () => {
 							)}
 
 							{selectedFilter === "Fuel" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-									<h3 className="font-semibold text-lg col-span-full">Fuel Type</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
+									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Fuel Type</h3>
 									{fuelOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
                       p-4 rounded-lg shadow-md 
                       ${selectedFuelFilters.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                       hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full">
+											<label className="flex justify-between items-center w-full cursor-pointer cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -898,7 +899,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "fuel");
 													}}
-													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
 												/>
 											</label>
 											<p className="text-sm mt-2">123 Cars Available.</p>
@@ -908,17 +909,17 @@ const CarListing = () => {
 							)}
 
 							{selectedFilter === "Body Style" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-									<h3 className="font-semibold text-lg col-span-full">Year</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
+									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Year</h3>
 									{bodyStyleOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
                         p-4 rounded-lg shadow-md 
                         ${selectedBodyFilters.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                         hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full">
+											<label className="flex justify-between items-center w-full cursor-pointer cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -927,7 +928,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "bodystyle");
 													}}
-													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
 												/>
 											</label>
 											<p className="text-sm mt-2">123 Cars Available.</p>
@@ -937,17 +938,17 @@ const CarListing = () => {
 							)}
 
 							{selectedFilter === "Features" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-									<h3 className="font-semibold text-lg col-span-full">Features</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
+									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Features</h3>
 									{featuresOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
                         p-4 rounded-lg shadow-md 
                         ${selectedFeatureFilters.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                         hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full">
+											<label className="flex justify-between items-center w-full cursor-pointer cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -956,7 +957,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "feature");
 													}}
-													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
 												/>
 											</label>
 											<p className="text-sm mt-2">123 Cars Available.</p>
@@ -966,17 +967,17 @@ const CarListing = () => {
 							)}
 
 							{selectedFilter === "Color" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-									<h3 className="font-semibold text-lg col-span-full">Colors</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
+									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Colors</h3>
 									{colorOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
                         p-4 rounded-lg shadow-md 
                         ${selectedColorFilters.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                         hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full">
+											<label className="flex justify-between items-center w-full cursor-pointer cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -985,7 +986,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "color");
 													}}
-													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
 												/>
 											</label>
 											<p className="text-sm mt-2">123 Cars Available.</p>
@@ -995,17 +996,17 @@ const CarListing = () => {
 							)}
 
 							{selectedFilter === "Trim" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-									<h3 className="font-semibold text-lg col-span-full">Trim</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
+									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Trim</h3>
 									{trimOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
                         p-4 rounded-lg shadow-md 
                         ${selectedTrimFilters.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                         hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full">
+											<label className="flex justify-between items-center w-full cursor-pointer cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -1014,7 +1015,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "trim");
 													}}
-													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
 												/>
 											</label>
 											<p className="text-sm mt-2">123 Cars Available.</p>
@@ -1024,17 +1025,17 @@ const CarListing = () => {
 							)}
 
 							{selectedFilter === "Transmission" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-									<h3 className="font-semibold text-lg col-span-full">Transmission</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
+									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Transmission</h3>
 									{transmissionOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
                         p-4 rounded-lg shadow-md 
                         ${selectedTransmissionFilters.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                         hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full">
+											<label className="flex justify-between items-center w-full cursor-pointer cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -1043,7 +1044,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "transmission");
 													}}
-													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
 												/>
 											</label>
 											<p className="text-sm mt-2">123 Cars Available.</p>

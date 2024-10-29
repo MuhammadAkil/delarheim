@@ -187,7 +187,7 @@ export default function VehicleInfo() {
 				<div className="space-y-1">
 					{AccordionData.map((item, index) => (
 						<div key={index}>
-							<button onClick={() => toggleAccordion(index)} className={`flex justify-between items-center w-full p-4 text-left rounded-md focus:outline-none ${openIndex === index ? "bg-[#6b5fff] rounded-b-none text-white" : "border bg-[rgb(242, 242, 242)] text-black"}`}>
+							<button onClick={() => toggleAccordion(index)} className={`flex justify-between items-center w-full p-4 text-left rounded-md focus:outline-none ${openIndex === index ? "bg-[#6b5fff] rounded-b-none text-white" : "border !bg-[#f2f2f2] text-black"}`}>
 								<span>{item.title}</span>
 								<span className="text-black font-medium text-xl">{openIndex === index ? <FontAwesomeIcon icon={faMinus} className="text-white" /> : <FontAwesomeIcon icon={faPlus} />}</span>
 							</button>
