@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus, faExpand } from "@fortawesome/free-solid-svg-icons";
@@ -14,7 +14,7 @@ const vehicleDetails = [
 	{ label: "Vehicle No", value: "ABC-1234" },
 	{ label: "Trim", value: "LS" },
 	{ label: "Drivetrain", value: "FWD" },
-	{ label: "Transmission", value: "6-Speed Manual" },
+	{ label: "Transmission", value: "Manual" },
 	{ label: "Engine", value: "1.8L I4" },
 	{ label: "Mileage", value: "120,587 km" },
 ];
@@ -107,9 +107,9 @@ export default function VehicleInfo() {
 		}
 	};
 	return (
-		<div className="max-w-screen-xl mx-auto p-6">
+		<div className="max-w-screen-xl mx-auto pt-10 pb-10 px-6">
 			{/* Carousel and Vehicle Details Row */}
-			<div className="flex flex-col md:flex-row">
+			<div className="flex flex-col gap-9 md:flex-row">
 				{/* Carousel Section */}
 				<div className="relative flex flex-col items-center w-full md:w-1/2 ">
 					<Image className=" w-full rounded-lg transition-opacity duration-500 cursor-pointer" src={images[currentIndex]} alt={`Vehicle Image ${currentIndex + 1}`} width={500} height={300} onClick={openSlider} />
@@ -126,18 +126,20 @@ export default function VehicleInfo() {
 
 					{/* Next/Previous Buttons */}
 					<div className="flex justify-between w-full -mt-14">
-						<button className="absolute left-0 lg:-left-1 top-1/2 transform -translate-y-1/2 rounded-full shadow-md h-10 w-10 bg-[#6b5fff]" onClick={prevImage}>
+						<button className="absolute left-0 lg:-left-1 top-1/2 transform text-white -translate-y-1/2 rounded-full shadow-md h-10 w-10 bg-[#6b5fff]" onClick={prevImage}>
 							&#10094;
 						</button>
-						<button className="absolute right-0 lg:-right-1 top-1/2 transform -translate-y-1/2 rounded-full shadow-md h-10 w-10 bg-[#6b5fff]" onClick={nextImage}>
+						<button className="absolute right-0 lg:-right-1 top-1/2 transform text-white -translate-y-1/2 rounded-full shadow-md h-10 w-10 bg-[#6b5fff]" onClick={nextImage}>
 							&#10095;
 						</button>
 					</div>
 				</div>
 
 				{/* Vehicle Details Section */}
-				<div className="w-full md:w-1/2 flex flex-col lg:ps-3">
-					<h3 className="text-lg font-semibold mb-4 text-black mt-3">Vehicle Info</h3>
+				<div className="w-full md:w-1/2 flex flex-col lg:ps-3 mt-11 lg:mt-0">
+					<div className="relative inline-block mb-2">
+						<h2 className="block w-ful text-[#3d3838] bg-clip-text font-semibold text-lg sm:text-2xl">Vehicle Info</h2>
+					</div>
 
 					<div className="grid grid-cols-2 gap-4 rounded-lg  bg-gray-200 p-6 ">
 						{vehicleDetails.map((detail, index) => (
@@ -150,10 +152,13 @@ export default function VehicleInfo() {
 
 					{/* Key Features Section */}
 					<div className="mt-6 flex flex-col space-y-4 md:1/2 flex-wrap">
-						<h3 className="text-lg font-semibold mb-2 text-black">Key Features</h3>
-						<div className="flex space-4 gap-3 flex-wrap">
+						<div className="relative inline-block ">
+							<h2 className="block w-ful text-[#3d3838] bg-clip-text font-semibold text-lg sm:text-2xl">Key Features</h2>
+						</div>
+
+						<div className="grid grid-cols-2 lg:grid-cols-4 space-4 gap-3 size-full lg:size-auto">
 							{features.map((feature, index) => (
-								<div key={index} className="flex items-center space-y-1 flex-col max-w-[140px] justify-center text-center border border-gray-300 p-4 rounded-md w-full">
+								<div key={index} className="flex items-center space-y-1 flex-col  lg:max-w-[140px] justify-center text-center border border-gray-300 p-4 rounded-md w-full">
 									{feature.icon}
 									<span className="text-black w-[12ch]">{feature.label}</span>
 								</div>
@@ -162,7 +167,7 @@ export default function VehicleInfo() {
 					</div>
 				</div>
 			</div>
-			<div className=" -mt-5 grid grid-cols-[auto_auto_auto] gap-4 md:w-1/2 rounded-lg py-8 px-4 bg-[#6b5fff] hover:bg-[#6b5fff]/95 cursor-pointer">
+			<div className=" mt-5 lg:-mt-5 grid grid-cols-[auto_auto_auto] gap-4 md:w-1/2 rounded-lg py-8 px-4 bg-[#6b5fff] hover:bg-[#6b5fff]/95 cursor-pointer">
 				<div className="h-9 bg-white rounded-lg flex justify-center items-center p-2">
 					<Logo />
 				</div>
@@ -176,16 +181,18 @@ export default function VehicleInfo() {
 			</div>
 
 			<div className="w-full md:w-1/2 mt-10">
-				<h3 className="text-lg text-black font-semibold mb-4">Vehicle Details</h3>
+				<div className="relative inline-block text-center mb-2">
+					<h2 className="block w-ful text-[#3d3838] bg-clip-text font-semibold text-lg sm:text-2xl">Vehicle Details</h2>
+				</div>
 				<div className="space-y-1">
 					{AccordionData.map((item, index) => (
 						<div key={index}>
-							<button onClick={() => toggleAccordion(index)} className={`flex justify-between items-center w-full p-4 text-left rounded-md focus:outline-none ${openIndex === index ? "bg-[#6b5fff] rounded-b-none text-white" : "bg-gray-300 text-black"}`}>
+							<button onClick={() => toggleAccordion(index)} className={`flex justify-between items-center w-full p-4 text-left rounded-md focus:outline-none ${openIndex === index ? "bg-[#6b5fff] rounded-b-none text-white" : "border bg-[rgb(242, 242, 242)] text-black"}`}>
 								<span>{item.title}</span>
 								<span className="text-black font-medium text-xl">{openIndex === index ? <FontAwesomeIcon icon={faMinus} className="text-white" /> : <FontAwesomeIcon icon={faPlus} />}</span>
 							</button>
 							{openIndex === index && (
-								<div className="bg-gray-200 p-4 rounded-b-md">
+								<div className="bg-[#f2f2f2] p-4 rounded-b-md">
 									<div className="grid grid-cols-2 gap-x-3 rounded-lg">
 										{item.content.map((detail, detailIndex) => (
 											<div key={detailIndex} className="border-b  bg-white p-2">

@@ -44,7 +44,7 @@ const Sidebar = () => {
 			{/* Desktop Navbar */}
 			<nav className="hidden lg:flex fixed h-16 items-center px-4 py-3 w-full bg-white">
 				<div className="flex items-center flex-grow">
-					<a href="/home" className="mr-auto">
+					<a href="/" className="mr-auto">
 						<Logo width={180} className="cursor-pointer" />
 					</a>
 				</div>
@@ -56,9 +56,9 @@ const Sidebar = () => {
 			</nav>
 
 			{/* Mobile Navbar */}
-			<nav className="flex lg:hidden fixed h-16 items-center px-4 py-3 w-full bg-white">
+			<nav className="flex lg:hidden fixed h-16 items-center px-4 py-3 w-full bg-white border-b shadow-lg">
 				<div className="flex items-center flex-grow z-10">
-					<a href="/home" className="mr-auto">
+					<a href="/" className="mr-auto">
 						<Logo width={180} className="cursor-pointer" />
 					</a>
 				</div>
@@ -73,8 +73,7 @@ const Sidebar = () => {
 			{sidebarOpen && (
 				<div ref={sidebarRef} className="fixed top-0 right-0 w-[250px] h-full bg-[#1a1a1a] shadow-lg transition-transform duration-300 overflow-auto">
 					<div className="text-white bg-white h-[65px] p-6 font-bold text-xl mb-2">
-						<a href="/home">
-						</a>
+						<a href="/"></a>
 					</div>
 					<button onClick={toggleSidebar} className="absolute top-4 right-5 text-white  focus:outline-none">
 						<svg className="bg-[#18746c] p-1.5 rounded-full w-8 h-8" fill="none" stroke="white" viewBox="0 0 24 24">
@@ -85,26 +84,19 @@ const Sidebar = () => {
 					<div className="p-6">
 						<ul className="space-y-4">
 							<Link href="/" passHref>
-								<button
-									onClick={() => toggleDropdown("Home")}
-									className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isHomeActive ? "text-[#0870d8]" : "text-white hover:text-[#0870d8]"}`}
-								>
+								<button onClick={() => toggleDropdown("Home")} className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isHomeActive ? "text-[#0870d8]" : "text-white hover:text-[#0870d8]"}`}>
 									Home
 								</button>
 							</Link>
 
-
-							<button onClick={() => toggleDropdown("Home")}
-								className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isFinancingActive ? "text-[#0870d8]" : "text-white hover:text-[#0870d8]"}`}>
-								<Link href={"/FinancingPlan"} passHref>Financing</Link>
+							<button onClick={() => toggleDropdown("Home")} className={`flex items-center font-semibold text-[16px] transition-colors duration-300 ${isFinancingActive ? "text-[#0870d8]" : "text-white hover:text-[#0870d8]"}`}>
+								<Link href={"/financing"} passHref>
+									Financing
+								</Link>
 							</button>
 
-
 							{["Inventory", "Buy Or Sell", "Contact Us", "More"].map((item, index) => {
-								const itemRoute = item === "Inventory" ? "/inventory" :
-									item === "Buy Or Sell" ? "/sell-car" :
-										item === "Contact Us" ? "/ContactUS" :
-											null; // No direct route for "More"
+								const itemRoute = item === "Inventory" ? "/inventory" : item === "Buy Or Sell" ? "/sell-car" : item === "Contact Us" ? "/contact-us" : null; // No direct route for "More"
 
 								const isActive = pathname === itemRoute;
 
@@ -128,12 +120,7 @@ const Sidebar = () => {
 														onClick={() => toggleDropdown("More")}
 													>
 														{item}
-														<svg
-															className={`w-5 h-5 transform transition-transform duration-300 ${openDropdown === "More" ? "rotate-180" : ""}`}
-															fill="none"
-															stroke="currentColor"
-															viewBox="0 0 24 24"
-														>
+														<svg className={`w-5 h-5 transform transition-transform duration-300 ${openDropdown === "More" ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
 															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
 														</svg>
 													</button>
@@ -158,9 +145,6 @@ const Sidebar = () => {
 									</li>
 								);
 							})}
-
-
-
 						</ul>
 					</div>
 				</div>

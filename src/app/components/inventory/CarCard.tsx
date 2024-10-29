@@ -36,13 +36,13 @@ const CarCard: React.FC<{ car: Car }> = ({ car }) => (
       <h2 className="text-sm text-gray-900">{car.year}</h2>
       <h2 className="text-sm font-semibold text-gray-900">{car.name}</h2>
 
-      <a href={'/vehicel-info'}>
-        <h3 className="text-sm font-semibold mt-4 flex items-center" style={{ color: '#6b5fff' }}>
+      <a href={'/vehicel-details'}>
+        <h3 className="text-sm font-semibold mt-4 flex items-center" style={{ color: '#5950d0' }}>
           Details
           <FaQuestionCircle className="ml-2" />
         </h3>
       </a>
-      <p style={{ color: '#6b5fff' }} className="text-md font-bold mt-3 text-right">
+      <p style={{ color: '#5950d0' }} className="text-md font-bold mt-3 text-right">
         ${car.price.toLocaleString()}
       </p>
 
@@ -53,8 +53,8 @@ const CarCard: React.FC<{ car: Car }> = ({ car }) => (
       </p>
 
       <div className="flex justify-center mt-4">
-        <a href={'/vehicel-info'} rel="noopener noreferrer" className="w-full" >
-          <button className="w-full px-4 py-2 text-white text-sm rounded-md transition duration-200" style={{ background: '#6b5fff' }}>
+        <a href={'/vehicel-details'} rel="noopener noreferrer" className="w-full" >
+          <button className="w-full px-4 py-2 text-white text-sm rounded-md transition duration-200" style={{ background: '#5950d0' }}>
 
             View Details
           </button>
