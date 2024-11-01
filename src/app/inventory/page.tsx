@@ -6,8 +6,8 @@ import CarCard, { Car } from "../components/inventory/CarCard";
 import { FaCar, FaCheckCircle, FaGasPump, FaTint, FaCarSide, FaClock, FaCheck, FaMoneyBillWave } from 'react-icons/fa';
 import { Dropdown, Button } from 'rizzui';
 import { RiCloseFill } from 'react-icons/ri';
+import RangeSlider from "../components/inventory/range-slider";
 // import { Slider } from "@nextui-org/react";
-
 
 const carsData: Car[] = [
 	{
@@ -99,9 +99,7 @@ interface Filters {
 	maxValue: number;
 }
 
-const Under30KOptions = [
-	{ label: "Under30K", value: "Under30K" },
-];
+const Under30KOptions = [{ label: "Under30K", value: "Under30K" }];
 
 const yearOptions = [
 	{ label: "2023", value: "2023" },
@@ -114,62 +112,62 @@ const yearOptions = [
 ];
 
 const makeOptions = [
-	{ label: 'Tesla', value: 'tesla' },
-	{ label: 'Toyota', value: 'toyota' },
-	{ label: 'Ford', value: 'ford' },
-	{ label: 'Honda', value: 'honda' },
-	{ label: 'BMW', value: 'bmw' },
+	{ label: "Tesla", value: "tesla" },
+	{ label: "Toyota", value: "toyota" },
+	{ label: "Ford", value: "ford" },
+	{ label: "Honda", value: "honda" },
+	{ label: "BMW", value: "bmw" },
 ];
 
 const modelOptions = [
-	{ label: 'Model Y', value: 'Model Y' },
-	{ label: 'Corolla', value: 'Corolla' },
-	{ label: 'TLX A-SPEC', value: 'TLX A-SPEC' },
-	{ label: 'RAV4', value: 'RAV4' },
+	{ label: "Model Y", value: "Model Y" },
+	{ label: "Corolla", value: "Corolla" },
+	{ label: "TLX A-SPEC", value: "TLX A-SPEC" },
+	{ label: "RAV4", value: "RAV4" },
 ];
 
 const fuelOptions = [
-	{ label: 'Gasoline', value: 'gasoline' },
-	{ label: 'Diesel', value: 'diesel' },
-	{ label: 'Electric', value: 'electric' },
-	{ label: 'Hybrid', value: 'hybrid' },
+	{ label: "Gasoline", value: "gasoline" },
+	{ label: "Diesel", value: "diesel" },
+	{ label: "Electric", value: "electric" },
+	{ label: "Hybrid", value: "hybrid" },
 ];
 
 const bodyStyleOptions = [
-	{ label: 'Sedan', value: 'Sedan' },
-	{ label: 'SUV', value: 'SUV' },
+	{ label: "Sedan", value: "Sedan" },
+	{ label: "SUV", value: "SUV" },
 	// { label: 'Truck', value: 'truck' },
 	// { label: 'Coupe', value: 'coupe' },
 	// { label: 'Convertible', value: 'convertible' },
 ];
 
 const featuresOptions = [
-	{ label: 'Bluetooth', value: 'bluetooth' },
-	{ label: 'Backup Camera', value: 'backup_camera' },
-	{ label: 'Navigation System', value: 'navigation' },
-	{ label: 'Heated Seats', value: 'heated_seats' },
-	{ label: 'Sunroof', value: 'sunroof' },
+	{ label: "Bluetooth", value: "bluetooth" },
+	{ label: "Backup Camera", value: "backup_camera" },
+	{ label: "Navigation System", value: "navigation" },
+	{ label: "Heated Seats", value: "heated_seats" },
+	{ label: "Sunroof", value: "sunroof" },
 ];
 
 const colorOptions = [
-	{ label: 'Red', value: 'red' },
-	{ label: 'Blue', value: 'blue' },
-	{ label: 'Black', value: 'black' },
-	{ label: 'White', value: 'white' },
-	{ label: 'Silver', value: 'silver' },
+	{ label: "Red", value: "red" },
+	{ label: "Blue", value: "blue" },
+	{ label: "Black", value: "black" },
+	{ label: "White", value: "white" },
+	{ label: "Silver", value: "silver" },
 ];
 
 const trimOptions = [
-	{ label: 'Base', value: 'base' },
-	{ label: 'Sport', value: 'sport' },
-	{ label: 'Luxury', value: 'luxury' },
-	{ label: 'Performance', value: 'performance' },
+	{ label: "Base", value: "base" },
+	{ label: "Sport", value: "sport" },
+	{ label: "Luxury", value: "luxury" },
+	{ label: "Performance", value: "performance" },
 ];
 
 const transmissionOptions = [
-	{ label: 'Automatic', value: 'automatic' },
-	{ label: 'Manual', value: 'manual' },
-	{ label: 'CVT', value: 'cvt' },
+	{ label: "Automatic", value: "automatic" },
+	{ label: "Manual", value: "manual" },
+	{ label: "CVT", value: "cvt" },
 ];
 
 const CarListing = () => {
@@ -180,7 +178,6 @@ const CarListing = () => {
 	const [sortOrder, setSortOrder] = useState<string>("");
 	const [openFilterModal, setOpenFilterModal] = useState<boolean>(false);
 	// const [isUnder30KSelected, setIsUnder30KSelected] = useState(false);
-
 
 	const [selectedYearFilters, setSelectedYearFilters] = useState<string[]>([]);
 	const [Under30K, setUnder30K] = useState<string[]>([]);
@@ -205,8 +202,7 @@ const CarListing = () => {
 		if (value < maxValue) {
 			setMinValue(value);
 			handleSearch();
-		}
-		else {
+		} else {
 			setMinValue(maxValue - 1);
 			handleSearch();
 		}
@@ -217,8 +213,7 @@ const CarListing = () => {
 		if (value > minValue) {
 			setMaxValue(value);
 			handleSearch();
-		}
-		else {
+		} else {
 			setMaxValue(minValue + 1);
 			handleSearch();
 		}
@@ -232,24 +227,24 @@ const CarListing = () => {
 		const updatedFilters = selectedFilters.filter((f) => f !== filter);
 		setSelectedFilters(updatedFilters);
 
-		if (filter === 'Under 30K') {
+		if (filter === "Under 30K") {
 			setUnder30K([]);
 		} else if (selectedMakeFilters.includes(filter)) {
-			setSelectedMakeFilters(selectedMakeFilters.filter(f => f !== filter));
+			setSelectedMakeFilters(selectedMakeFilters.filter((f) => f !== filter));
 		} else if (selectedYearFilters.includes(filter)) {
-			setSelectedYearFilters(selectedYearFilters.filter(f => f !== filter));
+			setSelectedYearFilters(selectedYearFilters.filter((f) => f !== filter));
 		} else if (selectedModelFilters.includes(filter)) {
-			setselectedModelFilters(selectedModelFilters.filter(f => f !== filter));
+			setselectedModelFilters(selectedModelFilters.filter((f) => f !== filter));
 		} else if (selectedBodyFilters.includes(filter)) {
-			setselectedBodyFilters(selectedBodyFilters.filter(f => f !== filter));
+			setselectedBodyFilters(selectedBodyFilters.filter((f) => f !== filter));
 		} else if (selectedFeatureFilters.includes(filter)) {
-			setselectedFeatureFilters(selectedFeatureFilters.filter(f => f !== filter));
+			setselectedFeatureFilters(selectedFeatureFilters.filter((f) => f !== filter));
 		} else if (selectedColorFilters.includes(filter)) {
-			setselectedColorFilters(selectedColorFilters.filter(f => f !== filter));
+			setselectedColorFilters(selectedColorFilters.filter((f) => f !== filter));
 		} else if (selectedFuelFilters.includes(filter)) {
-			setselectedFuelFilters(selectedFuelFilters.filter(f => f !== filter));
+			setselectedFuelFilters(selectedFuelFilters.filter((f) => f !== filter));
 		} else if (selectedTrimFilters.includes(filter)) {
-			setselectedTrimFilters(selectedTrimFilters.filter(f => f !== filter));
+			setselectedTrimFilters(selectedTrimFilters.filter((f) => f !== filter));
 		}
 
 		const filters: Filters = {
@@ -286,14 +281,11 @@ const CarListing = () => {
 
 		if (order === "highest") {
 			sortedCars.sort((a, b) => b.price - a.price);
-		}
-		else if (order === "lowest") {
+		} else if (order === "lowest") {
 			sortedCars.sort((a, b) => a.price - b.price);
-		}
-		else if (order === "newest") {
+		} else if (order === "newest") {
 			sortedCars.sort((a, b) => b.year - a.year);
-		}
-		else if (order === "oldest") {
+		} else if (order === "oldest") {
 			sortedCars.sort((a, b) => a.year - b.year);
 		}
 
@@ -301,10 +293,7 @@ const CarListing = () => {
 		setSortOrder(order);
 	};
 
-	const handleMultiSelectChange = (
-		value: string,
-		filterType: 'make' | 'year' | 'model' | 'fuel' | 'bodystyle' | 'feature' | 'color' | 'transmission' | 'trim' | 'Under30K'
-	) => {
+	const handleMultiSelectChange = (value: string, filterType: "make" | "year" | "model" | "fuel" | "bodystyle" | "feature" | "color" | "transmission" | "trim" | "Under30K") => {
 		const filterMapping: { [key: string]: [string[], React.Dispatch<React.SetStateAction<string[]>>] } = {
 			make: [selectedMakeFilters, setSelectedMakeFilters],
 			year: [selectedYearFilters, setSelectedYearFilters],
@@ -316,28 +305,23 @@ const CarListing = () => {
 			trim: [selectedTrimFilters, setselectedTrimFilters],
 			transmission: [selectedTransmissionFilters, setselectedTransmissionFilters],
 			Under30K: [Under30K, setUnder30K],
-
 		};
 
-		const [currentFilters, setFilters] = filterMapping[filterType] || [[], () => { }];
+		const [currentFilters, setFilters] = filterMapping[filterType] || [[], () => {}];
 
-		const updatedFilters = currentFilters.includes(value)
-			? currentFilters.filter(item => item !== value)
-			: [...currentFilters, value];
+		const updatedFilters = currentFilters.includes(value) ? currentFilters.filter((item) => item !== value) : [...currentFilters, value];
 
 		setFilters(updatedFilters);
 		setIsClearDisabled(updatedFilters.length === 0);
 
-		if (filterType === 'Under30K') {
+		if (filterType === "Under30K") {
 			const isCurrentlyUnder30KActive = updatedFilters.length > 0;
 
 			if (isCurrentlyUnder30KActive) {
 				setMinValue(0);
 				setMaxValue(30000);
 				setIsUnder30KActive([...updatedFilters]);
-			}
-
-			else {
+			} else {
 				setMinValue(0);
 				setMaxValue(1000000);
 				setIsUnder30KActive([]);
@@ -366,7 +350,6 @@ const CarListing = () => {
 	};
 
 	const handleSearch = () => {
-
 		const filters: Filters = {
 			make: selectedMakeFilters,
 			year: selectedYearFilters,
@@ -393,29 +376,15 @@ const CarListing = () => {
 			const modelMatch = filters.model.length === 0 || filters.model.includes(car.model);
 			const fuelMatch = filters.fuel.length === 0 || filters.fuel.includes(car.fuel);
 			const bodystyleMatch = filters.bodystyle.length === 0 || filters.bodystyle.includes(car.bodyStyle);
-			const featureMatch = filters.feature.length === 0 || filters.feature.some(feature => car.features.includes(feature));
+			const featureMatch = filters.feature.length === 0 || filters.feature.some((feature) => car.features.includes(feature));
 			const colorMatch = filters.color.length === 0 || filters.color.includes(car.color);
 			const trimMatch = filters.trim.length === 0 || filters.trim.includes(car.trim);
-			const priceMatch = car.price >= filters.minValue && car.price <= filters.maxValue;
+			const priceMatch = car.price >= minValue && car.price <= maxValue;
 
-			const carPrice = car.price;
-			const isUnder30K = carPrice < 30000;
+			const isUnder30K = car.price < 30000;
+			const under30KMatch = filters.under30K.length === 0 || (filters.under30K.includes("Under30K") && isUnder30K);
 
-			const under30KMatch = filters.under30K.length === 0 ||
-				(filters.under30K.includes("Under30K") && isUnder30K);
-
-			return (
-				makeMatch &&
-				yearMatch &&
-				modelMatch &&
-				fuelMatch &&
-				bodystyleMatch &&
-				featureMatch &&
-				colorMatch &&
-				trimMatch &&
-				under30KMatch &&
-				priceMatch
-			);
+			return makeMatch && yearMatch && modelMatch && fuelMatch && bodystyleMatch && featureMatch && colorMatch && trimMatch && under30KMatch && priceMatch;
 		});
 	};
 
@@ -472,7 +441,8 @@ const CarListing = () => {
 					</div>
 				</div>
 
-				<div className="flex flex-wrap items-center mb-4">
+				<div className="flex flex-wrap items-center py-4">
+					{selectedFilters && filtersApplied}
 					{filtersApplied &&
 						selectedFilters.map((filter) => (
 							<div key={filter} className="bg-gray-200 text-gray-700 px-2 py-1 rounded mr-2 flex items-center">
@@ -502,7 +472,7 @@ const CarListing = () => {
 							Price
 						</label>
 
-						<div className="relative w-full max-w-xl mx-auto mt-4">
+						{/* <div className="relative w-full max-w-xl mx-auto mt-4">
 							<div
 								className="absolute h-1 rounded-lg"
 								style={{
@@ -537,14 +507,13 @@ const CarListing = () => {
 								<span className="text-sm my-3">{minValue}</span>
 								<span className="text-sm my-3">{maxValue}</span>
 							</div>
-						</div>
+						</div> */}
 
 						<div className="grid grid-cols-3 gap-3">
 							<div className={`flex flex-col items-center justify-center p-4 rounded-md cursor-pointer  bg-gray-200`} onClick={() => handleCardClick("Under30K")}>
 								<div className="text-blue-500 text-3xl mb-1">💰</div>
 								<span className="text-sm">Under 30K</span>
 							</div>
-
 							{["Year", "Model", "Fuel Type", "Body Style", "Features", "Color", "Trim", "Transmission"].map((filter) => (
 								<div key={filter} className={`flex flex-col items-center justify-center p-4 rounded-md cursor-pointer  bg-gray-200`} onClick={() => handleCardClick(filter)}>
 									<div className="text-gray-700 text-3xl mb-1">
@@ -571,109 +540,25 @@ const CarListing = () => {
 				</div>
 			)}
 
+			{/* Price Slider */}
+
 			<div className="md:w-1/4 md:flex flex-col gap-3 px-5 mt-4">
 				<div className="hidden md:flex flex-col mb-4">
 					<label htmlFor="priceRange" className="mb-2 font-semibold text-lg">
 						Price
 					</label>
-					<div className="relative w-full max-w-xl mx-auto mt-8">
-						<div
-							className="absolute h-1 rounded-lg"
-							style={{
-								backgroundColor: "#5950d0",
-								left: `${(minValue / (isUnder30KActive.length > 0 ? 30000 : maxValue)) * 100}%`,
-								right: `${100 - (maxValue / (isUnder30KActive.length > 0 ? 30000 : 1000000)) * 100}%`,
-							}}
-						/>
-						<input
-							type="range"
-							min="0"
-							max={isUnder30KActive.length > 0 ? 30000 : 1000000}
-							value={minValue}
-							onChange={handleMinChange}
-							className="absolute w-full h-2 appearance-none bg-transparent pointer-events-auto slider-thumb"
-							style={{
-								background: `linear-gradient(
-        to right, 
-        grey 0%, 
-        grey ${(minValue / (isUnder30KActive.length > 0 ? 30000 : 1000000)) * 100}%, 
-        #6b5fff ${(minValue / (isUnder30KActive.length > 0 ? 30000 : 1000000)) * 100}%, 
-        #6b5fff ${(maxValue / (isUnder30KActive.length > 0 ? 30000 : 1000000)) * 100}%, 
-        grey ${(maxValue / (isUnder30KActive.length > 0 ? 30000 : 1000000)) * 100}%, 
-        grey 100%)`,
-								zIndex: minValue > 0 ? 0 : 0,
-							}}
-						/>
-						<input
-							type="range"
-							min="0"
-							max={isUnder30KActive.length > 0 ? 30000 : 1000000}
-							value={maxValue}
-							onChange={handleMaxChange}
-							className="absolute w-full h-2 appearance-none bg-transparent pointer-events-auto slider-thumb"
-							style={{
-								borderRadius: "20px",
-								background: ``,
-								zIndex: maxValue > 0 ? 0 : 0,
-							}}
-						/>
-
-						{/* Displaying pointers on top of sliders */}
-						<div className="relative z-5 flex justify-between mt-4">
-							<span className="text-sm">${minValue}</span>
-							<span className="text-sm">${maxValue}</span>
-						</div>
-
-						<style jsx>{`
-							.slider-thumb::-webkit-slider-thumb {
-								-webkit-appearance: none;
-								appearance: none;
-								width: 16px;
-								height: 16px;
-								border-radius: 50%;
-								background: #5950d0;
-								cursor: pointer;
-								position: relative;
+					<RangeSlider
+						value={[minValue, maxValue]} // Pass `minValue` and `maxValue` as value
+						onChange={(values) => {
+							if (Array.isArray(values)) {
+								setMinValue(values[0]);
+								setMaxValue(values[1]);
+								handleSearch(); // Call search function here to filter results as needed
 							}
-
-							.slider-thumb::-webkit-slider-thumb::before {
-								content: attr(value);
-								position: absolute;
-								top: -30px;
-								left: 50%;
-								transform: translateX(-50%);
-								background-color: #5950d0;
-								color: white;
-								padding: 2px 5px;
-								border-radius: 5px;
-								font-size: 12px;
-								white-space: nowrap;
-							}
-
-							.slider-thumb::-moz-range-thumb {
-								width: 16px;
-								height: 16px;
-								border-radius: 50%;
-								background: #5950d0;
-								cursor: pointer;
-								position: relative;
-							}
-
-							.slider-thumb::-moz-range-thumb::before {
-								content: attr(value);
-								position: absolute;
-								top: -30px;
-								left: 50%;
-								transform: translateX(-50%);
-								background-color: #5950d0;
-								color: white;
-								padding: 2px 5px;
-								border-radius: 5px;
-								font-size: 12px;
-								white-space: nowrap;
-							}
-						`}</style>
-					</div>
+						}}
+						min={0}
+						max={100000}
+					/>
 				</div>
 
 				<div className="hidden md:grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-3">
@@ -1057,14 +942,14 @@ const CarListing = () => {
 								<button
 									onClick={handleClearSelection}
 									className={`p-2 rounded-md text-black border border-solid border-black hover:border-0 hover:bg-[#6b5fff]/90 hover:text-white
-                   ${isClearDisabled ? " cursor-not-allowed text-black font-bold" : " font-bold hover:border-white"}`}
+                   ${isClearDisabled ? " cursor-not-allowed text-black" : " hover:border-white"}`}
 									disabled={isClearDisabled}
 								>
 									Clear Selection
 								</button>
 
 								<button className="p-2 text-white rounded-md hover:bg-[#6b5fff]/90 bg-[#6b5fff] hover:text-light" onClick={handleSearch}>
-									View All
+									View {yearOptions.length} Matches
 								</button>
 							</div>
 						</div>

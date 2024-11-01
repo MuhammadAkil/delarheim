@@ -6,12 +6,9 @@ import { cn } from "rizzui";
 import "rc-slider/assets/index.css";
 
 const rangeStyles = {
-	base: "[&>.rc-slider-rail]:bg-muted [&>.rc-slider-handle]:opacity-100 [&>.rc-slider-handle-dragging]:!shadow-none [&>.rc-slider-handle-dragging]:ring-4",
+	base: "[&>.rc-slider-rail]:bg-muted [&>.rc-slider-handle]:opacity-100 !z-0 [&>.rc-slider-handle-dragging]:!shadow-none [&>.rc-slider-handle-dragging]:ring-4",
 	size: {
-		sm: "[&>.rc-slider-rail]:h-0.5 [&>.rc-slider-track]:h-0.5 [&>.rc-slider-handle]:h-3 [&>.rc-slider-handle]:w-3 [&>.rc-slider-handle]:border-[3px]",
 		md: "[&>.rc-slider-rail]:h-1 [&>.rc-slider-track]:h-1 [&>.rc-slider-handle]:h-4 [&>.rc-slider-handle]:w-4 [&>.rc-slider-handle]:border-4 [&>.rc-slider-handle]:-mt-1.5",
-		lg: "[&>.rc-slider-rail]:h-2 [&>.rc-slider-track]:h-2 [&>.rc-slider-handle]:h-5 [&>.rc-slider-handle]:w-5 [&>.rc-slider-handle]:border-[5px] [&>.rc-slider-handle]:-mt-1.5",
-		xl: "[&>.rc-slider-rail]:h-3 [&>.rc-slider-track]:h-3 [&>.rc-slider-handle]:h-6 [&>.rc-slider-handle]:w-6 [&>.rc-slider-handle]:border-[6px] [&>.rc-slider-handle]:-mt-1.5",
 	},
 	color: {
 		custom: `[&>.rc-slider-track]:bg-[#6b5fff] 
@@ -30,31 +27,37 @@ export interface RangeSliderProps extends SliderProps {
 }
 
 const RangeSlider: React.FC<RangeSliderProps> = ({ size = "md", color = "custom", className, ...props }) => {
-	const [values, setValues] = useState<number[]>([0, 100000]);
+	const [minValue, setMinValue] = useState<number>(0);
+	const [maxValue, setMaxValue] = useState<number>(100000);
 
 	const onChange = (value: number | number[]) => {
 		if (Array.isArray(value)) {
-			let [minValue, maxValue] = value;
+			let [newMinValue, newMaxValue] = value;
 
-			if (minValue < maxValue) {
-				setValues([minValue, maxValue]);
-			} else {
-				setValues([maxValue - 1, maxValue]);
+			// Ensure min is not greater than max and max is not less than min
+			if (newMinValue >= newMaxValue) {
+				if (newMinValue === minValue) {
+					newMinValue = maxValue - 1;
+				} else {
+					newMaxValue = minValue + 1;
+				}
 			}
+
+			setMinValue(newMinValue);
+			setMaxValue(newMaxValue);
 		}
 	};
 
 	return (
 		<div className="flex flex-col items-center">
-			<Slider value={values} onChange={onChange} range min={0} max={100000} className={cn(rangeStyles.base, rangeStyles.size[size], rangeStyles.color[color], className)} {...props} />
+			<Slider value={[minValue, maxValue]} onChange={onChange} range min={0} max={1000000} className={cn(rangeStyles.base, rangeStyles.size[size], rangeStyles.color[color], className)} {...props} />
 			<div className="flex justify-between w-full mt-2">
-				<span className="text-sm">Min: {values[0]}</span>
-				<span className="text-sm">Max: {values[1]}</span>
+				<span className="text-sm">${minValue.toLocaleString()}</span>
+				<span className="text-sm">${maxValue.toLocaleString()}</span>
 			</div>
 		</div>
 	);
 };
 
 RangeSlider.displayName = "RangeSlider";
-
 export default RangeSlider;
