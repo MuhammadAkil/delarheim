@@ -96,9 +96,7 @@ interface Filters {
 	maxValue: number;
 }
 
-const Under30KOptions = [
-	{ label: "Under30K", value: "Under30K" },
-];
+const Under30KOptions = [{ label: "Under30K", value: "Under30K" }];
 
 const yearOptions = [
 	{ label: "2023", value: "2023" },
@@ -111,62 +109,62 @@ const yearOptions = [
 ];
 
 const makeOptions = [
-	{ label: 'Tesla', value: 'tesla' },
-	{ label: 'Toyota', value: 'toyota' },
-	{ label: 'Ford', value: 'ford' },
-	{ label: 'Honda', value: 'honda' },
-	{ label: 'BMW', value: 'bmw' },
+	{ label: "Tesla", value: "tesla" },
+	{ label: "Toyota", value: "toyota" },
+	{ label: "Ford", value: "ford" },
+	{ label: "Honda", value: "honda" },
+	{ label: "BMW", value: "bmw" },
 ];
 
 const modelOptions = [
-	{ label: 'Model Y', value: 'Model Y' },
-	{ label: 'Corolla', value: 'Corolla' },
-	{ label: 'TLX A-SPEC', value: 'TLX A-SPEC' },
-	{ label: 'RAV4', value: 'RAV4' },
+	{ label: "Model Y", value: "Model Y" },
+	{ label: "Corolla", value: "Corolla" },
+	{ label: "TLX A-SPEC", value: "TLX A-SPEC" },
+	{ label: "RAV4", value: "RAV4" },
 ];
 
 const fuelOptions = [
-	{ label: 'Gasoline', value: 'gasoline' },
-	{ label: 'Diesel', value: 'diesel' },
-	{ label: 'Electric', value: 'electric' },
-	{ label: 'Hybrid', value: 'hybrid' },
+	{ label: "Gasoline", value: "gasoline" },
+	{ label: "Diesel", value: "diesel" },
+	{ label: "Electric", value: "electric" },
+	{ label: "Hybrid", value: "hybrid" },
 ];
 
 const bodyStyleOptions = [
-	{ label: 'Sedan', value: 'Sedan' },
-	{ label: 'SUV', value: 'SUV' },
+	{ label: "Sedan", value: "Sedan" },
+	{ label: "SUV", value: "SUV" },
 	// { label: 'Truck', value: 'truck' },
 	// { label: 'Coupe', value: 'coupe' },
 	// { label: 'Convertible', value: 'convertible' },
 ];
 
 const featuresOptions = [
-	{ label: 'Bluetooth', value: 'bluetooth' },
-	{ label: 'Backup Camera', value: 'backup_camera' },
-	{ label: 'Navigation System', value: 'navigation' },
-	{ label: 'Heated Seats', value: 'heated_seats' },
-	{ label: 'Sunroof', value: 'sunroof' },
+	{ label: "Bluetooth", value: "bluetooth" },
+	{ label: "Backup Camera", value: "backup_camera" },
+	{ label: "Navigation System", value: "navigation" },
+	{ label: "Heated Seats", value: "heated_seats" },
+	{ label: "Sunroof", value: "sunroof" },
 ];
 
 const colorOptions = [
-	{ label: 'Red', value: 'red' },
-	{ label: 'Blue', value: 'blue' },
-	{ label: 'Black', value: 'black' },
-	{ label: 'White', value: 'white' },
-	{ label: 'Silver', value: 'silver' },
+	{ label: "Red", value: "red" },
+	{ label: "Blue", value: "blue" },
+	{ label: "Black", value: "black" },
+	{ label: "White", value: "white" },
+	{ label: "Silver", value: "silver" },
 ];
 
 const trimOptions = [
-	{ label: 'Base', value: 'base' },
-	{ label: 'Sport', value: 'sport' },
-	{ label: 'Luxury', value: 'luxury' },
-	{ label: 'Performance', value: 'performance' },
+	{ label: "Base", value: "base" },
+	{ label: "Sport", value: "sport" },
+	{ label: "Luxury", value: "luxury" },
+	{ label: "Performance", value: "performance" },
 ];
 
 const transmissionOptions = [
-	{ label: 'Automatic', value: 'automatic' },
-	{ label: 'Manual', value: 'manual' },
-	{ label: 'CVT', value: 'cvt' },
+	{ label: "Automatic", value: "automatic" },
+	{ label: "Manual", value: "manual" },
+	{ label: "CVT", value: "cvt" },
 ];
 
 const CarListing = () => {
@@ -201,8 +199,7 @@ const CarListing = () => {
 		if (value < maxValue) {
 			setMinValue(value);
 			handleSearch();
-		}
-		else {
+		} else {
 			setMinValue(maxValue - 1);
 			handleSearch();
 		}
@@ -220,8 +217,7 @@ const CarListing = () => {
 		if (value > minValue) {
 			setMaxValue(value);
 			handleSearch();
-		}
-		else {
+		} else {
 			setMaxValue(minValue + 1);
 			handleSearch();
 		}
@@ -270,14 +266,11 @@ const CarListing = () => {
 
 		if (order === "highest") {
 			sortedCars.sort((a, b) => b.price - a.price);
-		}
-		else if (order === "lowest") {
+		} else if (order === "lowest") {
 			sortedCars.sort((a, b) => a.price - b.price);
-		}
-		else if (order === "newest") {
+		} else if (order === "newest") {
 			sortedCars.sort((a, b) => b.year - a.year);
-		}
-		else if (order === "oldest") {
+		} else if (order === "oldest") {
 			sortedCars.sort((a, b) => a.year - b.year);
 		}
 
@@ -319,9 +312,7 @@ const CarListing = () => {
 		const currentFilters = filterMapping[filterType] || [];
 		const setFilters = filterSetterMapping[filterType] || (() => {});
 
-		const updatedFilters = currentFilters.includes(value)
-			? currentFilters.filter(item => item !== value)
-			: [...currentFilters, value];
+		const updatedFilters = currentFilters.includes(value) ? currentFilters.filter((item) => item !== value) : [...currentFilters, value];
 
 		setFilters(updatedFilters);
 		setIsClearDisabled(updatedFilters.length === 0);
@@ -341,9 +332,7 @@ const CarListing = () => {
 				setMinValue(0);
 				setMaxValue(30000);
 				setIsUnder30KActive([...updatedFilters]);
-			}
-
-			else {
+			} else {
 				setMinValue(0);
 				setMaxValue(1000000);
 				setIsUnder30KActive([]);
@@ -377,7 +366,6 @@ const CarListing = () => {
 	};
 
 	const handleSearch = () => {
-
 		const filters: Filters = {
 			make: selectedMakeFilters,
 			year: selectedYearFilters,
@@ -415,11 +403,8 @@ const CarListing = () => {
 			const trimMatch = filters.trim.length === 0 || filters.trim.includes(car.trim);
 			const priceMatch = car.price >= (filters.minValue || 0) && car.price <= (filters.maxValue || 1000000);
 
-			const carPrice = car.price;
-			const isUnder30K = carPrice < 30000;
-
-			const under30KMatch = filters.under30K.length === 0 ||
-				(filters.under30K.includes("Under30K") && isUnder30K);
+			const isUnder30K = car.price < 30000;
+			const under30KMatch = filters.under30K.length === 0 || (filters.under30K.includes("Under30K") && isUnder30K);
 
 			return makeMatch && yearMatch && modelMatch && fuelMatch && bodystyleMatch && featureMatch && colorMatch && trimMatch && priceMatch && under30KMatch;
 		});
@@ -962,7 +947,7 @@ const CarListing = () => {
 								<button
 									onClick={handleClearSelection}
 									className={`p-2 rounded-md text-black border border-solid border-black hover:border-0 hover:bg-[#6b5fff]/90 hover:text-white
-                   ${isClearDisabled ? " cursor-not-allowed text-black font-bold" : " font-bold hover:border-white"}`}
+                   ${isClearDisabled ? " cursor-not-allowed text-black" : " hover:border-white"}`}
 									disabled={isClearDisabled}
 								>
 									Clear Selection

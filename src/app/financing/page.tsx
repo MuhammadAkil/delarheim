@@ -95,7 +95,7 @@ const CustomCard: React.FC<CustomCardProps> = ({ imageSrc, description, style })
 			<img src={imageSrc} className="w-full h-55 mt-10" alt="Card image" />
 
 			<div className="p-3 bg-gray-100 h-full">
-				<Link className="text-2xl font-bold hover:underline text-[#0870d8]" href={"#"}>
+				<Link className="text-lg font-semibold hover:underline text-[#0870d8]" href={"#"}>
 					{description}
 				</Link>
 			</div>
