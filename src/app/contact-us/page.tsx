@@ -7,40 +7,37 @@ import Image from "next/image";
 const ContactUs = () => {
 	return (
 		<div className="max-w-6xl mx-auto">
-			<div className="relative flex items-start py-5 ">
-				{/* Background and clip-path, hide on small screens */}
-				<div className="absolute inset-0 bg-[#6b5fff] clip-path-background hidden lg:block"></div>
+			<div className="relative flex flex-col items-center py-5 lg:flex-row lg:items-start">
+				{/* Background and clip-path */}
+				<div className="absolute inset-0 bg-[#6b5fff] clip-path-background"></div>
 
-				<div className="absolute top-2/2 left-2/2 z-10 text-center px-4 flex flex-col items-center lg:text-white text-black lg:static" style={{ marginLeft: "11em" }}>
+				<div className="relative xl:left-[20%] z-10 text-center px-4 flex flex-col items-center text-white">
 					<h2 className="text-2xl font-bold py-5">Contact Us</h2>
 
-					<div className="grid grid-cols-3 gap-4 w-full max-w-[30rem] mx-auto hidden lg:block">
-						<p className="col-span-3 px-3">
+					<div className="grid grid-cols-1 gap-4 w-full max-w-[30rem] mx-auto">
+						<p className="col-span-1 px-3 lg:col-span-3">
 							We are available 24 hours a day, 7 days a week. Chat with us, call us at <strong>1 (888) 606-0614</strong> or ask us a question. We are also available on Facebook, Messenger, WhatsApp, and Instagram.
 						</p>
 					</div>
 
-					<div className="space-y-4 w-full max-w-[20rem] mx-auto hidden lg:block">
-						<button className="bg-[rgb(11,34,96)] hover:bg-[#0b2260] text-white py-2 px-4 rounded-[20px] mx-2">Call Us</button>
-						<button className="bg-[rgb(11,34,96)] hover:bg-[#0b2260] text-white py-2 px-4 rounded-[20px] mx-2">Chat Now</button>
-						<button className="bg-[rgb(11,34,96)] hover:bg-[#0b2260] text-white py-2 px-4 rounded-[20px] mx-2">Ask Us</button>
+					<div className="mt-5 space-y-2 w-full max-w-[20rem] mx-auto flex flex-col items-center lg:flex-row lg:space-x-2 lg:space-y-0">
+						<button className="bg-[rgb(11,34,96)] hover:bg-[#0b2260] text-white py-2 px-4 rounded-[20px] w-full lg:w-auto">Call Us</button>
+						<button className="bg-[rgb(11,34,96)] hover:bg-[#0b2260] text-white py-2 px-4 rounded-[20px] w-full lg:w-auto">Chat Now</button>
+						<button className="bg-[rgb(11,34,96)] hover:bg-[#0b2260] text-white py-2 px-4 rounded-[20px] w-full lg:w-auto">Ask Us</button>
 					</div>
 				</div>
 
-				{/* Image on right side, hide on small screens */}
-				<div className="relative h-[300px] w-[300px] rounded-[30px] overflow-hidden ml-auto absolute hidden lg:block" style={{ top: "40px", right: "140px" }}>
+				{/* Image on right side */}
+				<div className="relative h-[300px] w-[350px] rounded-[20px] overflow-hidden mt-5 lg:mt-0 lg:h-[300px] lg:w-[300px] lg:ml-auto lg:right-6 top-[20px]">
 					<Image src="/images/info-1.jpg" alt="Right Side" layout="fill" className="object-cover" />
 				</div>
 			</div>
 
 			<div className="py-16">
 				<div className="relative inline-block text-center w-full">
-					<h1 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">
-						Ask a Question
-					</h1>
+					<h1 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">Ask a Question</h1>
 					<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-1/2 w-[140px] h-[2px] bg-[#6F68EC]"></span>
 				</div>
-
 
 				<div className="p-6 rounded-lg">
 					{" "}
@@ -87,11 +84,9 @@ const ContactUs = () => {
 			{/* Additional Contact Heading */}
 
 			<div className="relative inline-block text-center w-full mb-7">
-					<h1 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">
-					You can also contact us via:
-					</h1>
-					<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-1/2 w-[140px] h-[2px] bg-[#6F68EC]"></span>
-				</div>
+				<h1 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">You can also contact us via:</h1>
+				<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-1/2 w-[140px] h-[2px] bg-[#6F68EC]"></span>
+			</div>
 
 			{/* Icons for WhatsApp, Facebook, Instagram */}
 			<div className="flex justify-center space-x-16 mb-10">
