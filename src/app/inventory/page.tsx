@@ -1,14 +1,11 @@
-
 "use client";
 import React, { useState, useEffect } from "react";
 import "tailwindcss/tailwind.css";
 import CarCard, { Car } from "../components/inventory/CarCard";
-import { FaCar, FaCheckCircle, FaGasPump, FaTint, FaCarSide, FaClock, FaCheck, FaMoneyBillWave } from 'react-icons/fa';
-import { Dropdown, Button } from 'rizzui';
-import { RiCloseFill } from 'react-icons/ri';
+import { FaCar, FaCheckCircle, FaGasPump, FaTint, FaCarSide, FaClock, FaCheck, FaMoneyBillWave } from "react-icons/fa";
+import { Dropdown, Button } from "rizzui";
+import { RiCloseFill } from "react-icons/ri";
 import RangeSlider from "../components/inventory/range-slider";
-// import { Slider } from "@nextui-org/react";
-
 const carsData: Car[] = [
 	{
 		name: "Tesla Model Y Standard",
@@ -177,7 +174,6 @@ const CarListing = () => {
 	const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 	const [sortOrder, setSortOrder] = useState<string>("");
 	const [openFilterModal, setOpenFilterModal] = useState<boolean>(false);
-	// const [isUnder30KSelected, setIsUnder30KSelected] = useState(false);
 
 	const [selectedYearFilters, setSelectedYearFilters] = useState<string[]>([]);
 	const [Under30K, setUnder30K] = useState<string[]>([]);
@@ -193,6 +189,7 @@ const CarListing = () => {
 	const [filteredResults, setFilteredResults] = useState<Car[]>(carsData);
 	const [filtersApplied, setFiltersApplied] = useState(false);
 	const [isUnder30KActive, setIsUnder30KActive] = useState<string[]>([]);
+	const [selectedFilterCount, setSelectedFilterCount] = useState(0);
 
 	const [minValue, setMinValue] = useState(0);
 	const [maxValue, setMaxValue] = useState(1000000);
@@ -204,6 +201,13 @@ const CarListing = () => {
 			handleSearch();
 		} else {
 			setMinValue(maxValue - 1);
+			handleSearch();
+		}
+	};
+	const handleSliderChange = (values: number | number[]) => {
+		if (Array.isArray(values)) {
+			setMinValue(values[0]);
+			setMaxValue(values[1]);
 			handleSearch();
 		}
 	};
@@ -224,54 +228,35 @@ const CarListing = () => {
 	};
 
 	const clearFilter = (filter: string) => {
-		const updatedFilters = selectedFilters.filter((f) => f !== filter);
-		setSelectedFilters(updatedFilters);
+		const [filterType, value] = filter.split(": ") as ["make" | "year" | "model" | "fuel" | "bodystyle" | "feature" | "color" | "transmission" | "trim" | "Under30K", string];
 
-		if (filter === "Under 30K") {
-			setUnder30K([]);
-		} else if (selectedMakeFilters.includes(filter)) {
-			setSelectedMakeFilters(selectedMakeFilters.filter((f) => f !== filter));
-		} else if (selectedYearFilters.includes(filter)) {
-			setSelectedYearFilters(selectedYearFilters.filter((f) => f !== filter));
-		} else if (selectedModelFilters.includes(filter)) {
-			setselectedModelFilters(selectedModelFilters.filter((f) => f !== filter));
-		} else if (selectedBodyFilters.includes(filter)) {
-			setselectedBodyFilters(selectedBodyFilters.filter((f) => f !== filter));
-		} else if (selectedFeatureFilters.includes(filter)) {
-			setselectedFeatureFilters(selectedFeatureFilters.filter((f) => f !== filter));
-		} else if (selectedColorFilters.includes(filter)) {
-			setselectedColorFilters(selectedColorFilters.filter((f) => f !== filter));
-		} else if (selectedFuelFilters.includes(filter)) {
-			setselectedFuelFilters(selectedFuelFilters.filter((f) => f !== filter));
-		} else if (selectedTrimFilters.includes(filter)) {
-			setselectedTrimFilters(selectedTrimFilters.filter((f) => f !== filter));
-		}
+		setSelectedFilters((prevFilters) => prevFilters.filter((f) => f !== filter));
 
-		const filters: Filters = {
-			make: selectedMakeFilters,
-			year: selectedYearFilters,
-			model: selectedModelFilters,
-			fuel: selectedFuelFilters,
-			bodystyle: selectedBodyFilters,
-			feature: selectedFeatureFilters,
-			color: selectedColorFilters,
-			trim: selectedTrimFilters,
-			under30K: Under30K,
-			minValue: minValue,
-			maxValue: maxValue,
+		const filterMapping: Record<"make" | "year" | "model" | "fuel" | "bodystyle" | "feature" | "color" | "transmission" | "trim" | "Under30K", [string[], React.Dispatch<React.SetStateAction<string[]>>]> = {
+			make: [selectedMakeFilters, setSelectedMakeFilters],
+			year: [selectedYearFilters, setSelectedYearFilters],
+			model: [selectedModelFilters, setselectedModelFilters],
+			fuel: [selectedFuelFilters, setselectedFuelFilters],
+			bodystyle: [selectedBodyFilters, setselectedBodyFilters],
+			feature: [selectedFeatureFilters, setselectedFeatureFilters],
+			color: [selectedColorFilters, setselectedColorFilters],
+			trim: [selectedTrimFilters, setselectedTrimFilters],
+			transmission: [selectedTransmissionFilters, setselectedTransmissionFilters],
+			Under30K: [Under30K, setUnder30K],
 		};
 
-		const hasActiveFilters = updatedFilters.length > 0;
-		const results = hasActiveFilters ? performFiltering(filters) : carsData;
-		setFilteredResults(results);
+		const [currentFilters, setFilters] = filterMapping[filterType];
+		setFilters(currentFilters.filter((item) => item !== value));
 	};
 
-	const handleCardClick = (filter: string) => {
-		if (!selectedFilters.includes(filter)) {
-			setSelectedFilters([...selectedFilters, filter]);
+	const handleCardClick = (filterType: string, value: string | null = null) => {
+		const formattedFilter = value ? `${filterType}: ${value}` : filterType;
+
+		if (value && !selectedFilters.includes(formattedFilter)) {
+			setSelectedFilters([...selectedFilters, formattedFilter]);
 		}
 
-		setSelectedFilter(filter);
+		setSelectedFilter(formattedFilter);
 		setOpenFilterModal(false);
 		setOpenModal(true);
 	};
@@ -293,30 +278,56 @@ const CarListing = () => {
 		setSortOrder(order);
 	};
 
+	const capitalizeFirstLetter = (str: string) => {
+		return str.charAt(0).toUpperCase() + str.slice(1);
+	};
+
 	const handleMultiSelectChange = (value: string, filterType: "make" | "year" | "model" | "fuel" | "bodystyle" | "feature" | "color" | "transmission" | "trim" | "Under30K") => {
-		const filterMapping: { [key: string]: [string[], React.Dispatch<React.SetStateAction<string[]>>] } = {
-			make: [selectedMakeFilters, setSelectedMakeFilters],
-			year: [selectedYearFilters, setSelectedYearFilters],
-			model: [selectedModelFilters, setselectedModelFilters],
-			fuel: [selectedFuelFilters, setselectedFuelFilters],
-			bodystyle: [selectedBodyFilters, setselectedBodyFilters],
-			feature: [selectedFeatureFilters, setselectedFeatureFilters],
-			color: [selectedColorFilters, setselectedColorFilters],
-			trim: [selectedTrimFilters, setselectedTrimFilters],
-			transmission: [selectedTransmissionFilters, setselectedTransmissionFilters],
-			Under30K: [Under30K, setUnder30K],
+		const filterMapping: { [key: string]: string[] } = {
+			make: selectedMakeFilters,
+			year: selectedYearFilters,
+			model: selectedModelFilters,
+			fuel: selectedFuelFilters,
+			bodystyle: selectedBodyFilters,
+			feature: selectedFeatureFilters,
+			color: selectedColorFilters,
+			trim: selectedTrimFilters,
+			transmission: selectedTransmissionFilters,
+			Under30K: Under30K,
 		};
 
-		const [currentFilters, setFilters] = filterMapping[filterType] || [[], () => {}];
+		const filterSetterMapping: { [key: string]: React.Dispatch<React.SetStateAction<string[]>> } = {
+			make: setSelectedMakeFilters,
+			year: setSelectedYearFilters,
+			model: setselectedModelFilters,
+			fuel: setselectedFuelFilters,
+			bodystyle: setselectedBodyFilters,
+			feature: setselectedFeatureFilters,
+			color: setselectedColorFilters,
+			trim: setselectedTrimFilters,
+			transmission: setselectedTransmissionFilters,
+			Under30K: setUnder30K,
+		};
+
+		const currentFilters = filterMapping[filterType] || [];
+		const setFilters = filterSetterMapping[filterType] || (() => {});
 
 		const updatedFilters = currentFilters.includes(value) ? currentFilters.filter((item) => item !== value) : [...currentFilters, value];
 
 		setFilters(updatedFilters);
 		setIsClearDisabled(updatedFilters.length === 0);
 
+		const formattedFilter = filterType === "Under30K" ? value : `${capitalizeFirstLetter(filterType)}: ${value}`;
+
+		setSelectedFilters((prevFilters) => {
+			const newFilters = updatedFilters.includes(value) ? [...prevFilters.filter((filter) => filter !== capitalizeFirstLetter(filterType) && filter !== formattedFilter), formattedFilter] : prevFilters.filter((filter) => filter !== formattedFilter);
+
+			setSelectedFilterCount(newFilters.length);
+			return newFilters;
+		});
+
 		if (filterType === "Under30K") {
 			const isCurrentlyUnder30KActive = updatedFilters.length > 0;
-
 			if (isCurrentlyUnder30KActive) {
 				setMinValue(0);
 				setMaxValue(30000);
@@ -331,22 +342,27 @@ const CarListing = () => {
 
 	const handleClearSelection = () => {
 		setSelectedFilters([]);
-		setSelectedYearFilters([]);
+
 		setSelectedMakeFilters([]);
+		setSelectedYearFilters([]);
 		setselectedModelFilters([]);
+		setselectedFuelFilters([]);
 		setselectedBodyFilters([]);
 		setselectedFeatureFilters([]);
 		setselectedColorFilters([]);
-		setselectedFuelFilters([]);
 		setselectedTrimFilters([]);
 		setselectedTransmissionFilters([]);
+		setUnder30K([]);
+
 		setMinValue(0);
 		setMaxValue(1000000);
 		setIsUnder30KActive([]);
-		setUnder30K([]);
+		setIsClearDisabled(true);
 
 		setFilteredResults(carsData);
 		setIsClearDisabled(true);
+
+		setSelectedFilterCount(0);
 	};
 
 	const handleSearch = () => {
@@ -363,10 +379,15 @@ const CarListing = () => {
 			minValue: minValue,
 			maxValue: maxValue,
 		};
+
 		const results = performFiltering(filters);
 		setFilteredResults(results);
 		setFiltersApplied(true);
 		setOpenModal(false);
+
+		const currentCount = selectedMakeFilters.length + selectedYearFilters.length + selectedModelFilters.length + selectedFuelFilters.length + selectedBodyFilters.length + selectedFeatureFilters.length + selectedColorFilters.length + selectedTrimFilters.length + selectedTransmissionFilters.length + (Under30K.length > 0 ? 1 : 0);
+
+		setSelectedFilterCount(currentCount);
 	};
 
 	const performFiltering = (filters: Filters): Car[] => {
@@ -376,29 +397,29 @@ const CarListing = () => {
 			const modelMatch = filters.model.length === 0 || filters.model.includes(car.model);
 			const fuelMatch = filters.fuel.length === 0 || filters.fuel.includes(car.fuel);
 			const bodystyleMatch = filters.bodystyle.length === 0 || filters.bodystyle.includes(car.bodyStyle);
-			const featureMatch = filters.feature.length === 0 || filters.feature.some((feature) => car.features.includes(feature));
+
+			const featureMatch = filters.feature.length === 0 || filters.feature.every((feature) => car.features.includes(feature));
 			const colorMatch = filters.color.length === 0 || filters.color.includes(car.color);
 			const trimMatch = filters.trim.length === 0 || filters.trim.includes(car.trim);
-			const priceMatch = car.price >= minValue && car.price <= maxValue;
+			const priceMatch = car.price >= (filters.minValue || 0) && car.price <= (filters.maxValue || 1000000);
 
 			const isUnder30K = car.price < 30000;
 			const under30KMatch = filters.under30K.length === 0 || (filters.under30K.includes("Under30K") && isUnder30K);
 
-			return makeMatch && yearMatch && modelMatch && fuelMatch && bodystyleMatch && featureMatch && colorMatch && trimMatch && under30KMatch && priceMatch;
+			return makeMatch && yearMatch && modelMatch && fuelMatch && bodystyleMatch && featureMatch && colorMatch && trimMatch && priceMatch && under30KMatch;
 		});
 	};
 
 	return (
 		<div className="flex flex-col md:flex-row lg:p-20 p-4">
 			<div className="md:w-3/4 mx-auto">
-				<div className="flex flex-col md:flex-row justify-between items-center mb-4">
+				<div className="flex flex-col md:flex-row justify-between items-center mb-6">
 					<div className="relative inline-block text-center">
 						<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-3xl sm:text-4xl">
 							{filteredResults.length} Vehicle{filteredResults.length !== 1 ? "s" : ""} for Sale
 						</h2>
 						<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-[65%] w-[140px] h-[2px] bg-[#6F68EC]"></span>
 					</div>
-
 					<div className="flex items-center mt-2 md:mt-0">
 						<label htmlFor="sortOptions" className="font-semibold text-sm text-right" style={{ width: "5em" }}>
 							Sort by:
@@ -411,49 +432,45 @@ const CarListing = () => {
 								</Button>
 							</Dropdown.Trigger>
 							<Dropdown.Menu className="bg-white py-3 text-sm" style={{ width: "113px" }}>
-								<Dropdown.Item onClick={() => handleSortChange("highest")} className={`my-2 text-black flex items-center ${sortOrder === "highest" ? "text-[#5950d0]" : ""}`} style={{ fontSize: "10px" }}>
-									{sortOrder === "highest" && <FaCheck className="text-[#5950d0] inline mr-1" style={{ fontSize: "10px" }} />}
+								<Dropdown.Item onClick={() => handleSortChange("highest")} className={`my-2 text-black flex items-center ${sortOrder === "highest" ? "text-[#6b5fff]" : ""}`} style={{ fontSize: "10px" }}>
+									{sortOrder === "highest" && <FaCheck className="text-[#6b5fff] inline mr-1" style={{ fontSize: "10px" }} />}
 									Highest Price
 								</Dropdown.Item>
 
-								<Dropdown.Item onClick={() => handleSortChange("lowest")} className={`my-2 text-black flex items-center ${sortOrder === "lowest" ? "text-[#5950d0]" : ""}`} style={{ fontSize: "10px" }}>
-									{sortOrder === "lowest" && <FaCheck className="text-[#5950d0] inline mr-1" style={{ fontSize: "10px" }} />}
+								<Dropdown.Item onClick={() => handleSortChange("lowest")} className={`my-2 text-black flex items-center ${sortOrder === "lowest" ? "text-[#6b5fff]" : ""}`} style={{ fontSize: "10px" }}>
+									{sortOrder === "lowest" && <FaCheck className="text-[#6b5fff] inline mr-1" style={{ fontSize: "10px" }} />}
 									Lowest Price
 								</Dropdown.Item>
 
-								<Dropdown.Item onClick={() => handleSortChange("oldest")} className={`my-2 text-black flex items-center ${sortOrder === "oldest" ? "text-[#5950d0]" : ""}`} style={{ fontSize: "10px" }}>
+								<Dropdown.Item onClick={() => handleSortChange("oldest")} className={`my-2 text-black flex items-center ${sortOrder === "oldest" ? "text-[#6b5fff]" : ""}`} style={{ fontSize: "10px" }}>
 									{sortOrder === "oldest" && <FaCheck className="text-[#6b5fff] inline mr-1" style={{ fontSize: "10px" }} />}
 									Oldest Year
 								</Dropdown.Item>
 
-								<Dropdown.Item onClick={() => handleSortChange("newest")} className={`text-black flex items-center ${sortOrder === "newest" ? "text-[#5950d0]" : ""}`} style={{ fontSize: "10px" }}>
+								<Dropdown.Item onClick={() => handleSortChange("newest")} className={`text-black flex items-center ${sortOrder === "newest" ? "text-[#6b5fff]" : ""}`} style={{ fontSize: "10px" }}>
 									{sortOrder === "newest" && <FaCheck className="text-[#6b5fff] inline mr-1" style={{ fontSize: "10px" }} />}
 									Newest Year
 								</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
 					</div>
-
 					<div className="md:hidden mb-4 text-center">
-						<button className="bg-[#5950d0] text-white px-4 py-2 rounded hover:bg-[#5950d0]/90" onClick={toggleFilterModal}>
+						<button className="bg-[#6b5fff] text-white px-4 py-2 rounded hover:bg-[#6b5fff]/90" onClick={toggleFilterModal}>
 							Filters
 						</button>
 					</div>
 				</div>
-
-				<div className="flex flex-wrap items-center py-4">
-					{selectedFilters && filtersApplied}
-					{filtersApplied &&
-						selectedFilters.map((filter) => (
-							<div key={filter} className="bg-gray-200 text-gray-700 px-2 py-1 rounded mr-2 flex items-center">
-								{filter}
-								<button onClick={() => clearFilter(filter)} className="ml-2 text-blue-600 hover:text-blue-800" aria-label={`Remove filter: ${filter}`}>
-									&times;
-								</button>
-							</div>
-						))}
-					{filtersApplied && selectedFilters.length > 0 && (
-						<button onClick={handleClearSelection} className="text-white px-2 py-1 rounded bg-[#5950d0] hover:bg-[#5950d0]/90" aria-label="Clear all filters">
+				<div className="flex flex-wrap items-center gap-y-1.5 mt-[2.75rem] mb-6">
+					{selectedFilters.map((filter) => (
+						<div key={filter} className="bg-gray-200 text-gray-700 px-2 py-1 rounded mr-2 flex items-center capitalize">
+							{filter}
+							<button onClick={() => clearFilter(filter)} className="ml-2 text-blue-600 hover:text-blue-800" aria-label={`Remove filter: ${filter}`}>
+								&times;
+							</button>
+						</div>
+					))}
+					{selectedFilters.length > 0 && (
+						<button onClick={handleClearSelection} className="text-white px-2 py-1 rounded bg-[#6b5fff] hover:bg-[#6b5fff]/90" aria-label="Clear all filters">
 							Clear All
 						</button>
 					)}
@@ -472,7 +489,7 @@ const CarListing = () => {
 							Price
 						</label>
 
-						{/* <div className="relative w-full max-w-xl mx-auto mt-4">
+						<div className="relative w-full max-w-xl mx-auto mt-4">
 							<div
 								className="absolute h-1 rounded-lg"
 								style={{
@@ -507,13 +524,14 @@ const CarListing = () => {
 								<span className="text-sm my-3">{minValue}</span>
 								<span className="text-sm my-3">{maxValue}</span>
 							</div>
-						</div> */}
+						</div>
 
 						<div className="grid grid-cols-3 gap-3">
 							<div className={`flex flex-col items-center justify-center p-4 rounded-md cursor-pointer  bg-gray-200`} onClick={() => handleCardClick("Under30K")}>
 								<div className="text-blue-500 text-3xl mb-1">💰</div>
 								<span className="text-sm">Under 30K</span>
 							</div>
+
 							{["Year", "Model", "Fuel Type", "Body Style", "Features", "Color", "Trim", "Transmission"].map((filter) => (
 								<div key={filter} className={`flex flex-col items-center justify-center p-4 rounded-md cursor-pointer  bg-gray-200`} onClick={() => handleCardClick(filter)}>
 									<div className="text-gray-700 text-3xl mb-1">
@@ -540,25 +558,12 @@ const CarListing = () => {
 				</div>
 			)}
 
-			{/* Price Slider */}
-
 			<div className="md:w-1/4 md:flex flex-col gap-3 px-5 mt-4">
 				<div className="hidden md:flex flex-col mb-4">
 					<label htmlFor="priceRange" className="mb-2 font-semibold text-lg">
 						Price
 					</label>
-					<RangeSlider
-						value={[minValue, maxValue]} // Pass `minValue` and `maxValue` as value
-						onChange={(values) => {
-							if (Array.isArray(values)) {
-								setMinValue(values[0]);
-								setMaxValue(values[1]);
-								handleSearch(); // Call search function here to filter results as needed
-							}
-						}}
-						min={0}
-						max={100000}
-					/>
+					<RangeSlider minValue={minValue} maxValue={maxValue} onChange={handleSliderChange} min={0} max={100000} range />
 				</div>
 
 				<div className="hidden md:grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-3">
@@ -650,13 +655,13 @@ const CarListing = () => {
 							<hr className="my-3" />
 
 							{selectedFilter === "Under30K" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
-									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Under 30K</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+									<h3 className="font-semibold text-lg col-span-full">Under 30K</h3>
 									{Under30KOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
-                        p-4 rounded-lg shadow-md 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+                        p-4 rounded-lg shadow-md cursor-pointer
                         ${Under30K.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                         hover:shadow-xl`}
 										>
@@ -669,7 +674,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "Under30K");
 													}}
-													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out cursor-pointer"
 												/>
 											</label>
 											<p className="text-sm mt-2">123 Cars Available.</p>
@@ -679,17 +684,17 @@ const CarListing = () => {
 							)}
 
 							{selectedFilter === "Year" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
-									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Year</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+									<h3 className="font-semibold text-lg col-span-full">Year</h3>
 									{yearOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
-                        p-4 rounded-lg shadow-md 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+                        p-4 rounded-lg shadow-md cursor-pointer
                         ${selectedYearFilters.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                         hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full cursor-pointer cursor-pointer">
+											<label className="flex justify-between items-center w-full cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -698,7 +703,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "year");
 													}}
-													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out cursor-pointer"
 												/>
 											</label>
 										</div>
@@ -707,17 +712,17 @@ const CarListing = () => {
 							)}
 
 							{selectedFilter === "Make" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
-									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Make</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+									<h3 className="font-semibold text-lg col-span-full">Make</h3>
 									{makeOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
-                        p-4 rounded-lg shadow-md 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+                        p-4 rounded-lg shadow-md cursor cursor-pointer
                         ${selectedMakeFilters.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                         hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full cursor-pointer cursor-pointer">
+											<label className="flex justify-between items-center w-full cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -726,7 +731,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "make");
 													}}
-													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out cursor-pointer"
 												/>
 											</label>
 											<p className="text-sm mt-2">123 Cars Available.</p>
@@ -736,17 +741,17 @@ const CarListing = () => {
 							)}
 
 							{selectedFilter === "Model" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
-									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Model</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+									<h3 className="font-semibold text-lg col-span-full">Model</h3>
 									{modelOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
-                        p-4 rounded-lg shadow-md 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+                        p-4 rounded-lg shadow-md cursor-pointer
                         ${selectedModelFilters.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                         hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full cursor-pointer cursor-pointer">
+											<label className="flex justify-between items-center w-full cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -755,7 +760,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "model");
 													}}
-													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out cursor-pointer"
 												/>
 											</label>
 											<p className="text-sm mt-2">13 Cars Available.</p>
@@ -765,17 +770,17 @@ const CarListing = () => {
 							)}
 
 							{selectedFilter === "Fuel" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
-									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Fuel Type</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+									<h3 className="font-semibold text-lg col-span-full">Fuel Type</h3>
 									{fuelOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
-                      p-4 rounded-lg shadow-md 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+                      p-4 rounded-lg shadow-md cursor-pointer
                       ${selectedFuelFilters.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                       hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full cursor-pointer cursor-pointer">
+											<label className="flex justify-between items-center w-full cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -784,7 +789,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "fuel");
 													}}
-													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out cursor-pointer"
 												/>
 											</label>
 											<p className="text-sm mt-2">123 Cars Available.</p>
@@ -794,17 +799,17 @@ const CarListing = () => {
 							)}
 
 							{selectedFilter === "Body Style" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
-									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Year</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+									<h3 className="font-semibold text-lg col-span-full">Year</h3>
 									{bodyStyleOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
-                        p-4 rounded-lg shadow-md 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+                        p-4 rounded-lg shadow-md cursor-pointer
                         ${selectedBodyFilters.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                         hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full cursor-pointer cursor-pointer">
+											<label className="flex justify-between items-center w-full cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -813,7 +818,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "bodystyle");
 													}}
-													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out cursor-pointer"
 												/>
 											</label>
 											<p className="text-sm mt-2">123 Cars Available.</p>
@@ -823,17 +828,17 @@ const CarListing = () => {
 							)}
 
 							{selectedFilter === "Features" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
-									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Features</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+									<h3 className="font-semibold text-lg col-span-full">Features</h3>
 									{featuresOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
-                        p-4 rounded-lg shadow-md 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+                        p-4 rounded-lg shadow-md cursor-pointer
                         ${selectedFeatureFilters.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                         hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full cursor-pointer cursor-pointer">
+											<label className="flex justify-between items-center w-full cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -842,7 +847,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "feature");
 													}}
-													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out cursor-pointer"
 												/>
 											</label>
 											<p className="text-sm mt-2">123 Cars Available.</p>
@@ -852,17 +857,17 @@ const CarListing = () => {
 							)}
 
 							{selectedFilter === "Color" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
-									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Colors</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+									<h3 className="font-semibold text-lg col-span-full">Colors</h3>
 									{colorOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
-                        p-4 rounded-lg shadow-md 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+                        p-4 rounded-lg shadow-md cursor-pointer
                         ${selectedColorFilters.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                         hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full cursor-pointer cursor-pointer">
+											<label className="flex justify-between items-center w-full cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -871,7 +876,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "color");
 													}}
-													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out cursor-pointer"
 												/>
 											</label>
 											<p className="text-sm mt-2">123 Cars Available.</p>
@@ -881,17 +886,17 @@ const CarListing = () => {
 							)}
 
 							{selectedFilter === "Trim" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
-									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Trim</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+									<h3 className="font-semibold text-lg col-span-full">Trim</h3>
 									{trimOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
-                        p-4 rounded-lg shadow-md 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+                        p-4 rounded-lg shadow-md cursor-pointer
                         ${selectedTrimFilters.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                         hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full cursor-pointer cursor-pointer">
+											<label className="flex justify-between items-center w-full cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -900,7 +905,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "trim");
 													}}
-													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out cursor-pointer"
 												/>
 											</label>
 											<p className="text-sm mt-2">123 Cars Available.</p>
@@ -910,17 +915,17 @@ const CarListing = () => {
 							)}
 
 							{selectedFilter === "Transmission" && (
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 cursor-pointer">
-									<h3 className="font-semibold text-lg col-span-full cursor-pointer">Transmission</h3>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+									<h3 className="font-semibold text-lg col-span-full">Transmission</h3>
 									{transmissionOptions.map((option) => (
 										<div
 											key={option.value}
-											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 cursor-pointer 
-                        p-4 rounded-lg shadow-md 
+											className={`flex flex-col items-start justify-between cursor-pointer transition-all duration-300 
+                        p-4 rounded-lg shadow-md cursor-pointer
                         ${selectedTransmissionFilters.includes(option.value) ? "bg-pink-50 shadow-lg" : "bg-white"}
                         hover:shadow-xl`}
 										>
-											<label className="flex justify-between items-center w-full cursor-pointer cursor-pointer">
+											<label className="flex justify-between items-center w-full cursor-pointer">
 												<span className="text-gray-800">{option.label}</span>
 												<input
 													type="checkbox"
@@ -929,7 +934,7 @@ const CarListing = () => {
 													onChange={() => {
 														handleMultiSelectChange(option.value, "transmission");
 													}}
-													className="cursor-pointer h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out"
+													className="h-6 w-6 appearance-none checked:bg-blue-500 checked:border-transparent border-2 border-gray-400 rounded-full transition duration-200 ease-in-out cursor-pointer"
 												/>
 											</label>
 											<p className="text-sm mt-2">123 Cars Available.</p>
@@ -949,7 +954,7 @@ const CarListing = () => {
 								</button>
 
 								<button className="p-2 text-white rounded-md hover:bg-[#6b5fff]/90 bg-[#6b5fff] hover:text-light" onClick={handleSearch}>
-									View {yearOptions.length} Matches
+									View ({selectedFilterCount}) {selectedFilterCount > 1 ? "Matches" : "Match"}
 								</button>
 							</div>
 						</div>
