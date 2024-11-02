@@ -91,7 +91,7 @@ interface CustomCardProps {
 
 const CustomCard: React.FC<CustomCardProps> = ({ imageSrc, description, style }) => {
 	return (
-		<div className="w-full max-w-md h-full bg-white rounded-lg shadow-lg overflow-hidden">
+		<div className="w-full h-full bg-white rounded-lg shadow-lg overflow-hidden">
 			<img src={imageSrc} className="w-full h-55 mt-10" alt="Card image" />
 
 			<div className="p-3 bg-gray-100 h-full">
@@ -150,12 +150,12 @@ const form = () => {
 		<>
 			<div className="relative w-full flex flex-col justify-between items-center">
 				{/* Background Image */}
-				<Image src="/images/hero-finance.jpg" alt="Image Error" width={600} height={650} className="w-full opacity-25 h-[100svh] xl:h-auto object-cover opacity-75" style={{ maxHeight: "30rem" }} />
+				<Image src="/images/hero-finance.jpg" alt="Image Error" width={600} height={650} className="w-full opacity-25 h-[100svh] xxl:h-auto object-cover opacity-75" style={{ maxHeight: "30rem" }} />
 
 				{/* Content Wrapper */}
-				<div className="absolute flex flex-col gap-9 md:gap-4 xl:gap-9 items-center w-[90%]">
+				<div className="absolute flex flex-col gap-9 items-center w-[90%] mt-10">
 					{/* Heading */}
-					<div className="mt-5 lg:mt-12 text-center !w-[80%]">
+					<div className="mt-5 xxl:mt-12 text-center !w-[80%]">
 						<h2 className="text-white text-xl font-semibold lg:text-4xl text-shadow">
 							Get Financing result without <br className="hidden md:block" /> impacting your credit
 						</h2>
@@ -171,7 +171,7 @@ const form = () => {
 							))}
 						</div>
 					</div> */}
-					<div className="backdrop-xl bg-white/50 py-5 px-2 md:p-3 rounded-lg lg:rounded-[5px] shadow-md mt-5 lg:mt-4 w-full sm:w-[80%] md:w-auto">
+					<div className="backdrop-xl bg-white/50 py-5 px-2 xl:p-3 rounded-lg lg:rounded-[5px] shadow-md xl:mt-4 w-full sm:w-[80%] md:w-auto">
 						<div className="flex flex-col lg:flex-row flex-wrap justify-center gap-3 md:space-x-4">
 							{["How it Works", "Car Payment Calculator", "Car Max Auto Finance"].map((label, index) => (
 								<button key={index} onClick={() => handleButtonClick(index)} className={`text-black w-full md:w-[270px] lg:w-auto px-4 py-2 md:px-6 md:py-3 text-sm md:text-base transition duration-300 ${activeButton === index ? "bg-[#5950d0] text-white rounded-[5px]" : "shadow-lg border bg-gray-100 hover:bg-gray-200 rounded-[5px]"}`}>
@@ -190,9 +190,9 @@ const form = () => {
 				</div>
 			</div>
 
-			<div className="container mx-auto p-6">
+			<div className="container mx-auto p-3 lg:p-6">
 				{showCalculator ? (
-					<div className="py-10 px-6">
+					<div className="py-10 px-3 lg:px-6">
 						<form className="mt-4 max-w-md mx-auto p-4 bg-white rounded-lg shadow-lg border" onSubmit={calculateMonthlyPayment}>
 							<h2 className="text-2xl font-bold text-black text-center">Car Payment Calculator</h2>
 
@@ -361,8 +361,8 @@ const form = () => {
 
 				<div className="flex justify-center mp-5 ">
 					<div className="relative inline-block text-center mb-7">
-						<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-2xl sm:text-3xl">Financing Form's</h2>
-						<span className="absolute left-1/2 bottom-[-10px] transform -translate-x-[65%] w-[140px] h-[2px] bg-[#6F68EC]"></span>
+						<h2 className="block w-full bg-gradient-to-b from-white to-white text-[#3d3838] bg-clip-text font-bold text-2xl sm:text-3xl ">FAQ's</h2>
+						<span className="absolute left-2/3 bottom-[-10px] transform -translate-x-[64%] w-[80px] h-[2px] bg-[#6F68EC]"></span>
 					</div>
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 py-10 items-start">
